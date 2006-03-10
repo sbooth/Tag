@@ -1,0 +1,29 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {performVersionCheck = id; showAcknowledgments = id; showPreferences = id; }; 
+            CLASS = ApplicationDelegate; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {
+                addFiles = id; 
+                deleteTag = id; 
+                guessTags = id; 
+                newTag = id; 
+                selectAdvancedTab = id; 
+                selectAllFiles = id; 
+                selectBasicTab = id; 
+                selectNextFile = id; 
+                selectPreviousFile = id; 
+                selectTabularTab = id; 
+                toggleFilesDrawer = id; 
+            }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

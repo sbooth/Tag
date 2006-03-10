@@ -1,0 +1,57 @@
+{
+    IBClasses = (
+        {CLASS = CompilationButton; LANGUAGE = ObjC; SUPERCLASS = NSButton; }, 
+        {CLASS = CompilationButtonCell; LANGUAGE = ObjC; SUPERCLASS = NSButtonCell; }, 
+        {CLASS = EditorWindow; LANGUAGE = ObjC; SUPERCLASS = NSWindow; }, 
+        {
+            CLASS = FileArrayController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {"_tableView" = NSTableView; }; 
+            SUPERCLASS = NSArrayController; 
+        }, 
+        {CLASS = FilesTableView; LANGUAGE = ObjC; SUPERCLASS = NSTableView; }, 
+        {
+            ACTIONS = {"" = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = TagArrayController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {"_delegate" = id; }; 
+            SUPERCLASS = NSArrayController; 
+        }, 
+        {
+            ACTIONS = {deleteTag = id; newTag = id; openDocument = id; performClose = id; }; 
+            CLASS = TagEditor; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                "_ISRCTextField" = NSTextField; 
+                "_MCNTextField" = NSTextField; 
+                "_albumTextField" = NSTextField; 
+                "_artistTextField" = NSTextField; 
+                "_commentTextField" = NSTextField; 
+                "_composerTextField" = NSTextField; 
+                "_customTextField" = NSTextField; 
+                "_discNumberTextField" = NSTextField; 
+                "_discTotalTextField" = NSTextField; 
+                "_encoderTextField" = NSTextField; 
+                "_filesController" = FilesArrayController; 
+                "_filesDrawer" = NSDrawer; 
+                "_genreTextField" = NSTextField; 
+                "_selectedFilesController" = NSArrayController; 
+                "_tabView" = NSTabView; 
+                "_tabularTagsTable" = NSTableView; 
+                "_tagsController" = TagArrayController; 
+                "_tagsTable" = NSTableView; 
+                "_titleTextField" = NSTextField; 
+                "_trackNumberTextField" = NSTextField; 
+                "_trackTotalTextField" = NSTextField; 
+                "_yearTextField" = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}
