@@ -24,11 +24,14 @@
 @interface UpdateChecker : NSWindowController 
 {
 	MacPADSocket		*_socket;
-	NSNumber			*_checkInProgress;
+	BOOL				_checkInProgress;
 }
 
 + (UpdateChecker *) sharedController;
 
 - (void) checkForUpdate:(BOOL)showWindow;
+
+- (BOOL) checkInProgress;
+- (void) setCheckInProgress:(BOOL)checkInProgress;
 
 @end

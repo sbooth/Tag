@@ -24,19 +24,6 @@ static UpdateChecker *sharedController = nil;
 
 @implementation UpdateChecker
 
-- (id) init
-{
-	if((self = [super initWithWindowNibName:@"UpdateChecker"])) {
-		_socket = [[MacPADSocket alloc] init];
-		[_socket setDelegate:self];
-		
-		[self setValue:[NSNumber numberWithBool:NO] forKey:@"checkInProgress"];
-		
-		return self;
-	}
-	return nil;
-}
-
 + (UpdateChecker *) sharedController
 {
 	@synchronized(self) {
@@ -62,6 +49,21 @@ static UpdateChecker *sharedController = nil;
 - (unsigned)		retainCount									{ return UINT_MAX;  /* denotes an object that cannot be released */ }
 - (void)			release										{ /* do nothing */ }
 - (id)				autorelease									{ return self; }
+- (BOOL)			checkInProgress								{ return _checkInProgress; }
+- (void)			setCheckInProgress:(BOOL)checkInProgress	{ _checkInProgress = checkInProgress; }
+
+- (id) init
+{
+	if((self = [super initWithWindowNibName:@"UpdateChecker"])) {
+		_socket = [[MacPADSocket alloc] init];
+		[_socket setDelegate:self];
+		
+		[self setCheckInProgress:NO];
+		
+		return self;
+	}
+	return nil;
+}
 
 - (void) dealloc
 {
@@ -82,7 +84,7 @@ static UpdateChecker *sharedController = nil;
 		[self showWindow:self];	
 	}
 	
-	[self setValue:[NSNumber numberWithBool:YES] forKey:@"checkInProgress"];
+	[self setCheckInProgress:YES];
 	[_socket performCheck];
 }
 
@@ -90,7 +92,7 @@ static UpdateChecker *sharedController = nil;
 {
 	NSWindow *updateWindow = [self window];
 
-	[self setValue:[NSNumber numberWithBool:NO] forKey:@"checkInProgress"];
+	[self setCheckInProgress:NO];
 
 	if([updateWindow isVisible]) {
 		NSAlert *alert = [[[NSAlert alloc] init] autorelease];
@@ -107,7 +109,7 @@ static UpdateChecker *sharedController = nil;
 {
 	NSWindow *updateWindow = [self window];
 	
-	[self setValue:[NSNumber numberWithBool:NO] forKey:@"checkInProgress"];
+	[self setCheckInProgress:NO];
 
 	// Suppress up-to-date alert if our window isn't visible (called by ApplicationDelegate at startup)
 	if(kMacPADResultNoNewVersion == [[[aNotification userInfo] objectForKey:MacPADErrorCode] intValue] && [updateWindow isVisible]) {
