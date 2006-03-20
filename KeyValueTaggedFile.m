@@ -18,16 +18,17 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#import "XiphCommentedFile.h"
+#import "KeyValueTaggedFile.h"
 #import "OggVorbisFile.h"
 #import "FLACFile.h"
+#import "MonkeysAudioFile.h"
 #import "TagEditor.h"
 
-@implementation XiphCommentedFile
+@implementation KeyValueTaggedFile
 
-+ (XiphCommentedFile *) parseFile:(NSString *)filename
++ (KeyValueTaggedFile *) parseFile:(NSString *)filename
 {
-	XiphCommentedFile		*result			= nil;
+	KeyValueTaggedFile		*result			= nil;
 	NSString				*extension		= [filename pathExtension];
 	
 	if([extension isEqualToString:@"ogg"]) {
@@ -36,8 +37,11 @@
 	else if([extension isEqualToString:@"flac"]) {
 		result = [[FLACFile alloc] initWithFile:filename];
 	}
+	else if([extension isEqualToString:@"ape"] || [extension isEqualToString:@"apl"] || [extension isEqualToString:@"mac"]) {
+		result = [[MonkeysAudioFile alloc] initWithFile:filename];
+	}
 	else {
-		@throw [NSException exceptionWithName:@"FileFormatNotSupportedException" reason:NSLocalizedStringFromTable(@"The document does not appear to be a valid FLAC or Ogg Vorbis file.", @"Errors", @"") userInfo:nil];
+		@throw [NSException exceptionWithName:@"FileFormatNotSupportedException" reason:NSLocalizedStringFromTable(@"The document does not appear to be a valid FLAC, Ogg Vorbis or Monkey's Audio file.", @"Errors", @"") userInfo:nil];
 	}
 	
 	return [result autorelease];
@@ -88,6 +92,8 @@
 	TagEditor	*editor		= [TagEditor sharedEditor];
 	NSString	*key		= [[self tagMapping] valueForKey:tag];
 	
+	[editor willChangeValueForKey:@"tags"];
+
 	if(nil != key) {
 		[editor willChangeValueForKey:key];
 		[self willChangeValueForKey:key];
@@ -103,6 +109,8 @@
 		[self didChangeValueForKey:key];
 		[editor didChangeValueForKey:key];
 	}
+
+	[editor didChangeValueForKey:@"tags"];
 }
 
 - (void) setValue:(NSString *)value forTag:(NSString *)tag

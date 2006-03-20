@@ -39,10 +39,10 @@
 	return (nil == [self findFile:filename] ? NO :  YES);
 }
 
-- (XiphCommentedFile *) findFile:(NSString *)filename
+- (KeyValueTaggedFile *) findFile:(NSString *)filename
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	
 	enumerator = [[self arrangedObjects] objectEnumerator];		
 	while((current = [enumerator nextObject])) {
@@ -56,7 +56,7 @@
 
 - (void) selectFile:(NSString *)filename
 {
-	XiphCommentedFile *file = [self findFile:filename];
+	KeyValueTaggedFile *file = [self findFile:filename];
 	if(nil != file) {
 		[self setSelectionIndex:[[self arrangedObjects] indexOfObject:file]];
 	}
@@ -118,7 +118,7 @@
 		NSEnumerator		*enumerator;
 		NSString			*current;
 		NSMutableArray		*newFiles	= [NSMutableArray arrayWithCapacity:10];
-		XiphCommentedFile	*file;
+		KeyValueTaggedFile	*file;
 		
 		enumerator = [[[info draggingPasteboard] propertyListForType:NSFilenamesPboardType] objectEnumerator];
 		while((current = [enumerator nextObject])) {

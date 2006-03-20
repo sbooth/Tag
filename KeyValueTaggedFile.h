@@ -20,7 +20,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface XiphCommentedFile : NSObject
+@interface KeyValueTaggedFile : NSObject
 {
 	NSMutableArray		*_tags;
 	NSString			*_filename;
@@ -28,7 +28,7 @@
 	int					_changeCount;
 }
 
-+ (XiphCommentedFile *) parseFile:(NSString *)filename;
++ (KeyValueTaggedFile *) parseFile:(NSString *)filename;
 
 - (id)				initWithFile:(NSString *)filename;
 

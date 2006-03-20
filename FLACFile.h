@@ -19,9 +19,9 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "XiphCommentedFile.h"
+#import "KeyValueTaggedFile.h"
 
-@interface FLACFile : XiphCommentedFile
+@interface FLACFile : KeyValueTaggedFile
 {
 }
 

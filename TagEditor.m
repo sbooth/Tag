@@ -19,7 +19,7 @@
  */
 
 #import "TagEditor.h"
-#import "XiphCommentedFile.h"
+#import "KeyValueTaggedFile.h"
 #import "Genres.h"
 #import "AddTagSheet.h"
 #import "GuessTagsSheet.h"
@@ -129,7 +129,7 @@ static TagEditor *sharedEditor = nil;
 - (BOOL) applicationShouldTerminate
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	NSAlert					*alert;
 	int						result;
 
@@ -190,7 +190,7 @@ static TagEditor *sharedEditor = nil;
 - (BOOL) dirty
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 
 	enumerator	= [[_filesController arrangedObjects] objectEnumerator];	
 	while((current = [enumerator nextObject])) {
@@ -205,7 +205,7 @@ static TagEditor *sharedEditor = nil;
 - (BOOL) selectionDirty
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	
 	enumerator	= [[_filesController selectedObjects] objectEnumerator];	
 	while((current = [enumerator nextObject])) {
@@ -227,7 +227,7 @@ static TagEditor *sharedEditor = nil;
 	NSEnumerator		*enumerator;
 	NSString			*filename;
 	NSMutableArray		*newFiles;
-	XiphCommentedFile	*file;
+	KeyValueTaggedFile	*file;
 	int					returnCode;
 	
 	[panel setAllowsMultipleSelection:YES];
@@ -264,7 +264,7 @@ static TagEditor *sharedEditor = nil;
 - (IBAction) performClose:(id)sender
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	NSString				*key;
 	
 	[self willChangeValueForKey:@"tags"];
@@ -308,7 +308,7 @@ static TagEditor *sharedEditor = nil;
 - (IBAction) saveDocument:(id)sender
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	
 	enumerator = [[_filesController selectedObjects] objectEnumerator];
 	while((current = [enumerator nextObject])) {
@@ -333,7 +333,7 @@ static TagEditor *sharedEditor = nil;
 - (IBAction) revertDocumentToSaved:(id)sender
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	NSString				*key;
 	
 	[self willChangeValueForKey:@"tags"];
@@ -389,7 +389,7 @@ static TagEditor *sharedEditor = nil;
 	NSFileManager		*manager			= [NSFileManager defaultManager];
 	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", nil];
 	NSMutableArray		*newFiles;
-	XiphCommentedFile	*file;
+	KeyValueTaggedFile	*file;
 	NSArray				*subpaths;
 	BOOL				isDir;
 	NSEnumerator		*enumerator;
@@ -465,7 +465,7 @@ static TagEditor *sharedEditor = nil;
 			return YES;
 		}
 		
-		[_filesController insertObject:[XiphCommentedFile parseFile:filename] atArrangedObjectIndex:index];
+		[_filesController insertObject:[KeyValueTaggedFile parseFile:filename] atArrangedObjectIndex:index];
 		[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
 	}
 	
@@ -522,7 +522,7 @@ static TagEditor *sharedEditor = nil;
 - (IBAction) deleteTag:(id)sender
 {
 	NSEnumerator			*enumerator, *tagEnumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	NSDictionary			*tag;
 	NSUndoManager			*undoManager					= [self undoManager];
 	
@@ -568,7 +568,7 @@ static TagEditor *sharedEditor = nil;
 - (void) setValue:(NSString *)value forTag:(NSString *)tag
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	NSUndoManager			*undoManager		= [self undoManager];
 	
 	[self willChangeValueForKey:@"tags"];
@@ -584,7 +584,7 @@ static TagEditor *sharedEditor = nil;
 - (void) addValue:(NSString *)value forTag:(NSString *)tag
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	NSUndoManager			*undoManager		= [self undoManager];
 	
 	[self willChangeValueForKey:@"tags"];
@@ -600,7 +600,7 @@ static TagEditor *sharedEditor = nil;
 - (void) updateTag:(NSString *)tag withValue:(NSString *)currentValue toValue:(NSString *)newValue
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	NSUndoManager			*undoManager		= [self undoManager];
 	
 	[self willChangeValueForKey:@"tags"];
@@ -616,7 +616,7 @@ static TagEditor *sharedEditor = nil;
 - (void) renameTag:(NSString *)currentTag withValue:(NSString *)currentValue toTag:(NSString *)newTag
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	NSUndoManager			*undoManager		= [self undoManager];
 	
 	[self willChangeValueForKey:@"tags"];
@@ -632,7 +632,7 @@ static TagEditor *sharedEditor = nil;
 - (void) guessTagsUsingPattern:(NSString *)pattern
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	NSUndoManager			*undoManager		= [self undoManager];
 	
 	[self willChangeValueForKey:@"tags"];
@@ -664,7 +664,7 @@ static TagEditor *sharedEditor = nil;
 - (id) valueForKey:(NSString *)key
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	
 	if([_validKeys containsObject:key]) {
 		NSArray					*reverseMappedKeys;
@@ -760,7 +760,7 @@ static TagEditor *sharedEditor = nil;
 - (void) setValue:(id)value forKey:(NSString *)key
 {
 	NSEnumerator			*enumerator;
-	XiphCommentedFile		*current;
+	KeyValueTaggedFile		*current;
 	NSArray					*reverseMappedKeys;
 	NSUndoManager			*undoManager		= [self undoManager];
 	NSString				*stringValue;

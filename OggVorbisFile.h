@@ -19,9 +19,9 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "XiphCommentedFile.h"
+#import "KeyValueTaggedFile.h"
 
-@interface OggVorbisFile : XiphCommentedFile
+@interface OggVorbisFile : KeyValueTaggedFile
 {
 }
 

@@ -10,6 +10,7 @@
 		8C04FC2909B5D09D00EFF4D0 /* EditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C04FC2709B5D09D00EFF4D0 /* EditorWindow.m */; };
 		8C0A9F5D09B5898C00D994FC /* Tag.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C0A9F5C09B5898C00D994FC /* Tag.icns */; };
 		8C0AA13409B5AEEF00D994FC /* TagEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0AA13209B5AEEF00D994FC /* TagEditor.nib */; };
+		8C14696509CC367D00F91A97 /* KeyValueTaggedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C14696409CC367D00F91A97 /* KeyValueTaggedFile.m */; };
 		8C5A84B109B1C6D900B86E4E /* AddTagSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5A84AF09B1C6D900B86E4E /* AddTagSheet.m */; };
 		8C728BC609B6F744000F7848 /* CompilationButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3BDED09B68EAC006B54AD /* CompilationButtonCell.m */; };
 		8C728C3309B6F8C9000F7848 /* ServicesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C728C3109B6F8C9000F7848 /* ServicesProvider.m */; };
@@ -20,9 +21,11 @@
 		8C72A011098DED9100AADBFD /* Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C72A00D098DED9100AADBFD /* Add.tiff */; };
 		8C72A012098DED9100AADBFD /* Remove_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C72A00E098DED9100AADBFD /* Remove_Pressed.tiff */; };
 		8C72A013098DED9100AADBFD /* Remove.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C72A00F098DED9100AADBFD /* Remove.tiff */; };
+		8C8006AA09CBB13800AEBDD9 /* MAC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8006A709CBB13800AEBDD9 /* MAC.framework */; };
+		8C8006AB09CBB14700AEBDD9 /* MAC.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8006A709CBB13800AEBDD9 /* MAC.framework */; };
+		8C8006C909CBB16300AEBDD9 /* MonkeysAudioFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8C8006C709CBB16300AEBDD9 /* MonkeysAudioFile.mm */; };
 		8C80BAD009BAF01F00429B03 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0AB1C09B53F3500E44E10 /* FilesTableView.m */; };
 		8CA0A38609B4535400E44E10 /* TagEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0A38409B4535400E44E10 /* TagEditor.m */; };
-		8CA0A4C409B4665700E44E10 /* XiphCommentedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0A4C209B4665700E44E10 /* XiphCommentedFile.m */; };
 		8CA0A4E809B467B000E44E10 /* FLACFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0A4E609B467B000E44E10 /* FLACFile.m */; };
 		8CA0A4F009B467C100E44E10 /* OggVorbisFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0A4EE09B467C100E44E10 /* OggVorbisFile.mm */; };
 		8CA0A9A609B52C0000E44E10 /* FLACHelperFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0A9A409B52C0000E44E10 /* FLACHelperFunctions.m */; };
@@ -45,9 +48,9 @@
 		8CB4FFD509B7357500EF45EB /* MacPAD.url in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4FFD409B7357500EF45EB /* MacPAD.url */; };
 		8CCA0D0E09BDA747002E74BD /* Actions.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CCA0D0C09BDA747002E74BD /* Actions.strings */; };
 		8CCA0D7309BDB3D3002E74BD /* GuessTagsSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CCA0D7109BDB3D3002E74BD /* GuessTagsSheet.nib */; };
-		8CCA0D8809BDB433002E74BD /* GuessTagsSheetDelegateMethods.h in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8CCA0D8709BDB433002E74BD /* GuessTagsSheetDelegateMethods.h */; };
 		8CCA0D8A09BDB449002E74BD /* GuessTagsSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA0D8909BDB449002E74BD /* GuessTagsSheet.m */; };
 		8CDE8F5509BA2EF4002140CF /* FileArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE8F5309BA2EF4002140CF /* FileArrayController.m */; };
+		8CE74D9C09CDB27700D73B4B /* TagFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8CE74D9B09CDB27700D73B4B /* TagFile.icns */; };
 		8CFA789F09B1AE840081F2E9 /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA789D09B1AE840081F2E9 /* Preferences.nib */; };
 		8CFA78A409B1AE9A0081F2E9 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA78A209B1AE990081F2E9 /* PreferencesController.m */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
@@ -79,9 +82,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8C8006AB09CBB14700AEBDD9 /* MAC.framework in Copy Frameworks */,
 				8CA624EA09B0EBDD001D14DC /* TagLib.framework in Copy Frameworks */,
 				8CA6217509B0C42F001D14DC /* FLAC.framework in Copy Frameworks */,
-				8CCA0D8809BDB433002E74BD /* GuessTagsSheetDelegateMethods.h in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,6 +104,8 @@
 		8C04FC2709B5D09D00EFF4D0 /* EditorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorWindow.m; sourceTree = "<group>"; };
 		8C0A9F5C09B5898C00D994FC /* Tag.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Tag.icns; sourceTree = "<group>"; };
 		8C0AA13309B5AEEF00D994FC /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TagEditor.nib; sourceTree = "<group>"; };
+		8C1467DC09CC2B8600F91A97 /* KeyValueTaggedFile.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = KeyValueTaggedFile.h; sourceTree = "<group>"; };
+		8C14696409CC367D00F91A97 /* KeyValueTaggedFile.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = KeyValueTaggedFile.m; sourceTree = "<group>"; };
 		8C5A84AE09B1C6D900B86E4E /* AddTagSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagSheet.h; sourceTree = "<group>"; };
 		8C5A84AF09B1C6D900B86E4E /* AddTagSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagSheet.m; sourceTree = "<group>"; };
 		8C728C3009B6F8C9000F7848 /* ServicesProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesProvider.h; sourceTree = "<group>"; };
@@ -114,10 +119,11 @@
 		8C72A00D098DED9100AADBFD /* Add.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add.tiff; sourceTree = "<group>"; };
 		8C72A00E098DED9100AADBFD /* Remove_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Remove_Pressed.tiff; sourceTree = "<group>"; };
 		8C72A00F098DED9100AADBFD /* Remove.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Remove.tiff; sourceTree = "<group>"; };
+		8C8006A709CBB13800AEBDD9 /* MAC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAC.framework; sourceTree = "<group>"; };
+		8C8006C609CBB16300AEBDD9 /* MonkeysAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonkeysAudioFile.h; sourceTree = "<group>"; };
+		8C8006C709CBB16300AEBDD9 /* MonkeysAudioFile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonkeysAudioFile.mm; sourceTree = "<group>"; };
 		8CA0A38309B4535400E44E10 /* TagEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagEditor.h; sourceTree = "<group>"; };
 		8CA0A38409B4535400E44E10 /* TagEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagEditor.m; sourceTree = "<group>"; };
-		8CA0A4C109B4665700E44E10 /* XiphCommentedFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XiphCommentedFile.h; sourceTree = "<group>"; };
-		8CA0A4C209B4665700E44E10 /* XiphCommentedFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiphCommentedFile.m; sourceTree = "<group>"; };
 		8CA0A4E509B467B000E44E10 /* FLACFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLACFile.h; sourceTree = "<group>"; };
 		8CA0A4E609B467B000E44E10 /* FLACFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLACFile.m; sourceTree = "<group>"; };
 		8CA0A4ED09B467C100E44E10 /* OggVorbisFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OggVorbisFile.h; sourceTree = "<group>"; };
@@ -157,6 +163,7 @@
 		8CCA0D8909BDB449002E74BD /* GuessTagsSheet.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GuessTagsSheet.m; sourceTree = "<group>"; };
 		8CDE8F5209BA2EF4002140CF /* FileArrayController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = FileArrayController.h; sourceTree = "<group>"; };
 		8CDE8F5309BA2EF4002140CF /* FileArrayController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = FileArrayController.m; sourceTree = "<group>"; };
+		8CE74D9B09CDB27700D73B4B /* TagFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TagFile.icns; sourceTree = "<group>"; };
 		8CEECE9E09BCEBF400A9911A /* GuessTagsSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessTagsSheet.h; sourceTree = "<group>"; };
 		8CFA789E09B1AE840081F2E9 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Preferences.nib; sourceTree = "<group>"; };
 		8CFA78A109B1AE990081F2E9 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
@@ -173,6 +180,7 @@
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
 				8CA6212609B0C382001D14DC /* FLAC.framework in Frameworks */,
 				8CA624E709B0EBDA001D14DC /* TagLib.framework in Frameworks */,
+				8C8006AA09CBB13800AEBDD9 /* MAC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +245,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8CE74D9B09CDB27700D73B4B /* TagFile.icns */,
 				8CB4FFD409B7357500EF45EB /* MacPAD.url */,
 				8C728C8209B6FD9D000F7848 /* UpdateChecker.nib */,
 				8C0A9F5C09B5898C00D994FC /* Tag.icns */,
@@ -261,6 +270,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C8006A709CBB13800AEBDD9 /* MAC.framework */,
 				8CA624E609B0EBDA001D14DC /* TagLib.framework */,
 				8CA6212509B0C382001D14DC /* FLAC.framework */,
 				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
@@ -281,20 +291,22 @@
 		8CA0A49E09B463B300E44E10 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				8C14696409CC367D00F91A97 /* KeyValueTaggedFile.m */,
+				8C1467DC09CC2B8600F91A97 /* KeyValueTaggedFile.h */,
 				8CA3BD9909B68A42006B54AD /* CompilationButton.h */,
 				8CA3BD9A09B68A42006B54AD /* CompilationButton.m */,
 				8CA3BDEC09B68EAC006B54AD /* CompilationButtonCell.h */,
 				8CA3BDED09B68EAC006B54AD /* CompilationButtonCell.m */,
 				8CA0A38309B4535400E44E10 /* TagEditor.h */,
 				8CA0A38409B4535400E44E10 /* TagEditor.m */,
-				8CA0A4C109B4665700E44E10 /* XiphCommentedFile.h */,
-				8CA0A4C209B4665700E44E10 /* XiphCommentedFile.m */,
 				8CA0A4E509B467B000E44E10 /* FLACFile.h */,
 				8CA0A4E609B467B000E44E10 /* FLACFile.m */,
 				8CA0A4ED09B467C100E44E10 /* OggVorbisFile.h */,
 				8CA0A4EE09B467C100E44E10 /* OggVorbisFile.mm */,
 				8C04FC2609B5D09D00EFF4D0 /* EditorWindow.h */,
 				8C04FC2709B5D09D00EFF4D0 /* EditorWindow.m */,
+				8C8006C609CBB16300AEBDD9 /* MonkeysAudioFile.h */,
+				8C8006C709CBB16300AEBDD9 /* MonkeysAudioFile.mm */,
 			);
 			name = Editor;
 			sourceTree = "<group>";
@@ -426,6 +438,7 @@
 				8CA1CD2C09B8050D00A5305E /* AddTagSheet.nib in Resources */,
 				8CCA0D0E09BDA747002E74BD /* Actions.strings in Resources */,
 				8CCA0D7309BDB3D3002E74BD /* GuessTagsSheet.nib in Resources */,
+				8CE74D9C09CDB27700D73B4B /* TagFile.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +458,6 @@
 				8CFA78A409B1AE9A0081F2E9 /* PreferencesController.m in Sources */,
 				8C5A84B109B1C6D900B86E4E /* AddTagSheet.m in Sources */,
 				8CA0A38609B4535400E44E10 /* TagEditor.m in Sources */,
-				8CA0A4C409B4665700E44E10 /* XiphCommentedFile.m in Sources */,
 				8CA0A4E809B467B000E44E10 /* FLACFile.m in Sources */,
 				8CA0A4F009B467C100E44E10 /* OggVorbisFile.mm in Sources */,
 				8CA0A9A609B52C0000E44E10 /* FLACHelperFunctions.m in Sources */,
@@ -458,6 +470,8 @@
 				8CDE8F5509BA2EF4002140CF /* FileArrayController.m in Sources */,
 				8C80BAD009BAF01F00429B03 /* FilesTableView.m in Sources */,
 				8CCA0D8A09BDB449002E74BD /* GuessTagsSheet.m in Sources */,
+				8C8006C909CBB16300AEBDD9 /* MonkeysAudioFile.mm in Sources */,
+				8C14696509CC367D00F91A97 /* KeyValueTaggedFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
