@@ -73,8 +73,8 @@
 
 - (IBAction) patternTokenButtonClicked:(id)sender
 {
+	NSString	*string			= nil;
 	NSText		*fieldEditor;
-	NSString	*string;
 	
 	switch([(NSButton *)sender tag]) {
 		case kTitleButtonTag:				string = @"{title}";			break;
