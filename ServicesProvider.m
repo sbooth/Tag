@@ -39,9 +39,7 @@
 			}
 		}
 		
-		if(1 < [editor openFileCount]) {
-			[editor openFilesDrawer:self];
-		}		
+		[editor openFilesDrawerIfNeeded];
 	}
 	else if([types containsObject:NSStringPboardType]) {
 		if(NO == [editor addFile:[pboard stringForType:NSStringPboardType]]) {

@@ -57,6 +57,7 @@
 - (BOOL) performDragOperation:(id <NSDraggingInfo>)sender 
 {
     NSPasteboard		*pasteboard		= [sender draggingPasteboard];
+	TagEditor			*editor			= [TagEditor sharedEditor];
 	BOOL				success			= YES;
 	
 	if([[pasteboard types] containsObject:NSFilenamesPboardType]) {
@@ -65,12 +66,14 @@
 		
 		enumerator = [[pasteboard propertyListForType:NSFilenamesPboardType] objectEnumerator];
 		while((current = [enumerator nextObject])) {
-			success &= [[TagEditor sharedEditor] addFile:current];
+			success &= [editor addFile:current];
 		}
 	}
 	else {
 		success = NO;
 	}
+	
+	[editor openFilesDrawerIfNeeded];
 	
 	return success;
 }

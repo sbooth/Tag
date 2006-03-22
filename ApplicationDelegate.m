@@ -69,9 +69,7 @@
 		[editor addFile:filename];
 	}
 
-	if(1 < [editor openFileCount]) {
-		[editor openFilesDrawer:self];
-	}		
+	[editor openFilesDrawerIfNeeded];
 	
 	[[NSApplication sharedApplication] replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
 }

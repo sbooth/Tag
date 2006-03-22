@@ -26,26 +26,36 @@
 #import "TagArrayController.h"
 
 enum {
-	kSaveMenuItemTag			= 1,
-	kRevertMenuItemTag			= 2,
-	kOpenMenuItemTag			= 3,
-	kToggleDrawerMenuItemTag	= 4,
-	kSelectNextMenuItemTag		= 5,
-	kSelectPreviousMenuItemTag	= 6,
-	kCloseMenuItemTag			= 7,
-	kSelectAllFilesMenuItemTag	= 8,
-	kBasicTabMenuItemTag		= 9,
-	kAdvancedTabMenuItemTag		= 10,
-	kTabularTabMenuItemTag		= 11,
-	kNewTagMenuItemTag			= 12,
-	kDeleteTagMenuItemTag		= 13,
-	kGuessTagsMenuItemTag		= 14
+	kSaveMenuItemTag				= 1,
+	kRevertMenuItemTag				= 2,
+	kOpenMenuItemTag				= 3,
+	kToggleDrawerMenuItemTag		= 4,
+	kSelectNextMenuItemTag			= 5,
+	kSelectPreviousMenuItemTag		= 6,
+	kCloseMenuItemTag				= 7,
+	kSelectAllFilesMenuItemTag		= 8,
+	kBasicTabMenuItemTag			= 9,
+	kAdvancedTabMenuItemTag			= 10,
+	kTabularTabMenuItemTag			= 11,
+	kNewTagMenuItemTag				= 12,
+	kDeleteTagMenuItemTag			= 13,
+	kGuessTagsMenuItemTag			= 14,
+	
+	kSortByFilenameMenuItemTag		= 15,
+	kSortByTitleMenuItemTag			= 16,
+	kSortByArtistMenuItemTag		= 17,
+	kSortByAlbumMenuItemTag			= 18,
+	kSortByYearMenuItemTag			= 19,
+	kSortByGenreMenuItemTag			= 20,
+	kSortByComposerMenuItemTag		= 21,
+	kSortByTrackNumberMenuItemTag	= 22,
+	kSortByDiscNumberMenuItemTag	= 23
 };
 
 enum {
-	kBasicTabViewItemIndex		= 0,
-	kAdvancedTabViewItemIndex	= 1,
-	kTabularTabViewItemIndex	= 2
+	kBasicTabViewItemIndex			= 0,
+	kAdvancedTabViewItemIndex		= 1,
+	kTabularTabViewItemIndex		= 2
 };
 
 @interface TagEditor : NSWindowController <TagArrayControllerDelegateMethods, AddTagSheetDelegateMethods, GuessTagsSheetDelegateMethods>
@@ -97,12 +107,15 @@ enum {
 - (IBAction)		selectNextFile:(id)sender;
 - (IBAction)		selectPreviousFile:(id)sender;
 - (IBAction)		selectAllFiles:(id)sender;
+- (IBAction)		sortFiles:(id)sender;
 
 - (unsigned)		openFileCount;
 - (unsigned)		selectedFileCount;
 
 - (BOOL)			addFile:(NSString *)filename;
 - (BOOL)			addFile:(NSString *)filename atIndex:(unsigned)index;
+
+- (void)			openFilesDrawerIfNeeded;
 
 - (IBAction)		newTag:(id)sender;
 - (IBAction)		deleteTag:(id)sender;

@@ -177,6 +177,7 @@ static TagEditor *sharedEditor = nil;
 		[[[NSSortDescriptor alloc] initWithKey:@"key" ascending:YES] autorelease],
 		[[[NSSortDescriptor alloc] initWithKey:@"value" ascending:YES] autorelease],
 		nil]];
+	[_filesController setSortDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:@"filename" ascending:YES] autorelease]]];
 	[_selectedFilesController setSortDescriptors:[NSArray arrayWithObjects:
 		[[[NSSortDescriptor alloc] initWithKey:@"artist" ascending:YES] autorelease],
 		[[[NSSortDescriptor alloc] initWithKey:@"album" ascending:YES] autorelease],
@@ -221,7 +222,46 @@ static TagEditor *sharedEditor = nil;
 	return NO;
 }
 
+- (void) openFilesDrawerIfNeeded
+{
+	if(1 < [self openFileCount]) {
+		[_filesController rearrangeObjects];
+		[self openFilesDrawer:self];
+	}
+}
+
 #pragma mark File Manipulation
+
+- (IBAction) sortFiles:(id)sender
+{
+	NSArray		*sortDescriptors;
+	NSString	*sortKey;
+	BOOL		ascending;
+	
+	sortDescriptors		= [_filesController sortDescriptors];
+	sortKey				= (0 < [sortDescriptors count] ? [[sortDescriptors objectAtIndex:0] key] : @"filename");
+	ascending			= (0 < [sortDescriptors count] ? [[sortDescriptors objectAtIndex:0] ascending] : YES);
+
+	if([sender isKindOfClass:[NSPopUpButton class]]) {
+		switch([[(NSPopUpButton *)sender selectedItem] tag]) {
+			case kSortByFilenameMenuItemTag:			sortKey = @"filename";			break;
+			case kSortByTitleMenuItemTag:				sortKey = @"title";				break;
+			case kSortByArtistMenuItemTag:				sortKey = @"artist";			break;
+			case kSortByAlbumMenuItemTag:				sortKey = @"album";				break;
+			case kSortByYearMenuItemTag:				sortKey = @"year";				break;
+			case kSortByGenreMenuItemTag:				sortKey = @"genre";				break;
+			case kSortByComposerMenuItemTag:			sortKey = @"composer";			break;
+			case kSortByTrackNumberMenuItemTag:			sortKey = @"trackNumber";		break;
+			case kSortByDiscNumberMenuItemTag:			sortKey = @"discNumber";		break;
+			default:									sortKey = @"filename";			break;
+		}
+	}	
+	else if([sender isKindOfClass:[NSButton class]]) {
+		ascending = (NSOnState == [(NSButton *)sender state]);
+	}
+	
+	[_filesController setSortDescriptors:[NSArray arrayWithObject:[[[NSSortDescriptor alloc] initWithKey:sortKey ascending:ascending] autorelease]]];
+}
 
 - (IBAction) openDocument:(id)sender
 {
@@ -258,10 +298,8 @@ static TagEditor *sharedEditor = nil;
 		if(1 < [[panel filenames] count] && success) {
 			[_filesController setSelectedObjects:newFiles];
 		}
-		
-		if(1 < [self openFileCount]) {
-			[self openFilesDrawer:self];
-		}
+
+		[self openFilesDrawerIfNeeded];
 	}
 }
 
@@ -387,7 +425,7 @@ static TagEditor *sharedEditor = nil;
 
 - (BOOL) addFile:(NSString *)filename
 {
-	return [self addFile:filename atIndex:[[_filesController arrangedObjects] count]];
+	return [self addFile:filename atIndex:/*[[_filesController arrangedObjects] count]*/NSNotFound];
 }
 
 - (BOOL) addFile:(NSString *)filename atIndex:(unsigned)index
@@ -471,7 +509,12 @@ static TagEditor *sharedEditor = nil;
 			return YES;
 		}
 		
-		[_filesController insertObject:[KeyValueTaggedFile parseFile:filename] atArrangedObjectIndex:index];
+		if(NSNotFound == index) {
+			[_filesController addObject:[KeyValueTaggedFile parseFile:filename]];
+		}
+		else {
+			[_filesController insertObject:[KeyValueTaggedFile parseFile:filename] atArrangedObjectIndex:index];			
+		}
 		[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
 
 		[[UKKQueue sharedFileWatcher] addPath:filename];
@@ -834,6 +877,18 @@ static TagEditor *sharedEditor = nil;
 
 		case kDeleteTagMenuItemTag:
 			return ([[[_tabView selectedTabViewItem] identifier] isEqualToString:@"advanced"] && 0 < [[_tagsController selectedObjects] count]);
+			break;
+			
+		case kSortByFilenameMenuItemTag:
+		case kSortByTitleMenuItemTag:
+		case kSortByArtistMenuItemTag:
+		case kSortByAlbumMenuItemTag:
+		case kSortByYearMenuItemTag:
+		case kSortByGenreMenuItemTag:
+		case kSortByComposerMenuItemTag:
+		case kSortByTrackNumberMenuItemTag:
+		case kSortByDiscNumberMenuItemTag:
+			return YES;
 			break;
 			
 		default:

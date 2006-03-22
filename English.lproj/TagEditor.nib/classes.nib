@@ -23,7 +23,13 @@
             SUPERCLASS = NSArrayController; 
         }, 
         {
-            ACTIONS = {deleteTag = id; newTag = id; openDocument = id; performClose = id; }; 
+            ACTIONS = {
+                deleteTag = id; 
+                newTag = id; 
+                openDocument = id; 
+                performClose = id; 
+                sortFiles = id; 
+            }; 
             CLASS = TagEditor; 
             LANGUAGE = ObjC; 
             OUTLETS = {
