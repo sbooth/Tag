@@ -358,7 +358,9 @@ static TagEditor *sharedEditor = nil;
 	while((current = [enumerator nextObject])) {
 		if([current dirty]) {
 			@try {
+				[[UKKQueue sharedFileWatcher] removePath:[current filename]];
 				[current save];
+				[[UKKQueue sharedFileWatcher] addPath:[current filename]];
 			}
 			@catch(NSException *exception) {
 				NSAlert		*alert;
@@ -398,7 +400,9 @@ static TagEditor *sharedEditor = nil;
 			switch(result) {
 				case NSAlertFirstButtonReturn:
 					@try {
+						[[UKKQueue sharedFileWatcher] removePath:[current filename]];
 						[current revert];
+						[[UKKQueue sharedFileWatcher] addPath:[current filename]];
 					}
 					@catch(NSException *exception) {
 						alert = [[[NSAlert alloc] init] autorelease];
