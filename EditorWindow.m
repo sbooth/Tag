@@ -38,4 +38,41 @@
 	}
 }
 
+- (void) awakeFromNib
+{
+	[self registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, nil]];
+}
+
+- (NSDragOperation) draggingEntered:(id <NSDraggingInfo>)sender 
+{
+    NSPasteboard		*pasteboard		= [sender draggingPasteboard];
+	
+    if([[pasteboard types] containsObject:NSFilenamesPboardType]) {
+		return NSDragOperationCopy;
+    }
+	
+    return NSDragOperationNone;
+}
+
+- (BOOL) performDragOperation:(id <NSDraggingInfo>)sender 
+{
+    NSPasteboard		*pasteboard		= [sender draggingPasteboard];
+	BOOL				success			= YES;
+	
+	if([[pasteboard types] containsObject:NSFilenamesPboardType]) {
+		NSEnumerator		*enumerator;
+		NSString			*current;
+		
+		enumerator = [[pasteboard propertyListForType:NSFilenamesPboardType] objectEnumerator];
+		while((current = [enumerator nextObject])) {
+			success &= [[TagEditor sharedEditor] addFile:current];
+		}
+	}
+	else {
+		success = NO;
+	}
+	
+	return success;
+}
+
 @end
