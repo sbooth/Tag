@@ -403,6 +403,8 @@
 	return nil;
 }
 
+- (NSString *)		filename							{ return _filename; }
+- (NSString *)		displayName							{ return _displayName; }
 - (void)			save								{}
 - (void)			revert								{}
 - (BOOL)			dirty								{ return (0 != _changeCount); }

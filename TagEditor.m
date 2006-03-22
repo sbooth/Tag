@@ -24,6 +24,8 @@
 #import "AddTagSheet.h"
 #import "GuessTagsSheet.h"
 
+#import "UKKQueue.h"
+
 static TagEditor *sharedEditor = nil;
 
 @interface TagEditor (Private)
@@ -75,6 +77,8 @@ static TagEditor *sharedEditor = nil;
 		_validKeys	= [[NSArray arrayWithObjects:@"title", @"artist", @"album", @"year", @"genre", @"composer", @"MCN", @"ISRC", @"encoder", @"comment", @"trackNumber", @"trackTotal", @"discNumber", @"discTotal", @"compilation", @"custom", nil] retain];
 		_files		= [[NSMutableArray arrayWithCapacity:20] retain];
 		
+		[[UKKQueue sharedFileWatcher] setDelegate:self];
+
 		return self;
 	}
 	return nil;
@@ -144,7 +148,7 @@ static TagEditor *sharedEditor = nil;
 				[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
 				[alert addButtonWithTitle:NSLocalizedStringFromTable(@"Cancel", @"General", @"")];
 				[alert addButtonWithTitle:NSLocalizedStringFromTable(@"Don't Save", @"General", @"")];
-				[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Do you want to save the changes you made in the document \"%@\"?", @"General", @""), [current valueForKey:@"displayName"]]];
+				[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Do you want to save the changes you made in the document \"%@\"?", @"General", @""), [current displayName]]];
 				[alert setInformativeText:NSLocalizedStringFromTable(@"Your changes will be lost if you don't save them.", @"General", @"")];
 				[alert setAlertStyle:NSInformationalAlertStyle];
 				
@@ -223,7 +227,7 @@ static TagEditor *sharedEditor = nil;
 {
 	BOOL				success				= YES;
 	NSOpenPanel			*panel				= [NSOpenPanel openPanel];
-	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", nil];
+	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", @"ape", @"apl", @"mac", nil];
 	NSEnumerator		*enumerator;
 	NSString			*filename;
 	NSMutableArray		*newFiles;
@@ -278,7 +282,7 @@ static TagEditor *sharedEditor = nil;
 			[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
 			[alert addButtonWithTitle:NSLocalizedStringFromTable(@"Cancel", @"General", @"")];
 			[alert addButtonWithTitle:NSLocalizedStringFromTable(@"Don't Save", @"General", @"")];
-			[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Do you want to save the changes you made in the document \"%@\"?", @"General", @""), [current valueForKey:@"displayName"]]];
+			[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Do you want to save the changes you made in the document \"%@\"?", @"General", @""), [current displayName]]];
 			[alert setInformativeText:NSLocalizedStringFromTable(@"Your changes will be lost if you don't save them.", @"General", @"")];
 			[alert setAlertStyle:NSInformationalAlertStyle];
 			
@@ -291,6 +295,8 @@ static TagEditor *sharedEditor = nil;
 		}
 		
 		[_filesController removeObject:current];
+		
+		[[UKKQueue sharedFileWatcher] removePath:[current filename]];
 	}
 	[self didChangeValueForKey:@"tags"];
 	
@@ -321,7 +327,7 @@ static TagEditor *sharedEditor = nil;
 				
 				alert = [[[NSAlert alloc] init] autorelease];
 				[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
-				[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"An error occurred while saving the document \"%@\".", @"Errors", @""), [current valueForKey:@"displayName"]]];
+				[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"An error occurred while saving the document \"%@\".", @"Errors", @""), [current displayName]]];
 				[alert setInformativeText:[exception reason]];
 				[alert setAlertStyle:NSInformationalAlertStyle];
 				[alert runModal];
@@ -346,7 +352,7 @@ static TagEditor *sharedEditor = nil;
 			alert = [[[NSAlert alloc] init] autorelease];
 			[alert addButtonWithTitle:NSLocalizedStringFromTable(@"Revert", @"General", @"")];
 			[alert addButtonWithTitle:NSLocalizedStringFromTable(@"Cancel", @"General", @"")];
-			[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Do you want to revert to the most recently saved revision of the document \"%@\"?", @"General", @""), [current valueForKey:@"displayName"]]];
+			[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Do you want to revert to the most recently saved revision of the document \"%@\"?", @"General", @""), [current displayName]]];
 			[alert setInformativeText:NSLocalizedStringFromTable(@"Your changes will be lost if you don't save them.", @"General", @"")];
 			[alert setAlertStyle:NSInformationalAlertStyle];
 			
@@ -359,7 +365,7 @@ static TagEditor *sharedEditor = nil;
 					@catch(NSException *exception) {
 						alert = [[[NSAlert alloc] init] autorelease];
 						[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
-						[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"An error occurred while reverting the document \"%@\".", @"Errors", @""), [current valueForKey:@"displayName"]]];
+						[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"An error occurred while reverting the document \"%@\".", @"Errors", @""), [current displayName]]];
 						[alert setInformativeText:[exception reason]];
 						[alert setAlertStyle:NSInformationalAlertStyle];
 						[alert runModal];
@@ -387,7 +393,7 @@ static TagEditor *sharedEditor = nil;
 - (BOOL) addFile:(NSString *)filename atIndex:(unsigned)index
 {
 	NSFileManager		*manager			= [NSFileManager defaultManager];
-	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", nil];
+	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", @"ape", @"apl", @"mac", nil];
 	NSMutableArray		*newFiles;
 	KeyValueTaggedFile	*file;
 	NSArray				*subpaths;
@@ -467,6 +473,8 @@ static TagEditor *sharedEditor = nil;
 		
 		[_filesController insertObject:[KeyValueTaggedFile parseFile:filename] atArrangedObjectIndex:index];
 		[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:filename]];
+
+		[[UKKQueue sharedFileWatcher] addPath:filename];
 	}
 	
 	@catch(NSException *exception) {
@@ -657,8 +665,6 @@ static TagEditor *sharedEditor = nil;
 		[self willChangeValueForKey:key];
 		[self didChangeValueForKey:key];
 	}
-	
-//	[[self undoManager] removeAllActions];
 }
 
 - (id) valueForKey:(NSString *)key
@@ -833,6 +839,98 @@ static TagEditor *sharedEditor = nil;
 		default:
 			return [super validateMenuItem:menuItem];
 			break;
+	}
+}
+
+#pragma mark UKFileWatcher delegate method
+
+-(void) watcher:(id<UKFileWatcher>)kq receivedNotification:(NSString*)nm forPath:(NSString*)fpath
+{
+	NSAlert		*alert			= nil;
+	BOOL		removeFile		= NO;
+	
+	if([nm isEqualToString:UKFileWatcherRenameNotification]) {
+		alert = [[[NSAlert alloc] init] autorelease];
+		[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
+		[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"The name of document \"%@\" has changed.", @"Errors", @""), [fpath lastPathComponent]]];
+		[alert setInformativeText:NSLocalizedStringFromTable(@"Your changes have been lost.", @"Errors", @"")];
+		[alert setAlertStyle:NSWarningAlertStyle];
+		
+		[alert runModal];
+
+		removeFile = YES;
+	}
+	else if([nm isEqualToString:UKFileWatcherDeleteNotification]) {
+		alert = [[[NSAlert alloc] init] autorelease];
+		[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
+		[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"The document \"%@\" has been deleted.", @"Errors", @""), [fpath lastPathComponent]]];
+		[alert setInformativeText:NSLocalizedStringFromTable(@"Your changes have been lost.", @"Errors", @"")];
+		[alert setAlertStyle:NSWarningAlertStyle];
+		
+		[alert runModal];
+		
+		removeFile = YES;
+	}
+	else if([nm isEqualToString:UKFileWatcherAccessRevocationNotification]) {
+		alert = [[[NSAlert alloc] init] autorelease];
+		[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
+		[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"The document \"%@\" is no longer accessible.", @"Errors", @""), [fpath lastPathComponent]]];
+		[alert setInformativeText:NSLocalizedStringFromTable(@"Your changes have been lost.", @"Errors", @"")];
+		[alert setAlertStyle:NSWarningAlertStyle];
+		
+		[alert runModal];
+		
+		removeFile = YES;
+	}
+	else if([nm isEqualToString:UKFileWatcherAttributeChangeNotification] || [nm isEqualToString:UKFileWatcherSizeIncreaseNotification]) {
+		NSEnumerator			*enumerator;
+		NSString				*key;
+		int						result;
+						
+		alert = [[[NSAlert alloc] init] autorelease];
+		[alert addButtonWithTitle:NSLocalizedStringFromTable(@"Keep Tag Version", @"General", @"")];
+		[alert addButtonWithTitle:NSLocalizedStringFromTable(@"Revert", @"General", @"")];
+		[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"The document \"%@\" has changed.  What do you want to do?", @"General", @""), [fpath lastPathComponent]]];
+		[alert setInformativeText:NSLocalizedStringFromTable(@"Your changes will be lost if you choose to revert the document.", @"General", @"")];
+		[alert setAlertStyle:NSInformationalAlertStyle];
+		
+		result = [alert runModal];
+		switch(result) {
+			case NSAlertSecondButtonReturn:
+				@try {
+					KeyValueTaggedFile		*file		= [_filesController findFile:fpath];
+					if(nil != file) {
+						[self willChangeValueForKey:@"tags"];
+						[file revert];
+						[self didChangeValueForKey:@"tags"];
+						
+						enumerator = [_validKeys objectEnumerator];
+						while((key = [enumerator nextObject])) {
+							[self willChangeValueForKey:key];
+							[self didChangeValueForKey:key];
+						}
+					}					
+				}
+				@catch(NSException *exception) {
+					alert = [[[NSAlert alloc] init] autorelease];
+					[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
+					[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"An error occurred while reverting the document \"%@\".", @"Errors", @""), [fpath lastPathComponent]]];
+					[alert setInformativeText:[exception reason]];
+					[alert setAlertStyle:NSInformationalAlertStyle];
+					[alert runModal];
+				}
+				break;
+		}
+	}
+	
+	// Remove file if it was renamed, deleted or is inaccessible
+	if(removeFile) {
+		KeyValueTaggedFile	*file	= [_filesController findFile:fpath];
+		if(nil != file) {
+			[_filesController removeObject:file];
+		}
+		
+		[[UKKQueue sharedFileWatcher] removePath:fpath];
 	}
 }
 

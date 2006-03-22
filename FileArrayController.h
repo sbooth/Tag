@@ -26,7 +26,7 @@
 	IBOutlet NSTableView		*_tableView;
 }
 
-- (KeyValueTaggedFile *)		findFile:(NSString *)filename;
+- (KeyValueTaggedFile *)	findFile:(NSString *)filename;
 - (BOOL)					containsFile:(NSString *)filename;
 
 - (void)					selectFile:(NSString *)filename;

@@ -11,6 +11,10 @@
 		8C0A9F5D09B5898C00D994FC /* Tag.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C0A9F5C09B5898C00D994FC /* Tag.icns */; };
 		8C0AA13409B5AEEF00D994FC /* TagEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0AA13209B5AEEF00D994FC /* TagEditor.nib */; };
 		8C14696509CC367D00F91A97 /* KeyValueTaggedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C14696409CC367D00F91A97 /* KeyValueTaggedFile.m */; };
+		8C1E7DC309D1061600B36CDB /* UKFNSubscribeFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E7DBA09D1061600B36CDB /* UKFNSubscribeFileWatcher.m */; };
+		8C1E7DC409D1061600B36CDB /* UKFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E7DBB09D1061600B36CDB /* UKFileWatcher.m */; };
+		8C1E7DC909D1061600B36CDB /* UKMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E7DC009D1061600B36CDB /* UKMainThreadProxy.m */; };
+		8C1E7DCA09D1061600B36CDB /* UKKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E7DC109D1061600B36CDB /* UKKQueue.m */; };
 		8C5A84B109B1C6D900B86E4E /* AddTagSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5A84AF09B1C6D900B86E4E /* AddTagSheet.m */; };
 		8C728BC609B6F744000F7848 /* CompilationButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3BDED09B68EAC006B54AD /* CompilationButtonCell.m */; };
 		8C728C3309B6F8C9000F7848 /* ServicesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C728C3109B6F8C9000F7848 /* ServicesProvider.m */; };
@@ -106,6 +110,15 @@
 		8C0AA13309B5AEEF00D994FC /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TagEditor.nib; sourceTree = "<group>"; };
 		8C1467DC09CC2B8600F91A97 /* KeyValueTaggedFile.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = KeyValueTaggedFile.h; sourceTree = "<group>"; };
 		8C14696409CC367D00F91A97 /* KeyValueTaggedFile.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = KeyValueTaggedFile.m; sourceTree = "<group>"; };
+		8C1E7DB909D1061600B36CDB /* UKMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKMainThreadProxy.h; sourceTree = "<group>"; };
+		8C1E7DBA09D1061600B36CDB /* UKFNSubscribeFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKFNSubscribeFileWatcher.m; sourceTree = "<group>"; };
+		8C1E7DBB09D1061600B36CDB /* UKFileWatcher.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKFileWatcher.m; sourceTree = "<group>"; };
+		8C1E7DBC09D1061600B36CDB /* UKKQueue.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKKQueue.h; sourceTree = "<group>"; };
+		8C1E7DBD09D1061600B36CDB /* UKFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKFileWatcher.h; sourceTree = "<group>"; };
+		8C1E7DBE09D1061600B36CDB /* UKKQueue Readme.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = "UKKQueue Readme.txt"; sourceTree = "<group>"; };
+		8C1E7DBF09D1061600B36CDB /* UKFNSubscribeFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKFNSubscribeFileWatcher.h; sourceTree = "<group>"; };
+		8C1E7DC009D1061600B36CDB /* UKMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKMainThreadProxy.m; sourceTree = "<group>"; };
+		8C1E7DC109D1061600B36CDB /* UKKQueue.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKKQueue.m; sourceTree = "<group>"; };
 		8C5A84AE09B1C6D900B86E4E /* AddTagSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagSheet.h; sourceTree = "<group>"; };
 		8C5A84AF09B1C6D900B86E4E /* AddTagSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagSheet.m; sourceTree = "<group>"; };
 		8C728C3009B6F8C9000F7848 /* ServicesProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesProvider.h; sourceTree = "<group>"; };
@@ -222,6 +235,7 @@
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				8CB4FFC509B734AD00EF45EB /* Protocols */,
 				8C728C4E09B6FA48000F7848 /* MacPAD */,
+				8C1E7DB509D105D800B36CDB /* UKKQueue */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				8CB4FE8509B71AB200EF45EB /* Strings */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
@@ -277,6 +291,22 @@
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8C1E7DB509D105D800B36CDB /* UKKQueue */ = {
+			isa = PBXGroup;
+			children = (
+				8C1E7DB909D1061600B36CDB /* UKMainThreadProxy.h */,
+				8C1E7DBA09D1061600B36CDB /* UKFNSubscribeFileWatcher.m */,
+				8C1E7DBB09D1061600B36CDB /* UKFileWatcher.m */,
+				8C1E7DBC09D1061600B36CDB /* UKKQueue.h */,
+				8C1E7DBD09D1061600B36CDB /* UKFileWatcher.h */,
+				8C1E7DBE09D1061600B36CDB /* UKKQueue Readme.txt */,
+				8C1E7DBF09D1061600B36CDB /* UKFNSubscribeFileWatcher.h */,
+				8C1E7DC009D1061600B36CDB /* UKMainThreadProxy.m */,
+				8C1E7DC109D1061600B36CDB /* UKKQueue.m */,
+			);
+			name = UKKQueue;
 			sourceTree = "<group>";
 		};
 		8C728C4E09B6FA48000F7848 /* MacPAD */ = {
@@ -472,6 +502,10 @@
 				8CCA0D8A09BDB449002E74BD /* GuessTagsSheet.m in Sources */,
 				8C8006C909CBB16300AEBDD9 /* MonkeysAudioFile.mm in Sources */,
 				8C14696509CC367D00F91A97 /* KeyValueTaggedFile.m in Sources */,
+				8C1E7DC309D1061600B36CDB /* UKFNSubscribeFileWatcher.m in Sources */,
+				8C1E7DC409D1061600B36CDB /* UKFileWatcher.m in Sources */,
+				8C1E7DC909D1061600B36CDB /* UKMainThreadProxy.m in Sources */,
+				8C1E7DCA09D1061600B36CDB /* UKKQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,6 +32,9 @@
 
 - (id)				initWithFile:(NSString *)filename;
 
+- (NSString *)		filename;
+- (NSString *)		displayName;
+
 - (void)			save;
 - (void)			revert;
 
