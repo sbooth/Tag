@@ -31,7 +31,7 @@ static PreferencesController	*sharedPreferences					= nil;
 	
 	
 	[initialValuesDictionary setObject:[NSNumber numberWithBool:YES] forKey:@"startupVersionCheck"];
-	[initialValuesDictionary setObject:[NSNumber numberWithInt:8192] forKey:@"FLACPadding"];
+	[initialValuesDictionary setObject:[NSNumber numberWithInt:4096] forKey:@"FLACPadding"];
 	[initialValuesDictionary setObject:[NSArchiver archivedDataWithRootObject:defaultColor] forKey:@"multipleValuesMarkerColor"];
 	[initialValuesDictionary setObject:NSLocalizedStringFromTable(@"<Multiple Values>", @"General", @"") forKey:@"multipleValuesDescription"];
 	
