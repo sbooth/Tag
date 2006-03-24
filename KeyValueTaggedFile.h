@@ -33,6 +33,7 @@
 - (id)				initWithFile:(NSString *)filename;
 
 - (NSString *)		filename;
+- (NSURL *)			fileURL;
 - (NSString *)		displayName;
 
 - (void)			save;
@@ -94,5 +95,12 @@
 - (void) setDiscTotal:(NSNumber *)value;
 - (void) setCompilation:(NSNumber *)value;
 - (void) setCustom:(NSString *)value;
+
+@end
+
+@interface KeyValueTaggedFile (ScriptingAdditions)
+
+- (id) handleCloseScriptCommand:(NSCloseCommand *)command;
+- (id) handleSaveScriptCommand:(NSScriptCommand *)command;
 
 @end

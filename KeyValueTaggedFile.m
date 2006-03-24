@@ -391,7 +391,6 @@
 	}
 }
 
-
 - (NSString *) tagForKey:(NSString *)key
 {
 	NSArray *reverseMappedKeys = [[self tagMapping] allKeysForObject:key];
@@ -403,7 +402,24 @@
 	return nil;
 }
 
+#pragma Scripting
+
+- (NSScriptObjectSpecifier *) objectSpecifier
+{
+    NSArray		*files		= [[TagEditor sharedEditor] valueForKey:@"files"];
+    unsigned	idx			= [files indexOfObjectIdenticalTo:self];
+	
+    if(NSNotFound != idx) {
+        NSScriptObjectSpecifier *containerRef = [[TagEditor sharedEditor] objectSpecifier];
+        return [[[NSIndexSpecifier allocWithZone:[self zone]] initWithContainerClassDescription:[containerRef keyClassDescription] containerSpecifier:containerRef key:@"files" index:idx] autorelease];
+    }
+	else {
+        return nil;
+    }
+}
+
 - (NSString *)		filename							{ return _filename; }
+- (NSURL *)			fileURL								{ return [NSURL fileURLWithPath:_filename]; }
 - (NSString *)		displayName							{ return _displayName; }
 - (void)			save								{}
 - (void)			revert								{}
@@ -447,5 +463,21 @@
 - (void) setCustom:(NSString *)value				{ [self setValue:value forTag:[self customizeTag:@"_CUSTOM"]]; }
 
 - (NSString *) description							{ return [NSString stringWithFormat:@"%@:%@", _displayName, _tags]; }
+
+@end
+
+@implementation KeyValueTaggedFile (ScriptingAdditions)
+
+- (id) handleCloseScriptCommand:(NSCloseCommand *)command
+{
+	[[TagEditor sharedEditor] closeFile:self saveOptions:[command saveOptions]];
+	return nil;
+}
+
+- (id) handleSaveScriptCommand:(NSScriptCommand *)command
+{
+	[[TagEditor sharedEditor] saveFile:self];
+	return nil;	
+}
 
 @end

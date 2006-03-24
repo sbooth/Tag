@@ -19,6 +19,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import "KeyValueTaggedFile.h"
 
 @interface ApplicationDelegate : NSObject
 {
@@ -29,5 +30,9 @@
 - (IBAction)						showPreferences:(id)sender;
 - (IBAction)						showAcknowledgments:(id)sender;
 - (IBAction)						performVersionCheck:(id)sender;
+
+// Scripting
+- (unsigned)						countOfFiles;
+- (KeyValueTaggedFile *)			objectInFilesAtIndex:(unsigned)index;
 
 @end

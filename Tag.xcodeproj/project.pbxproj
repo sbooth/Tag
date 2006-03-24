@@ -46,6 +46,7 @@
 		8CA62A3409B13830001D14DC /* AcknowledgmentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA62A3209B13830001D14DC /* AcknowledgmentsController.m */; };
 		8CA62A5909B1398C001D14DC /* Acknowledgments.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA62A5709B1398C001D14DC /* Acknowledgments.nib */; };
 		8CA62A5C09B13A07001D14DC /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CA62A5B09B13A07001D14DC /* Acknowledgments.rtf */; };
+		8CA7319909D2E5BA005D630C /* Tag.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 8CA7319809D2E5BA005D630C /* Tag.sdef */; };
 		8CB4FE8C09B71AD100EF45EB /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4FE8609B71AD100EF45EB /* Errors.strings */; };
 		8CB4FE8D09B71AD100EF45EB /* General.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4FE8809B71AD100EF45EB /* General.strings */; };
 		8CB4FE8E09B71AD100EF45EB /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4FE8A09B71AD100EF45EB /* Genres.strings */; };
@@ -166,6 +167,7 @@
 		8CA62A3209B13830001D14DC /* AcknowledgmentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcknowledgmentsController.m; sourceTree = "<group>"; };
 		8CA62A5809B1398C001D14DC /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Acknowledgments.nib; sourceTree = "<group>"; };
 		8CA62A5B09B13A07001D14DC /* Acknowledgments.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Acknowledgments.rtf; sourceTree = "<group>"; };
+		8CA7319809D2E5BA005D630C /* Tag.sdef */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.sdef; path = Tag.sdef; sourceTree = "<group>"; };
 		8CB4FE8709B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Errors.strings; sourceTree = "<group>"; };
 		8CB4FE8909B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/General.strings; sourceTree = "<group>"; };
 		8CB4FE8B09B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Genres.strings; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8CA7319809D2E5BA005D630C /* Tag.sdef */,
 				8CE74D9B09CDB27700D73B4B /* TagFile.icns */,
 				8CB4FFD409B7357500EF45EB /* MacPAD.url */,
 				8C728C8209B6FD9D000F7848 /* UpdateChecker.nib */,
@@ -448,6 +451,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CA7319909D2E5BA005D630C /* Tag.sdef in Resources */,
 				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
 				8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,

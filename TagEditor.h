@@ -89,50 +89,58 @@ enum {
 	IBOutlet NSTextField			*_discTotalTextField;
 }
 
-+ (TagEditor *)		sharedEditor;
++ (TagEditor *)				sharedEditor;
 
-- (IBAction)		selectBasicTab:(id)sender;
-- (IBAction)		selectAdvancedTab:(id)sender;
-- (IBAction)		selectTabularTab:(id)sender;
+- (IBAction)				selectBasicTab:(id)sender;
+- (IBAction)				selectAdvancedTab:(id)sender;
+- (IBAction)				selectTabularTab:(id)sender;
 
-- (IBAction)		toggleFilesDrawer:(id)sender;
-- (IBAction)		openFilesDrawer:(id)sender;
-- (IBAction)		closeFilesDrawer:(id)sender;
+- (IBAction)				toggleFilesDrawer:(id)sender;
+- (IBAction)				openFilesDrawer:(id)sender;
+- (IBAction)				closeFilesDrawer:(id)sender;
 
-- (IBAction)		openDocument:(id)sender;
-- (IBAction)		saveDocument:(id)sender;
-- (IBAction)		revertDocumentToSaved:(id)sender;
-- (IBAction)		performClose:(id)sender;
+- (IBAction)				openDocument:(id)sender;
+- (IBAction)				saveDocument:(id)sender;
+- (IBAction)				revertDocumentToSaved:(id)sender;
+- (IBAction)				performClose:(id)sender;
 
-- (IBAction)		selectNextFile:(id)sender;
-- (IBAction)		selectPreviousFile:(id)sender;
-- (IBAction)		selectAllFiles:(id)sender;
-- (IBAction)		sortFiles:(id)sender;
+- (IBAction)				selectNextFile:(id)sender;
+- (IBAction)				selectPreviousFile:(id)sender;
+- (IBAction)				selectAllFiles:(id)sender;
+- (IBAction)				sortFiles:(id)sender;
 
-- (unsigned)		openFileCount;
-- (unsigned)		selectedFileCount;
+- (unsigned)				countOfFiles;
+- (unsigned)				countOfSelectedFiles;
+- (KeyValueTaggedFile *)	objectInFilesAtIndex:(unsigned)index;
 
-- (BOOL)			addFile:(NSString *)filename;
-- (BOOL)			addFile:(NSString *)filename atIndex:(unsigned)index;
+- (BOOL)					addFile:(NSString *)filename;
+- (BOOL)					addFile:(NSString *)filename atIndex:(unsigned)index;
 
-- (void)			openFilesDrawerIfNeeded;
+- (void)					openFilesDrawerIfNeeded;
 
-- (IBAction)		newTag:(id)sender;
-- (IBAction)		deleteTag:(id)sender;
-- (IBAction)		guessTags:(id)sender;
+- (IBAction)				newTag:(id)sender;
+- (IBAction)				deleteTag:(id)sender;
+- (IBAction)				guessTags:(id)sender;
 
-- (void)			setValue:(NSString *)value forTag:(NSString *)tag;
-- (void)			addValue:(NSString *)value forTag:(NSString *)tag;
-- (void)			updateTag:(NSString *)tag withValue:(NSString *)currentValue toValue:(NSString *)newValue;
-- (void)			renameTag:(NSString *)currentTag withValue:(NSString *)currentValue toTag:(NSString *)newTag;
+- (void)					setValue:(NSString *)value forTag:(NSString *)tag;
+- (void)					addValue:(NSString *)value forTag:(NSString *)tag;
+- (void)					updateTag:(NSString *)tag withValue:(NSString *)currentValue toValue:(NSString *)newValue;
+- (void)					renameTag:(NSString *)currentTag withValue:(NSString *)currentValue toTag:(NSString *)newTag;
 
-- (void)			guessTagsUsingPattern:(NSString *)pattern;
+- (void)					guessTagsUsingPattern:(NSString *)pattern;
 
-- (BOOL)			applicationShouldTerminate;
+- (BOOL)					applicationShouldTerminate;
 
-- (BOOL)			dirty;
-- (BOOL)			selectionDirty;
+- (BOOL)					dirty;
+- (BOOL)					selectionDirty;
 
-- (NSArray *)		genres;
+- (NSArray *)				genres;
+
+@end
+
+@interface TagEditor (ScriptingAdditions)
+
+- (void)					saveFile:(KeyValueTaggedFile *)file;
+- (void)					closeFile:(KeyValueTaggedFile *)file saveOptions:(NSSaveOptions)saveOptions;
 
 @end

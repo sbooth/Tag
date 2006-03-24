@@ -106,11 +106,12 @@ static TagEditor *sharedEditor = nil;
 - (IBAction)		toggleFilesDrawer:(id)sender				{ [_filesDrawer toggle:sender]; }
 - (IBAction)		openFilesDrawer:(id)sender					{ [_filesDrawer open:sender]; }
 - (IBAction)		closeFilesDrawer:(id)sender					{ [_filesDrawer close:sender]; }
-- (unsigned)		openFileCount								{ return [[_filesController arrangedObjects] count]; }
-- (unsigned)		selectedFileCount							{ return [[_filesController selectedObjects] count]; }
+- (unsigned)		countOfFiles								{ return [_files count]; }
+- (unsigned)		countOfSelectedFiles						{ return [[_filesController selectedObjects] count]; }
+- (KeyValueTaggedFile *) objectInFilesAtIndex:(unsigned)idx		{ return [_files objectAtIndex:idx]; }
 - (IBAction)		selectNextFile:(id)sender					{ [_filesController selectNext:sender]; }
 - (IBAction)		selectPreviousFile:(id)sender				{ [_filesController selectPrevious:sender]; }
-- (IBAction)		selectAllFiles:(id)sender					{ [_filesController setSelectionIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self openFileCount])]]; }
+- (IBAction)		selectAllFiles:(id)sender					{ [_filesController setSelectionIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, [self countOfFiles])]]; }
 
 - (IBAction)		selectBasicTab:(id)sender					{ [_tabView selectTabViewItemAtIndex:kBasicTabViewItemIndex]; }
 - (IBAction)		selectAdvancedTab:(id)sender				{ [_tabView selectTabViewItemAtIndex:kAdvancedTabViewItemIndex]; }
@@ -137,7 +138,7 @@ static TagEditor *sharedEditor = nil;
 	NSAlert					*alert;
 	int						result;
 
-	if(0 == [self openFileCount] || NO == [self dirty]) {
+	if(0 == [self countOfFiles] || NO == [self dirty]) {
 		return YES;
 	}
 	else {
@@ -224,7 +225,7 @@ static TagEditor *sharedEditor = nil;
 
 - (void) openFilesDrawerIfNeeded
 {
-	if(1 < [self openFileCount]) {
+	if(1 < [self countOfFiles]) {
 		[_filesController rearrangeObjects];
 		[self openFilesDrawer:self];
 	}
@@ -344,7 +345,7 @@ static TagEditor *sharedEditor = nil;
 		[self didChangeValueForKey:key];
 	}
 
-	if(1 >= [self openFileCount]) {
+	if(1 >= [self countOfFiles]) {
 		[self closeFilesDrawer:self];
 	}
 }
@@ -865,7 +866,7 @@ static TagEditor *sharedEditor = nil;
 			break;
 
 		case kSelectAllFilesMenuItemTag:
-			return (0 != [self openFileCount]);
+			return (0 != [self countOfFiles]);
 			break;
 			
 		case kBasicTabMenuItemTag:
@@ -876,7 +877,7 @@ static TagEditor *sharedEditor = nil;
 			
 		case kNewTagMenuItemTag:
 		case kGuessTagsMenuItemTag:
-			return (0 < [self selectedFileCount]);
+			return (0 < [self countOfSelectedFiles]);
 			break;
 
 		case kDeleteTagMenuItemTag:
@@ -990,6 +991,86 @@ static TagEditor *sharedEditor = nil;
 		}
 		
 		[[UKKQueue sharedFileWatcher] removePath:fpath];
+	}
+}
+
+@end
+
+@implementation TagEditor (ScriptingAdditions)
+
+- (void) saveFile:(KeyValueTaggedFile *)file
+{
+	if(NO == [_filesController containsFile:[file filename]]) {
+		return;
+	}
+	
+	if([file dirty]) {
+		@try {
+			[[UKKQueue sharedFileWatcher] removePath:[file filename]];
+			[file save];
+			[[UKKQueue sharedFileWatcher] addPath:[file filename]];
+		}
+		@catch(NSException *exception) {
+			NSAlert		*alert;
+			
+			alert = [[[NSAlert alloc] init] autorelease];
+			[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
+			[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"An error occurred while saving the document \"%@\".", @"Errors", @""), [file displayName]]];
+			[alert setInformativeText:[exception reason]];
+			[alert setAlertStyle:NSInformationalAlertStyle];
+			[alert runModal];
+		}
+	}
+}
+
+- (void) closeFile:(KeyValueTaggedFile *)file saveOptions:(NSSaveOptions)saveOptions
+{
+	NSEnumerator			*enumerator;
+	NSString				*key;
+	
+	if(NO == [_filesController containsFile:[file filename]]) {
+		return;
+	}
+	
+	if(YES == [file dirty]) {
+		NSAlert		*alert;
+		int			result;
+		
+		switch(saveOptions) {
+			case NSSaveOptionsYes:			[file save];				break;
+			case NSSaveOptionsNo:			;							break;
+			case NSSaveOptionsAsk:
+				alert = [[[NSAlert alloc] init] autorelease];
+				[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
+				[alert addButtonWithTitle:NSLocalizedStringFromTable(@"Cancel", @"General", @"")];
+				[alert addButtonWithTitle:NSLocalizedStringFromTable(@"Don't Save", @"General", @"")];
+				[alert setMessageText:[NSString stringWithFormat:NSLocalizedStringFromTable(@"Do you want to save the changes you made in the document \"%@\"?", @"General", @""), [file displayName]]];
+				[alert setInformativeText:NSLocalizedStringFromTable(@"Your changes will be lost if you don't save them.", @"General", @"")];
+				[alert setAlertStyle:NSInformationalAlertStyle];
+				
+				result = [alert runModal];
+				switch(result) {
+					case NSAlertFirstButtonReturn:		[file save];				break;
+					case NSAlertSecondButtonReturn:		return;						break;
+					case NSAlertThirdButtonReturn:		;							break;
+				}
+			break;
+		}
+	}
+		
+	[self willChangeValueForKey:@"tags"];
+	[_filesController removeObject:file];
+	[[UKKQueue sharedFileWatcher] removePath:[file filename]];
+	[self didChangeValueForKey:@"tags"];
+	
+	enumerator = [_validKeys objectEnumerator];
+	while((key = [enumerator nextObject])) {
+		[self willChangeValueForKey:key];
+		[self didChangeValueForKey:key];
+	}
+	
+	if(1 >= [self countOfFiles]) {
+		[self closeFilesDrawer:self];
 	}
 }
 

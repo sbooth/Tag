@@ -96,5 +96,9 @@
 			</array>
 		</dict>
 	</array>
+	<key>NSAppleScriptEnabled</key>
+    <string>YES</string>
+	<key>OSAScriptingDefinition</key>
+	<string>Tag.sdef</string>
 </dict>
 </plist>

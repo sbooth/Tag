@@ -29,7 +29,7 @@
 {
 	switch([menuItem tag]) {
 		case kCloseMenuItemTag:
-			return (0 != [[TagEditor sharedEditor] selectedFileCount]);
+			return (0 != [[TagEditor sharedEditor] countOfSelectedFiles]);
 			break;
 			
 		default:

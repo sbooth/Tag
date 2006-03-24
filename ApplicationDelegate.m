@@ -74,6 +74,11 @@
 	[[NSApplication sharedApplication] replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
 }
 
+- (BOOL) application:(NSApplication *)sender delegateHandlesKey:(NSString *)key
+{	
+	return [key isEqualToString:@"files"];
+}
+
 - (IBAction) showPreferences:(id)sender
 {
 	[[PreferencesController sharedPreferences] showWindow:self];
@@ -88,5 +93,8 @@
 {
 	[[UpdateChecker sharedController] checkForUpdate:YES];	
 }
+
+- (unsigned)						countOfFiles							{ return [[TagEditor sharedEditor] countOfFiles]; }
+- (KeyValueTaggedFile *)			objectInFilesAtIndex:(unsigned)idx		{ return [[TagEditor sharedEditor] objectInFilesAtIndex:idx]; }
 
 @end
