@@ -70,9 +70,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleSignature</key>
-	<string>????</string>
+	<string>Tagg</string>
 	<key>CFBundleVersion</key>
 	<string>0.3.3</string>
+	<key>NSAppleScriptEnabled</key>
+	<string>YES</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -96,8 +98,6 @@
 			</array>
 		</dict>
 	</array>
-	<key>NSAppleScriptEnabled</key>
-    <string>YES</string>
 	<key>OSAScriptingDefinition</key>
 	<string>Tag.sdef</string>
 </dict>
