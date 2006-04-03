@@ -57,7 +57,7 @@
 	}
 
 	@try {
-		utf16chars = GetUTF16FromUTF8((const unsigned char *)[_filename UTF8String]);
+		utf16chars = GetUTF16FromANSI([_filename fileSystemRepresentation]);
 		if(NULL == utf16chars) {
 			@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Errors", @"") userInfo:nil];
 		}
@@ -116,7 +116,7 @@
 			@throw [NSException exceptionWithName:@"IOException" reason:NSLocalizedStringFromTable(@"The file was not found.", @"Errors", @"") userInfo:nil];
 		}
 		
-		utf16chars = GetUTF16FromUTF8((const unsigned char *)[_filename UTF8String]);
+		utf16chars = GetUTF16FromANSI([_filename fileSystemRepresentation]);
 		if(NULL == utf16chars) {
 			@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Errors", @"") userInfo:nil];
 		}
