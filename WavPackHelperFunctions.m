@@ -35,11 +35,15 @@ truncateAPEComments(WavpackContext *wpc)
 			if(NULL == tagName) {
 				@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @"") 
 											 userInfo:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:errno], [NSString stringWithCString:strerror(errno) encoding:NSASCIIStringEncoding], nil] forKeys:[NSArray arrayWithObjects:@"errorCode", @"errorString", nil]]];
-			}			
+			}
+			len			= WavpackGetTagItemIndexed(wpc, i, tagName, len + 1);
 			
-			if(0 != WavpackDeleteTagItem(wpc, tagName)) {
+			if(0 == WavpackDeleteTagItem(wpc, tagName)) {
+				free(tagName);
 				@throw [NSException exceptionWithName:@"WavPackException" reason:NSLocalizedStringFromTable(@"Unable to delete WavPack tag.", @"Exceptions", @"") userInfo:nil];
 			}
+
+			--i;
 						
 			free(tagName);
 		}
