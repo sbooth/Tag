@@ -268,7 +268,7 @@ static TagEditor *sharedEditor = nil;
 {
 	BOOL				success				= YES;
 	NSOpenPanel			*panel				= [NSOpenPanel openPanel];
-	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", @"ape", @"apl", @"mac", nil];
+	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", @"ape", @"apl", @"mac", @"wv", nil];
 	NSEnumerator		*enumerator;
 	NSString			*filename;
 	NSMutableArray		*newFiles;
@@ -436,7 +436,7 @@ static TagEditor *sharedEditor = nil;
 - (BOOL) addFile:(NSString *)filename atIndex:(unsigned)index
 {
 	NSFileManager		*manager			= [NSFileManager defaultManager];
-	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", @"ape", @"apl", @"mac", nil];
+	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", @"ape", @"apl", @"mac", @"wv", nil];
 	NSMutableArray		*newFiles;
 	KeyValueTaggedFile	*file;
 	NSArray				*subpaths;

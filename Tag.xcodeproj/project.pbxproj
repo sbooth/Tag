@@ -25,6 +25,10 @@
 		8C72A011098DED9100AADBFD /* Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C72A00D098DED9100AADBFD /* Add.tiff */; };
 		8C72A012098DED9100AADBFD /* Remove_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C72A00E098DED9100AADBFD /* Remove_Pressed.tiff */; };
 		8C72A013098DED9100AADBFD /* Remove.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C72A00F098DED9100AADBFD /* Remove.tiff */; };
+		8C7C7E4F09E783D000A6B846 /* WavPackFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C7E4D09E783D000A6B846 /* WavPackFile.m */; };
+		8C7C7E7009E7859D00A6B846 /* WavPack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7C7E6809E7859D00A6B846 /* WavPack.framework */; };
+		8C7C7E7A09E785A800A6B846 /* WavPack.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7C7E6809E7859D00A6B846 /* WavPack.framework */; };
+		8C7C828609E78C9800A6B846 /* WavPackHelperFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C828409E78C9800A6B846 /* WavPackHelperFunctions.m */; };
 		8C8006AA09CBB13800AEBDD9 /* MAC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8006A709CBB13800AEBDD9 /* MAC.framework */; };
 		8C8006AB09CBB14700AEBDD9 /* MAC.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8006A709CBB13800AEBDD9 /* MAC.framework */; };
 		8C8006C909CBB16300AEBDD9 /* MonkeysAudioFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8C8006C709CBB16300AEBDD9 /* MonkeysAudioFile.mm */; };
@@ -87,6 +91,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8C7C7E7A09E785A800A6B846 /* WavPack.framework in Copy Frameworks */,
 				8C8006AB09CBB14700AEBDD9 /* MAC.framework in Copy Frameworks */,
 				8CA624EA09B0EBDD001D14DC /* TagLib.framework in Copy Frameworks */,
 				8CA6217509B0C42F001D14DC /* FLAC.framework in Copy Frameworks */,
@@ -133,6 +138,11 @@
 		8C72A00D098DED9100AADBFD /* Add.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Add.tiff; sourceTree = "<group>"; };
 		8C72A00E098DED9100AADBFD /* Remove_Pressed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Remove_Pressed.tiff; sourceTree = "<group>"; };
 		8C72A00F098DED9100AADBFD /* Remove.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Remove.tiff; sourceTree = "<group>"; };
+		8C7C7E4C09E783D000A6B846 /* WavPackFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavPackFile.h; sourceTree = "<group>"; };
+		8C7C7E4D09E783D000A6B846 /* WavPackFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavPackFile.m; sourceTree = "<group>"; };
+		8C7C7E6809E7859D00A6B846 /* WavPack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WavPack.framework; sourceTree = "<group>"; };
+		8C7C828309E78C9800A6B846 /* WavPackHelperFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavPackHelperFunctions.h; sourceTree = "<group>"; };
+		8C7C828409E78C9800A6B846 /* WavPackHelperFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavPackHelperFunctions.m; sourceTree = "<group>"; };
 		8C8006A709CBB13800AEBDD9 /* MAC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAC.framework; sourceTree = "<group>"; };
 		8C8006C609CBB16300AEBDD9 /* MonkeysAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonkeysAudioFile.h; sourceTree = "<group>"; };
 		8C8006C709CBB16300AEBDD9 /* MonkeysAudioFile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonkeysAudioFile.mm; sourceTree = "<group>"; };
@@ -196,6 +206,7 @@
 				8CA6212609B0C382001D14DC /* FLAC.framework in Frameworks */,
 				8CA624E709B0EBDA001D14DC /* TagLib.framework in Frameworks */,
 				8C8006AA09CBB13800AEBDD9 /* MAC.framework in Frameworks */,
+				8C7C7E7009E7859D00A6B846 /* WavPack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +265,8 @@
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 				8CA0A9A309B52C0000E44E10 /* FLACHelperFunctions.h */,
 				8CA0A9A409B52C0000E44E10 /* FLACHelperFunctions.m */,
+				8C7C828309E78C9800A6B846 /* WavPackHelperFunctions.h */,
+				8C7C828409E78C9800A6B846 /* WavPackHelperFunctions.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -287,6 +300,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8C7C7E6809E7859D00A6B846 /* WavPack.framework */,
 				8C8006A709CBB13800AEBDD9 /* MAC.framework */,
 				8CA624E609B0EBDA001D14DC /* TagLib.framework */,
 				8CA6212509B0C382001D14DC /* FLAC.framework */,
@@ -340,6 +354,8 @@
 				8C04FC2709B5D09D00EFF4D0 /* EditorWindow.m */,
 				8C8006C609CBB16300AEBDD9 /* MonkeysAudioFile.h */,
 				8C8006C709CBB16300AEBDD9 /* MonkeysAudioFile.mm */,
+				8C7C7E4C09E783D000A6B846 /* WavPackFile.h */,
+				8C7C7E4D09E783D000A6B846 /* WavPackFile.m */,
 			);
 			name = Editor;
 			sourceTree = "<group>";
@@ -510,6 +526,8 @@
 				8C1E7DC409D1061600B36CDB /* UKFileWatcher.m in Sources */,
 				8C1E7DC909D1061600B36CDB /* UKMainThreadProxy.m in Sources */,
 				8C1E7DCA09D1061600B36CDB /* UKKQueue.m in Sources */,
+				8C7C7E4F09E783D000A6B846 /* WavPackFile.m in Sources */,
+				8C7C828609E78C9800A6B846 /* WavPackHelperFunctions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

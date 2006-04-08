@@ -22,6 +22,7 @@
 #import "OggVorbisFile.h"
 #import "FLACFile.h"
 #import "MonkeysAudioFile.h"
+#import "WavPackFile.h"
 #import "TagEditor.h"
 
 @implementation KeyValueTaggedFile
@@ -39,6 +40,9 @@
 	}
 	else if([extension isEqualToString:@"ape"] || [extension isEqualToString:@"apl"] || [extension isEqualToString:@"mac"]) {
 		result = [[MonkeysAudioFile alloc] initWithFile:filename];
+	}
+	else if([extension isEqualToString:@"wv"]) {
+		result = [[WavPackFile alloc] initWithFile:filename];
 	}
 	else {
 		@throw [NSException exceptionWithName:@"FileFormatNotSupportedException" reason:NSLocalizedStringFromTable(@"The document does not appear to be a valid FLAC, Ogg Vorbis or Monkey's Audio file.", @"Errors", @"") userInfo:nil];
