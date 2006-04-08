@@ -156,7 +156,7 @@
 {
 	NSString *customTag;
 	
-	customTag = [[NSUserDefaults standardUserDefaults] stringForKey:[NSString stringWithFormat:@"FLACTag_%@", tag]];
+	customTag = [[NSUserDefaults standardUserDefaults] stringForKey:[NSString stringWithFormat:@"WavPackTag_%@", tag]];
 	return (nil == customTag ? tag : customTag);
 }
 
@@ -165,9 +165,15 @@
 	NSArray *objects, *keys;
 	
 	objects = [NSArray arrayWithObjects:@"title", @"artist", @"album", @"year", @"genre", @"composer", @"MCN", @"ISRC", @"encoder", @"comment", @"trackNumber", @"trackTotal", @"discNumber", @"discTotal", @"compilation", @"custom", nil];
-	keys	= [NSArray arrayWithObjects:[self customizeTag:@"TITLE"], [self customizeTag:@"ARTIST"], [self customizeTag:@"ALBUM"], [self customizeTag:@"YEAR"], [self customizeTag:@"GENRE"], [self customizeTag:@"COMPOSER"], [self customizeTag:@"MCN"], [self customizeTag:@"ISRC"], [self customizeTag:@"ENCODER"], [self customizeTag:@"DESCRIPTION"], [self customizeTag:@"TRACKNUMBER"], [self customizeTag:@"TRACKTOTAL"], [self customizeTag:@"DISCNUMBER"], [self customizeTag:@"DISCTOTAL"], [self customizeTag:@"COMPILATION"], [self customizeTag:@"_CUSTOM"], nil];
+	keys	= [NSArray arrayWithObjects:[self customizeTag:@"TITLE"], [self customizeTag:@"ARTIST"], [self customizeTag:@"ALBUM"], [self customizeTag:@"YEAR"], [self customizeTag:@"GENRE"], [self customizeTag:@"COMPOSER"], [self customizeTag:@"MCN"], [self customizeTag:@"ISRC"], [self customizeTag:@"TOOL NAME"], [self customizeTag:@"COMMENT"], [self customizeTag:@"TRACK"], [self customizeTag:@"TRACKTOTAL"], [self customizeTag:@"DISCNUMBER"], [self customizeTag:@"DISCTOTAL"], [self customizeTag:@"COMPILATION"], [self customizeTag:@"_CUSTOM"], nil];
 	
 	return [[[NSDictionary dictionaryWithObjects:objects forKeys:keys] retain] autorelease];
 }
+
+- (NSString *) encoder								{ return [self valueForTag:[self customizeTag:@"TOOL NAME"]]; }
+- (NSNumber *) trackNumber							{ return [NSNumber numberWithInt:[[self valueForTag:[self customizeTag:@"TRACK"]] intValue]]; }
+
+- (void) setEncoder:(NSString *)value				{ [self setValue:value forTag:[self customizeTag:@"TOOL NAME"]]; }
+- (void) setTrackNumber:(NSNumber *)value			{ [self setValue:[value stringValue] forTag:[self customizeTag:@"TRACK"]]; }
 
 @end
