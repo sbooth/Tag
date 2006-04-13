@@ -942,7 +942,7 @@ static TagEditor *sharedEditor = nil;
 		
 		removeFile = YES;
 	}
-	else if([nm isEqualToString:UKFileWatcherAttributeChangeNotification] || [nm isEqualToString:UKFileWatcherSizeIncreaseNotification]) {
+	else if(/*[nm isEqualToString:UKFileWatcherAttributeChangeNotification] || */[nm isEqualToString:UKFileWatcherSizeIncreaseNotification]) {
 		NSEnumerator			*enumerator;
 		NSString				*key;
 		int						result;
