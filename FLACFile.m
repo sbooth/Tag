@@ -45,62 +45,87 @@
 
 - (void) parseFile
 {
-	FLAC__StreamMetadata						*tags, *currentTag;
-	FLAC__StreamMetadata_VorbisComment_Entry	*comments;
-	unsigned									i;
-	NSString									*commentString, *key, *value;
-	NSRange										range;
-	NSMutableArray								*tagsArray;
+	FLAC__Metadata_Chain			*chain				= NULL;
+	FLAC__Metadata_Iterator			*iterator			= NULL;
+	FLAC__StreamMetadata			*block				= NULL;
+	unsigned						i;
+	NSString						*commentString, *key, *value;
+	NSRange							range;
+	NSMutableArray					*tagsArray;
 	
-	if(NO == [[NSFileManager defaultManager] fileExistsAtPath:_filename]) {
-		@throw [NSException exceptionWithName:@"IOException" reason:NSLocalizedStringFromTable(@"The file was not found.", @"Errors", @"") userInfo:nil];
-	}
+	@try {
+		if(NO == [[NSFileManager defaultManager] fileExistsAtPath:_filename]) {
+			@throw [NSException exceptionWithName:@"IOException" reason:NSLocalizedStringFromTable(@"The file was not found.", @"Errors", @"") userInfo:nil];
+		}
 
-	if(FLAC__metadata_get_tags([_filename fileSystemRepresentation], &tags)) {
+		chain = FLAC__metadata_chain_new();
+		if(NULL == chain) {
+			@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Errors", @"") userInfo:nil];
+		}
 		
-		tagsArray	= [self mutableArrayValueForKey:@"tags"];
-		currentTag	= tags;
+		if(NO == FLAC__metadata_chain_read(chain, [_filename fileSystemRepresentation])) {
+			switch(FLAC__metadata_chain_status(chain)) {
+				case FLAC__METADATA_CHAIN_STATUS_NOT_A_FLAC_FILE:
+					@throw [NSException exceptionWithName:@"InvalidFileFormatException" reason:NSLocalizedStringFromTable(@"The file does not appear to be a valid FLAC file.", @"Errors", @"") userInfo:nil];
+					break;
+
+				case FLAC__METADATA_CHAIN_STATUS_READ_ERROR:
+				case FLAC__METADATA_CHAIN_STATUS_SEEK_ERROR:
+				case FLAC__METADATA_CHAIN_STATUS_BAD_METADATA:
+				case FLAC__METADATA_CHAIN_STATUS_ERROR_OPENING_FILE:
+				default:
+					@throw [NSException exceptionWithName:@"IOException" reason:NSLocalizedStringFromTable(@"An unknown error occurred.", @"Errors", @"") userInfo:nil];
+					break;
+			}
+		}
 		
-		for(;;) {
+		iterator = FLAC__metadata_iterator_new();
+		if(NULL == iterator) {
+			@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Errors", @"") userInfo:nil];
+		}
+		
+		FLAC__metadata_iterator_init(iterator, chain);
+	
+		do {
+			block = FLAC__metadata_iterator_get_block(iterator);
+			if(NULL == block) {
+				break;
+			}
 			
-			switch(currentTag->type) {
+			switch(block->type) {					
 				case FLAC__METADATA_TYPE_VORBIS_COMMENT:
-					comments = currentTag->data.vorbis_comment.comments;
-					
-					for(i = 0; i < currentTag->data.vorbis_comment.num_comments; ++i) {
+					tagsArray	= [self mutableArrayValueForKey:@"tags"];
+
+					for(i = 0; i < block->data.vorbis_comment.num_comments; ++i) {
 						
 						// Split the comment at '='
-						commentString	= [NSString stringWithUTF8String:(const char *)currentTag->data.vorbis_comment.comments[i].entry];
+						commentString	= [NSString stringWithUTF8String:(const char *)block->data.vorbis_comment.comments[i].entry];
 						range			= [commentString rangeOfString:@"=" options:NSLiteralSearch];
 						
 						// Sanity check (comments should be well-formed)
 						if(NSNotFound != range.location && 0 != range.length) {
 							key				= [commentString substringToIndex:range.location];
 							value			= [commentString substringFromIndex:range.location + 1];
-							
+
 							[tagsArray addObject:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:key, value, nil] forKeys:[NSArray arrayWithObjects:@"key", @"value", nil]]];
 						}							
-					}
-						break;
-					
-				default:
+					}					
 					break;
+					
+				case FLAC__METADATA_TYPE_STREAMINFO:					break;
+				case FLAC__METADATA_TYPE_PADDING:						break;
+				case FLAC__METADATA_TYPE_APPLICATION:					break;
+				case FLAC__METADATA_TYPE_SEEKTABLE:						break;
+				case FLAC__METADATA_TYPE_CUESHEET:						break;
+				case FLAC__METADATA_TYPE_UNDEFINED:						break;
 			}
-			
-			if(currentTag->is_last) {
-				break;
-			}
-			else {
-				++currentTag;
-			}
-		}
-		
-		FLAC__metadata_object_delete(tags);
-	}
-	else {
-		@throw [NSException exceptionWithName:@"InvalidFileFormatException" reason:NSLocalizedStringFromTable(@"The file does not appear to be a valid FLAC file.", @"Errors", @"") userInfo:nil];
+		} while(FLAC__metadata_iterator_next(iterator));
 	}
 	
+	@finally {
+		FLAC__metadata_iterator_delete(iterator);
+		FLAC__metadata_chain_delete(chain);
+	}
 }
 
 - (void) save
