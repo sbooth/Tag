@@ -53,52 +53,56 @@
 	int								len, i;
 	NSMutableArray					*tagsArray;
 	
-	if(NO == [[NSFileManager defaultManager] fileExistsAtPath:_filename]) {
-		@throw [NSException exceptionWithName:@"IOException" reason:NSLocalizedStringFromTable(@"The file was not found.", @"Errors", @"") userInfo:nil];
-	}
+	@try {
+		if(NO == [[NSFileManager defaultManager] fileExistsAtPath:_filename]) {
+			@throw [NSException exceptionWithName:@"IOException" reason:NSLocalizedStringFromTable(@"The file was not found.", @"Errors", @"") userInfo:nil];
+		}
 
-	wpc = WavpackOpenFileInput([_filename fileSystemRepresentation], error, OPEN_TAGS, 0);
-	if(NULL == wpc) {
-		@throw [NSException exceptionWithName:@"InvalidFileFormatException" reason:NSLocalizedStringFromTable(@"The file does not appear to be a valid WavPack file.", @"Errors", @"")
-									 userInfo:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSString stringWithCString:error encoding:NSASCIIStringEncoding]] forKeys:[NSArray arrayWithObject:@"errorString"]]];
-	}
+		wpc = WavpackOpenFileInput([_filename fileSystemRepresentation], error, OPEN_TAGS, 0);
+		if(NULL == wpc) {
+			@throw [NSException exceptionWithName:@"InvalidFileFormatException" reason:NSLocalizedStringFromTable(@"The file does not appear to be a valid WavPack file.", @"Errors", @"")
+										 userInfo:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSString stringWithCString:error encoding:NSASCIIStringEncoding]] forKeys:[NSArray arrayWithObject:@"errorString"]]];
+		}
 	
-	if(WavpackGetMode(wpc) & MODE_VALID_TAG) {
-		
-		tagsArray = [self mutableArrayValueForKey:@"tags"];
-		
-		for(i = 0; i < WavpackGetNumTagItems(wpc); ++i) {
+		if(WavpackGetMode(wpc) & MODE_VALID_TAG) {
 			
-			// Get the tag's name
-			len			= WavpackGetTagItemIndexed(wpc, i, NULL, 0);
-			tagName		= (char *)calloc(len + 1, sizeof(char));
-			if(NULL == tagName) {
-				@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @"") 
-											 userInfo:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:errno], [NSString stringWithCString:strerror(errno) encoding:NSASCIIStringEncoding], nil] forKeys:[NSArray arrayWithObjects:@"errorCode", @"errorString", nil]]];
-			}			
-			len			= WavpackGetTagItemIndexed(wpc, i, tagName, len + 1);
+			tagsArray = [self mutableArrayValueForKey:@"tags"];
 			
-			// Get the tag's value
-			len			= WavpackGetTagItem(wpc, tagName, NULL, 0);
-			tagValue	= (char *)calloc(len + 1, sizeof(char));
-			if(NULL == tagValue) {
+			for(i = 0; i < WavpackGetNumTagItems(wpc); ++i) {
+				
+				// Get the tag's name
+				len			= WavpackGetTagItemIndexed(wpc, i, NULL, 0);
+				tagName		= (char *)calloc(len + 1, sizeof(char));
+				if(NULL == tagName) {
+					@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @"") 
+												 userInfo:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:errno], [NSString stringWithCString:strerror(errno) encoding:NSASCIIStringEncoding], nil] forKeys:[NSArray arrayWithObjects:@"errorCode", @"errorString", nil]]];
+				}			
+				len			= WavpackGetTagItemIndexed(wpc, i, tagName, len + 1);
+				
+				// Get the tag's value
+				len			= WavpackGetTagItem(wpc, tagName, NULL, 0);
+				tagValue	= (char *)calloc(len + 1, sizeof(char));
+				if(NULL == tagValue) {
+					free(tagName);
+					@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @"") 
+												 userInfo:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:errno], [NSString stringWithCString:strerror(errno) encoding:NSASCIIStringEncoding], nil] forKeys:[NSArray arrayWithObjects:@"errorCode", @"errorString", nil]]];
+				}
+				len			= WavpackGetTagItem(wpc, tagName, tagValue, len + 1);
+				
+				key			= [NSString stringWithCString:tagName encoding:NSASCIIStringEncoding];
+				value		= [NSString stringWithUTF8String:tagValue];
+				
+				[tagsArray addObject:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:key, value, nil] forKeys:[NSArray arrayWithObjects:@"key", @"value", nil]]];
+				
 				free(tagName);
-				@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @"") 
-											 userInfo:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:errno], [NSString stringWithCString:strerror(errno) encoding:NSASCIIStringEncoding], nil] forKeys:[NSArray arrayWithObjects:@"errorCode", @"errorString", nil]]];
+				free(tagValue);
 			}
-			len			= WavpackGetTagItem(wpc, tagName, tagValue, len + 1);
-			
-			key			= [NSString stringWithCString:tagName encoding:NSASCIIStringEncoding];
-			value		= [NSString stringWithUTF8String:tagValue];
-
-			[tagsArray addObject:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:key, value, nil] forKeys:[NSArray arrayWithObjects:@"key", @"value", nil]]];
-			
-			free(tagName);
-			free(tagValue);
 		}
 	}
-	
-	WavpackCloseFile(wpc);
+
+	@finally {
+		WavpackCloseFile(wpc);
+	}
 }
 
 - (void) save
