@@ -89,7 +89,7 @@
 				}
 				len			= WavpackGetTagItem(wpc, tagName, tagValue, len + 1);
 				
-				key			= [NSString stringWithCString:tagName encoding:NSASCIIStringEncoding];
+				key			= [[NSString stringWithCString:tagName encoding:NSASCIIStringEncoding] uppercaseString];
 				value		= [NSString stringWithUTF8String:tagValue];
 				
 				[tagsArray addObject:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:key, value, nil] forKeys:[NSArray arrayWithObjects:@"key", @"value", nil]]];

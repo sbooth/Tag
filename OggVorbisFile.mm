@@ -63,7 +63,7 @@
 			TagLib::StringList::ConstIterator			valuesIterator;
 			
 			for(iterator = fieldList.begin(); iterator != fieldList.end(); ++iterator) {
-				key			= [NSString stringWithUTF8String:(*iterator).first.toCString(true)];
+				key			= [[NSString stringWithUTF8String:(*iterator).first.toCString(true)] uppercaseString];
 				values		= (*iterator).second;
 				
 				for(valuesIterator = values.begin(); valuesIterator != values.end(); ++valuesIterator) {

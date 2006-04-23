@@ -82,7 +82,7 @@
 					@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Errors", @"") userInfo:nil];
 				}
 				
-				key			= [NSString stringWithUTF8String:(const char *)utf8chars];
+				key			= [[NSString stringWithUTF8String:(const char *)utf8chars] uppercaseString];
 				value		= [NSString stringWithUTF8String:tag->GetFieldValue()];
 				
 				[tagsArray addObject:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:key, value, nil] forKeys:[NSArray arrayWithObjects:@"key", @"value", nil]]];

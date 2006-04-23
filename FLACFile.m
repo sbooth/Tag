@@ -104,7 +104,7 @@
 						
 						// Sanity check (comments should be well-formed)
 						if(NSNotFound != range.location && 0 != range.length) {
-							key				= [commentString substringToIndex:range.location];
+							key				= [[commentString substringToIndex:range.location] uppercaseString];
 							value			= [commentString substringFromIndex:range.location + 1];
 
 							[tagsArray addObject:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:key, value, nil] forKeys:[NSArray arrayWithObjects:@"key", @"value", nil]]];
