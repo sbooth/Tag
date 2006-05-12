@@ -1,0 +1,13 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {cancel = id; patternTokenButtonClicked = id; rename = id; }; 
+            CLASS = GuessTagsSheet; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {"_pattern" = NSComboBox; "_renameButton" = NSButton; "_sheet" = NSWindow; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

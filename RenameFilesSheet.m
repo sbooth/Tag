@@ -18,7 +18,7 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  */
 
-#import "GuessTagsSheet.h"
+#import "RenameFilesSheet.h"
 
 enum {
 	kTitleButtonTag			= 0,
@@ -39,7 +39,7 @@ enum {
 	kCompilationButtonTag	= 15
 };
 
-@implementation GuessTagsSheet
+@implementation RenameFilesSheet
 
 - (id) init;
 {
@@ -50,9 +50,9 @@ enum {
 			@"{artist}/{album}/{trackNumber} {title}",
 			@"Compilations/{album}/{discNumber}-{trackNumber} {title}",
 			nil] retain];
-
-		if(NO == [NSBundle loadNibNamed:@"GuessTagsSheet" owner:self])  {
-			@throw [NSException exceptionWithName:@"MissingResourceException" reason:NSLocalizedStringFromTable(@"Unable to find the resource \"GuessTagsSheet.nib\".", @"Errors", @"") userInfo:nil];
+		
+		if(NO == [NSBundle loadNibNamed:@"RenameFilesSheet" owner:self])  {
+			@throw [NSException exceptionWithName:@"MissingResourceException" reason:NSLocalizedStringFromTable(@"Unable to find the resource \"RenameFilesSheet.nib\".", @"Errors", @"") userInfo:nil];
 		}
 		
 		return self;
@@ -66,8 +66,8 @@ enum {
 	[super dealloc];
 }
 
-- (void)										setDelegate:(id <GuessTagsSheetDelegateMethods>)delegate		{ _delegate = delegate; }
-- (id <GuessTagsSheetDelegateMethods>)			delegate														{ return _delegate; }
+- (void)										setDelegate:(id <RenameFilesSheetDelegateMethods>)delegate		{ _delegate = delegate; }
+- (id <RenameFilesSheetDelegateMethods>)		delegate														{ return _delegate; }
 
 - (void) showSheet
 {
@@ -79,9 +79,9 @@ enum {
     [[NSApplication sharedApplication] endSheet:_sheet];
 }
 
-- (IBAction) guess:(id)sender
+- (IBAction) rename:(id)sender
 {
-	[_delegate guessTagsUsingPattern:[_pattern stringValue]];
+	[_delegate renameFilesUsingPattern:[_pattern stringValue]];
     [[NSApplication sharedApplication] endSheet:_sheet];
 }
 
@@ -125,23 +125,23 @@ enum {
 			[_pattern textShouldEndEditing:fieldEditor];
 		}
 	}
-
-	[_guessButton setEnabled:YES];
+	
+	[_renameButton setEnabled:YES];
 }
 
 - (void) controlTextDidChange:(NSNotification *)aNotification
 {
 	NSString *pattern = [_pattern stringValue];
-	[_guessButton setEnabled:(nil != pattern && 0 != [pattern length])];
+	[_renameButton setEnabled:(nil != pattern && 0 != [pattern length])];
 }
 
 - (void) comboBoxSelectionDidChange:(NSNotification *)aNotification
 {
 	NSString	*pattern;
-
+	
 	[_pattern setObjectValue:[_pattern objectValueOfSelectedItem]];
 	pattern = [_pattern stringValue];
-	[_guessButton setEnabled:(nil != pattern && 0 != [pattern length])];
+	[_renameButton setEnabled:(nil != pattern && 0 != [pattern length])];
 }
 
 @end

@@ -55,6 +55,8 @@
 		8CB4FE8D09B71AD100EF45EB /* General.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4FE8809B71AD100EF45EB /* General.strings */; };
 		8CB4FE8E09B71AD100EF45EB /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4FE8A09B71AD100EF45EB /* Genres.strings */; };
 		8CB4FFD509B7357500EF45EB /* MacPAD.url in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4FFD409B7357500EF45EB /* MacPAD.url */; };
+		8CBA33540A13C22D00E9EA47 /* RenameFilesSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBA33520A13C22D00E9EA47 /* RenameFilesSheet.nib */; };
+		8CBA33640A13C2B500E9EA47 /* RenameFilesSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA33620A13C2B500E9EA47 /* RenameFilesSheet.m */; };
 		8CCA0D0E09BDA747002E74BD /* Actions.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CCA0D0C09BDA747002E74BD /* Actions.strings */; };
 		8CCA0D7309BDB3D3002E74BD /* GuessTagsSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CCA0D7109BDB3D3002E74BD /* GuessTagsSheet.nib */; };
 		8CCA0D8A09BDB449002E74BD /* GuessTagsSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA0D8909BDB449002E74BD /* GuessTagsSheet.m */; };
@@ -178,11 +180,15 @@
 		8CA62A5809B1398C001D14DC /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Acknowledgments.nib; sourceTree = "<group>"; };
 		8CA62A5B09B13A07001D14DC /* Acknowledgments.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Acknowledgments.rtf; sourceTree = "<group>"; };
 		8CA7319809D2E5BA005D630C /* Tag.sdef */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.sdef; path = Tag.sdef; sourceTree = "<group>"; };
-		8CB4FE8709B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Errors.strings; sourceTree = "<group>"; };
-		8CB4FE8909B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/General.strings; sourceTree = "<group>"; };
-		8CB4FE8B09B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Genres.strings; sourceTree = "<group>"; };
+		8CB4FE8709B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Errors.strings; sourceTree = "<group>"; };
+		8CB4FE8909B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/General.strings; sourceTree = "<group>"; };
+		8CB4FE8B09B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Genres.strings; sourceTree = "<group>"; };
 		8CB4FFD409B7357500EF45EB /* MacPAD.url */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MacPAD.url; sourceTree = "<group>"; };
-		8CCA0D0D09BDA747002E74BD /* English */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Actions.strings; sourceTree = "<group>"; };
+		8CBA33530A13C22D00E9EA47 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/RenameFilesSheet.nib; sourceTree = "<group>"; };
+		8CBA33610A13C2B500E9EA47 /* RenameFilesSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameFilesSheet.h; sourceTree = "<group>"; };
+		8CBA33620A13C2B500E9EA47 /* RenameFilesSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameFilesSheet.m; sourceTree = "<group>"; };
+		8CBA337E0A13C33D00E9EA47 /* RenameFilesSheetDelegateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameFilesSheetDelegateMethods.h; sourceTree = "<group>"; };
+		8CCA0D0D09BDA747002E74BD /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Actions.strings; sourceTree = "<group>"; };
 		8CCA0D7209BDB3D3002E74BD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/GuessTagsSheet.nib; sourceTree = "<group>"; };
 		8CCA0D8709BDB433002E74BD /* GuessTagsSheetDelegateMethods.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GuessTagsSheetDelegateMethods.h; sourceTree = "<group>"; };
 		8CCA0D8909BDB449002E74BD /* GuessTagsSheet.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GuessTagsSheet.m; sourceTree = "<group>"; };
@@ -274,6 +280,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				8CBA33520A13C22D00E9EA47 /* RenameFilesSheet.nib */,
 				8CA7319809D2E5BA005D630C /* Tag.sdef */,
 				8CE74D9B09CDB27700D73B4B /* TagFile.icns */,
 				8CB4FFD409B7357500EF45EB /* MacPAD.url */,
@@ -392,6 +399,8 @@
 				8CA627BE09B0FC66001D14DC /* UppercaseStringValueTransformer.m */,
 				8C728C3009B6F8C9000F7848 /* ServicesProvider.h */,
 				8C728C3109B6F8C9000F7848 /* ServicesProvider.m */,
+				8CBA33610A13C2B500E9EA47 /* RenameFilesSheet.h */,
+				8CBA33620A13C2B500E9EA47 /* RenameFilesSheet.m */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -413,6 +422,7 @@
 				8CCA0D8709BDB433002E74BD /* GuessTagsSheetDelegateMethods.h */,
 				8CA0A8C309B5205500E44E10 /* AddTagSheetDelegateMethods.h */,
 				8CA6244B09B0E851001D14DC /* TagArrayControllerDelegateMethods.h */,
+				8CBA337E0A13C33D00E9EA47 /* RenameFilesSheetDelegateMethods.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -489,6 +499,7 @@
 				8CCA0D0E09BDA747002E74BD /* Actions.strings in Resources */,
 				8CCA0D7309BDB3D3002E74BD /* GuessTagsSheet.nib in Resources */,
 				8CE74D9C09CDB27700D73B4B /* TagFile.icns in Resources */,
+				8CBA33540A13C22D00E9EA47 /* RenameFilesSheet.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,6 +539,7 @@
 				8C1E7DCA09D1061600B36CDB /* UKKQueue.m in Sources */,
 				8C7C7E4F09E783D000A6B846 /* WavPackFile.m in Sources */,
 				8C7C828609E78C9800A6B846 /* WavPackHelperFunctions.m in Sources */,
+				8CBA33640A13C2B500E9EA47 /* RenameFilesSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,6 +624,14 @@
 				8CB4FE8B09B71AD100EF45EB /* English */,
 			);
 			name = Genres.strings;
+			sourceTree = "<group>";
+		};
+		8CBA33520A13C22D00E9EA47 /* RenameFilesSheet.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8CBA33530A13C22D00E9EA47 /* English */,
+			);
+			name = RenameFilesSheet.nib;
 			sourceTree = "<group>";
 		};
 		8CCA0D0C09BDA747002E74BD /* Actions.strings */ = {

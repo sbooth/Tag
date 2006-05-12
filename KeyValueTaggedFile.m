@@ -38,14 +38,14 @@
 	else if([extension isEqualToString:@"flac"]) {
 		result = [[FLACFile alloc] initWithFile:filename];
 	}
-	else if([extension isEqualToString:@"ape"] || [extension isEqualToString:@"apl"] || [extension isEqualToString:@"mac"]) {
+	else if([extension isEqualToString:@"ape"]) {
 		result = [[MonkeysAudioFile alloc] initWithFile:filename];
 	}
 	else if([extension isEqualToString:@"wv"]) {
 		result = [[WavPackFile alloc] initWithFile:filename];
 	}
 	else {
-		@throw [NSException exceptionWithName:@"FileFormatNotSupportedException" reason:NSLocalizedStringFromTable(@"The document does not appear to be a valid FLAC, Ogg Vorbis or Monkey's Audio file.", @"Errors", @"") userInfo:nil];
+		@throw [NSException exceptionWithName:@"FileFormatNotSupportedException" reason:NSLocalizedStringFromTable(@"The document's format was not recognized.", @"Errors", @"") userInfo:nil];
 	}
 	
 	return [result autorelease];
@@ -90,6 +90,9 @@
 	
 	return nil;
 }
+
+- (unsigned)		countOfTags								{ return [_tags count]; }
+- (NSDictionary *)	objectInTagsAtIndex:(unsigned)idx		{ return [_tags objectAtIndex:idx]; }
 
 - (void) willChangeValueForTag:(NSString *)tag
 {
@@ -192,19 +195,19 @@
 {
 	TagEditor				*editor;
 	NSUndoManager			*undoManager;
-	NSEnumerator			*enumerator;
 	NSMutableDictionary		*current;
+	unsigned				i;
 	
 	editor			= [TagEditor sharedEditor];
 	undoManager		= [editor undoManager];
 	tag				= [tag uppercaseString];
-	enumerator		= [_tags objectEnumerator];	
 
 	if([newValue isEqualToString:currentValue]) {
 		return;
 	}
 	
-	while((current = [enumerator nextObject])) {
+	for(i = 0; i < [_tags count]; ++i) {
+		current = [_tags objectAtIndex:i];
 		if([[current valueForKey:@"key"] isEqualToString:tag] && [[current valueForKey:@"value"] isEqualToString:currentValue]) {
 
 			[self willChangeValueForTag:tag];
@@ -212,7 +215,7 @@
 			if(nil == newValue) {
 				[[undoManager prepareWithInvocationTarget:self] addValue:currentValue forTag:tag];
 				[undoManager setActionName:NSLocalizedStringFromTable(([undoManager isUndoing] ? @"New Tag" : @"Delete Tag"), @"Actions", @"")];
-				[_tags removeObject:current];
+				[_tags removeObjectAtIndex:i];
 			}
 			else {
 				[[undoManager prepareWithInvocationTarget:self] updateTag:tag withValue:newValue toValue:currentValue];
@@ -392,6 +395,114 @@
 				break;
 			}
 		}
+	}
+}
+
+- (void) renameFileUsingPattern:(NSString *)pattern
+{
+	NSMutableString			*filename;
+	NSString				*tagName, *tagValue, *pathname;
+	NSScanner				*patternScanner;
+	
+	NSString				*patternToken, *patternTokenPrefix, *patternTokenSuffix;
+	
+	NSCharacterSet			*emptyCharacterSet;
+	NSCharacterSet			*illegalCharacters;
+	NSRange					range;
+	
+	BOOL					scanResult;
+	
+	
+	filename				= [NSMutableString stringWithCapacity:30];
+	emptyCharacterSet		= [NSCharacterSet characterSetWithCharactersInString:@""];
+	
+	patternScanner			= [NSScanner scannerWithString:pattern];
+	
+	[patternScanner setCharactersToBeSkipped:emptyCharacterSet];
+	
+	// Attempt to match one single pattern token- consumes input matching ".*%{.*}.*"
+	for(;;) {
+		
+		patternTokenPrefix	= nil;
+		patternToken		= nil;
+		patternTokenSuffix	= nil;
+		
+		// Get the token prefix, if present
+		scanResult = [patternScanner scanUpToString:@"{" intoString:&patternTokenPrefix];
+		
+		// Store prefix in output
+		if(scanResult) {
+			[filename appendString:patternTokenPrefix];
+		}
+		
+		// Consume token opener
+		scanResult = [patternScanner scanString:@"{" intoString:nil];
+		if(NO == scanResult) {
+			// No token found
+			break;
+		}
+		
+		// Extract token name
+		scanResult = [patternScanner scanUpToString:@"}" intoString:&patternToken];
+		if(NO == scanResult) {
+			// Empty token
+			break;
+		}
+		
+		// Consume token closer
+		scanResult = [patternScanner scanString:@"}" intoString:nil];
+		if(NO == scanResult) {
+			// Missing token terminator
+			break;
+		}
+		
+		// Get the token suffix, if present
+		scanResult = [patternScanner scanUpToString:@"{" intoString:&patternTokenSuffix];
+		
+		tagName = [self tagForKey:patternToken];
+		if(nil != tagName) {
+			tagValue = [self valueForTag:tagName];
+			if(nil != tagValue) {
+				[filename appendString:tagValue];
+			}
+		}
+		
+		// Store suffix in output
+		if(scanResult) {
+			[filename appendString:patternTokenSuffix];
+		}
+		
+		if([patternScanner isAtEnd]) {
+			break;
+		}
+	}
+	
+	// Replace illegal characters
+	illegalCharacters = [NSCharacterSet characterSetWithCharactersInString:@"/:"];
+	
+	range = [filename rangeOfCharacterFromSet:illegalCharacters];		
+	while(range.location != NSNotFound && range.length != 0) {
+		[filename replaceCharactersInRange:range withString:@"_"];
+		range = [filename rangeOfCharacterFromSet:illegalCharacters];		
+	}
+		
+	pathname = [NSString stringWithFormat:@"%@/%@.%@", [_filename stringByDeletingLastPathComponent], filename, [_filename pathExtension]];
+	
+	if(NO == [[NSFileManager defaultManager] fileExistsAtPath:pathname]) {
+		
+		// Rename the file
+		if([[NSFileManager defaultManager] movePath:_filename toPath:pathname handler:nil]) {
+			[_filename release];
+			[_displayName release];
+			_filename = [pathname retain];
+			_displayName = [[_filename lastPathComponent] retain];
+		}
+		else{
+			// Handle error
+		}
+	}
+	else {
+		// File already exists
 	}
 }
 

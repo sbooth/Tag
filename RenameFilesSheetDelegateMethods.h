@@ -19,27 +19,10 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "GuessTagsSheetDelegateMethods.h"
 
-@interface GuessTagsSheet : NSObject
-{
-	NSArray													*_predefinedPatterns;
-	
-    IBOutlet NSWindow										*_sheet;
-    IBOutlet NSComboBox										*_pattern;
-	IBOutlet NSButton										*_guessButton;
-	
-	IBOutlet id <GuessTagsSheetDelegateMethods>				_delegate;
-}
+@protocol RenameFilesSheetDelegateMethods
 
-- (void)										setDelegate:(id <GuessTagsSheetDelegateMethods>)delegate;
-- (id <GuessTagsSheetDelegateMethods>)			delegate;
-
-- (void)			showSheet;
-
-- (IBAction)		cancel:(id)sender;
-- (IBAction)		guess:(id)sender;
-
-- (IBAction)		patternTokenButtonClicked:(id)sender;
+- (NSWindow *)		windowForSheet;
+- (void)			renameFilesUsingPattern:(NSString *)pattern;
 
 @end

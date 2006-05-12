@@ -62,4 +62,14 @@
 	[super objectDidEndEditing:editor];
 }
 
+#pragma mark Drag and Drop
+
+- (BOOL) tableView:(NSTableView *)aTableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard
+{
+	[pboard declareTypes:[NSArray arrayWithObject:@"org.sbooth.Tag.TagItem"] owner:self];
+	[pboard setPropertyList:[[self arrangedObjects] objectsAtIndexes:rowIndexes] forType:@"org.sbooth.Tag.TagItem"];
+	
+	return YES;
+}
+
 @end

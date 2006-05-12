@@ -23,6 +23,7 @@
 #import "Genres.h"
 #import "AddTagSheet.h"
 #import "GuessTagsSheet.h"
+#import "RenameFilesSheet.h"
 
 #import "UKKQueue.h"
 
@@ -30,9 +31,10 @@ static TagEditor *sharedEditor = nil;
 
 @interface TagEditor (Private)
 - (BOOL)	addOneFile:(NSString *)filename atIndex:(unsigned)index;
-- (void)	alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode  contextInfo:(void  *)contextInfo;
+- (void)	alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 - (void)	tagsChanged;
 - (void)	undoManagerNotification:(NSNotification *)aNotification;
+- (void)	openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode contextInfo:(void *)contextInfo;
 @end
 
 @implementation TagEditor
@@ -268,7 +270,7 @@ static TagEditor *sharedEditor = nil;
 {
 	BOOL				success				= YES;
 	NSOpenPanel			*panel				= [NSOpenPanel openPanel];
-	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", @"ape", @"apl", @"mac", @"wv", nil];
+	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", @"ape", @"wv", nil];
 	NSEnumerator		*enumerator;
 	NSString			*filename;
 	NSMutableArray		*newFiles;
@@ -436,7 +438,7 @@ static TagEditor *sharedEditor = nil;
 - (BOOL) addFile:(NSString *)filename atIndex:(unsigned)index
 {
 	NSFileManager		*manager			= [NSFileManager defaultManager];
-	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", @"ape", @"apl", @"mac", @"wv", nil];
+	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", @"ape", @"wv", nil];
 	NSMutableArray		*newFiles;
 	KeyValueTaggedFile	*file;
 	NSArray				*subpaths;
@@ -575,6 +577,67 @@ static TagEditor *sharedEditor = nil;
 	}
 }
 
+- (IBAction) addTagsFromFile:(id)sender
+{
+	NSOpenPanel			*panel				= [NSOpenPanel openPanel];
+	NSArray				*allowedTypes		= [NSArray arrayWithObjects:@"flac", @"ogg", @"ape", @"wv", nil];
+	
+	[panel setAllowsMultipleSelection:YES];
+	[panel setCanChooseDirectories:YES];
+	
+	[panel beginSheetForDirectory:nil file:nil types:allowedTypes modalForWindow:[self window] modalDelegate:self didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:) contextInfo:NULL];
+}
+
+- (void) openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+	NSEnumerator		*enumerator;
+	NSString			*filename;
+	KeyValueTaggedFile	*file;
+	unsigned			i;
+	NSDictionary		*tag;
+
+	if(NSOKButton == returnCode) {		
+		
+		enumerator	= [[panel filenames] objectEnumerator];
+		
+		while((filename = [enumerator nextObject])) {
+			file = [KeyValueTaggedFile parseFile:filename];
+			
+			if(nil != file) {
+				for(i = 0; i < [file countOfTags]; ++i) {
+					tag = [file objectInTagsAtIndex:i];
+					[self addValue:[tag objectForKey:@"value"] forTag:[tag objectForKey:@"key"]];
+				}
+			}
+		}		
+	}
+}
+
+- (IBAction) renameFiles:(id)sender
+{
+	RenameFilesSheet *sheet;
+	
+	@try {
+		sheet = [[RenameFilesSheet alloc] init];
+		[sheet setDelegate:self];
+		[sheet showSheet];
+		
+		// TODO: How do I avoid a memory leak here?  For some reason sheet is being autoreleased while it is being displayed
+		//[sheet autorelease];
+	}
+	
+	@catch(NSException *exception) {
+		NSAlert		*alert;
+		
+		alert = [[[NSAlert alloc] init] autorelease];
+		[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
+		[alert setMessageText:NSLocalizedStringFromTable(@"Your Tag installation appears to be incomplete.", @"Errors", @"")];
+		[alert setInformativeText:[exception reason]];
+		[alert setAlertStyle:NSInformationalAlertStyle];
+		
+		[alert runModal];
+	}}
+
 - (IBAction) deleteTag:(id)sender
 {
 	NSEnumerator			*enumerator, *tagEnumerator;
@@ -701,10 +764,46 @@ static TagEditor *sharedEditor = nil;
 	[self didChangeValueForKey:@"tags"];
 }
 
+- (void) renameFilesUsingPattern:(NSString *)pattern
+{
+	NSEnumerator			*enumerator;
+	KeyValueTaggedFile		*current;
+	NSString				*key;
+
+	[self willChangeValueForKey:@"tags"];
+	enumerator = [[_filesController selectedObjects] objectEnumerator];
+	while((current = [enumerator nextObject])) {
+		
+		// Remove the file from our list of open files
+		[_filesController removeObject:current];
+		[[UKKQueue sharedFileWatcher] removePath:[current filename]];
+
+		// Rename the file
+		[current renameFileUsingPattern:pattern];
+		
+		// Add it back to our list of open files
+		[_filesController addObject:current];
+		[[NSDocumentController sharedDocumentController] noteNewRecentDocumentURL:[NSURL fileURLWithPath:[current filename]]];
+		[[UKKQueue sharedFileWatcher] addPath:[current filename]];
+	}
+	[self didChangeValueForKey:@"tags"];
+
+	enumerator = [_validKeys objectEnumerator];
+	while((key = [enumerator nextObject])) {
+		[self willChangeValueForKey:key];
+		[self didChangeValueForKey:key];
+	}
+}
+
 - (void) tableViewSelectionDidChange:(NSNotification *)aNotification
 {
 	NSEnumerator	*enumerator;
 	NSString		*key;
+	NSArray			*selectedObjects;
+	
+	// Update window title with filename if only one file is being edited
+	selectedObjects = [_filesController selectedObjects];
+	[[self window] setTitle:(1 == [selectedObjects count] ? [[selectedObjects objectAtIndex:0] displayName] : @"Tag")];
 	
 	[self tagsChanged];
 
@@ -876,7 +975,9 @@ static TagEditor *sharedEditor = nil;
 			break;
 			
 		case kNewTagMenuItemTag:
+		case kAddTagsFromFileMenuItemTag:
 		case kGuessTagsMenuItemTag:
+		case kRenameFilesMenuItemTag:
 			return (0 < [self countOfSelectedFiles]);
 			break;
 

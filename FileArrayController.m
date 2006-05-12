@@ -31,7 +31,7 @@
 
 - (void)awakeFromNib
 {
-	[_tableView registerForDraggedTypes:[NSArray arrayWithObject:NSFilenamesPboardType]];
+	[_tableView registerForDraggedTypes:[NSArray arrayWithObjects:NSFilenamesPboardType, @"org.sbooth.Tag.TagItem", nil]];
 }
 
 - (BOOL) containsFile:(NSString *)filename
@@ -81,13 +81,31 @@
 
 - (NSDragOperation) tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)op
 {
-	NSDragOperation		dragOperation		= NSDragOperationCopy;
+	NSDragOperation		dragOperation		= NSDragOperationNone;
 
+	// Move rows if this is an internal drag
 	if(tv == [info draggingSource]) {
+		[tv setDropRow:row dropOperation:NSTableViewDropAbove];
 		dragOperation = NSDragOperationMove;
-	}
+	}	
+	else if([[[info draggingPasteboard] types] containsObject:@"org.sbooth.Tag.TagItem"]) {
 
-	[tv setDropRow:row dropOperation:NSTableViewDropAbove];
+		// Don't copy tags from the current selection
+		if([[self selectionIndexes] containsIndex:row]) {
+			dragOperation = NSDragOperationNone;
+		}
+		else if(0 > row || (int)[[self arrangedObjects] count] <= row) {
+			dragOperation = NSDragOperationNone;			
+		}
+		else {
+			[tv setDropRow:row dropOperation:NSTableViewDropOn];
+			dragOperation = NSDragOperationCopy;
+		}		
+	}
+	else if([[[info draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
+		[tv setDropRow:row dropOperation:NSTableViewDropAbove];
+		dragOperation = NSDragOperationCopy;
+	}
 
 	return dragOperation;
 }
@@ -114,10 +132,21 @@
 		
 		[self setSelectionIndexes:indexSet];
 	}
-	else {
+	else if([[[info draggingPasteboard] types] containsObject:@"org.sbooth.Tag.TagItem"]) {
+		NSArray				*tags			= [[info draggingPasteboard] propertyListForType:@"org.sbooth.Tag.TagItem"];
+		NSDictionary		*tag			= nil;
+		unsigned			i				= 0;
+		KeyValueTaggedFile	*file			= [[self arrangedObjects] objectAtIndex:row];
+				
+		for(i = 0; i < [tags count]; ++i) {
+			tag = [tags objectAtIndex:i];
+			[file addValue:[tag objectForKey:@"value"] forTag:[tag objectForKey:@"key"]];
+		}
+	}
+	else if([[[info draggingPasteboard] types] containsObject:NSFilenamesPboardType]) {
 		NSEnumerator		*enumerator;
 		NSString			*current;
-		NSMutableArray		*newFiles	= [NSMutableArray arrayWithCapacity:10];
+		NSMutableArray		*newFiles	= [NSMutableArray array];
 		KeyValueTaggedFile	*file;
 		
 		enumerator = [[[info draggingPasteboard] propertyListForType:NSFilenamesPboardType] objectEnumerator];

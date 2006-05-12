@@ -74,7 +74,7 @@
 				len			= WavpackGetTagItemIndexed(wpc, i, NULL, 0);
 				tagName		= (char *)calloc(len + 1, sizeof(char));
 				if(NULL == tagName) {
-					@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @"") 
+					@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Errors", @"") 
 												 userInfo:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:errno], [NSString stringWithCString:strerror(errno) encoding:NSASCIIStringEncoding], nil] forKeys:[NSArray arrayWithObjects:@"errorCode", @"errorString", nil]]];
 				}			
 				len			= WavpackGetTagItemIndexed(wpc, i, tagName, len + 1);
@@ -84,7 +84,7 @@
 				tagValue	= (char *)calloc(len + 1, sizeof(char));
 				if(NULL == tagValue) {
 					free(tagName);
-					@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Exceptions", @"") 
+					@throw [NSException exceptionWithName:@"MallocException" reason:NSLocalizedStringFromTable(@"Unable to allocate memory.", @"Errors", @"") 
 												 userInfo:[NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithInt:errno], [NSString stringWithCString:strerror(errno) encoding:NSASCIIStringEncoding], nil] forKeys:[NSArray arrayWithObjects:@"errorCode", @"errorString", nil]]];
 				}
 				len			= WavpackGetTagItem(wpc, tagName, tagValue, len + 1);

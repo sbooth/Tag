@@ -9,9 +9,11 @@
         {
             ACTIONS = {
                 addFiles = id; 
+                addTagsFromFile = id; 
                 deleteTag = id; 
                 guessTags = id; 
                 newTag = id; 
+                renameFiles = id; 
                 selectAdvancedTab = id; 
                 selectAllFiles = id; 
                 selectBasicTab = id; 

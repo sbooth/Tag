@@ -22,6 +22,7 @@
 #import "TagArrayControllerDelegateMethods.h"
 #import "AddTagSheetDelegateMethods.h"
 #import "GuessTagsSheetDelegateMethods.h"
+#import "RenameFilesSheetDelegateMethods.h"
 #import "FileArrayController.h"
 #import "TagArrayController.h"
 
@@ -49,7 +50,10 @@ enum {
 	kSortByGenreMenuItemTag			= 20,
 	kSortByComposerMenuItemTag		= 21,
 	kSortByTrackNumberMenuItemTag	= 22,
-	kSortByDiscNumberMenuItemTag	= 23
+	kSortByDiscNumberMenuItemTag	= 23,
+	
+	kAddTagsFromFileMenuItemTag		= 24,
+	kRenameFilesMenuItemTag			= 25
 };
 
 enum {
@@ -58,7 +62,7 @@ enum {
 	kTabularTabViewItemIndex		= 2
 };
 
-@interface TagEditor : NSWindowController <TagArrayControllerDelegateMethods, AddTagSheetDelegateMethods, GuessTagsSheetDelegateMethods>
+@interface TagEditor : NSWindowController <TagArrayControllerDelegateMethods, AddTagSheetDelegateMethods, GuessTagsSheetDelegateMethods, RenameFilesSheetDelegateMethods>
 {
 	NSArray							*_validKeys;
 	NSMutableArray					*_files;
@@ -120,6 +124,8 @@ enum {
 
 - (IBAction)				newTag:(id)sender;
 - (IBAction)				deleteTag:(id)sender;
+- (IBAction)				addTagsFromFile:(id)sender;
+- (IBAction)				renameFiles:(id)sender;
 - (IBAction)				guessTags:(id)sender;
 
 - (void)					setValue:(NSString *)value forTag:(NSString *)tag;
@@ -128,6 +134,7 @@ enum {
 - (void)					renameTag:(NSString *)currentTag withValue:(NSString *)currentValue toTag:(NSString *)newTag;
 
 - (void)					guessTagsUsingPattern:(NSString *)pattern;
+- (void)					renameFilesUsingPattern:(NSString *)pattern;
 
 - (BOOL)					applicationShouldTerminate;
 

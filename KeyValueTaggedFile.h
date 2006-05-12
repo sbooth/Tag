@@ -45,6 +45,9 @@
 
 - (NSString *)		valueForTag:(NSString *)tag;
 
+- (unsigned)		countOfTags;
+- (NSDictionary *)	objectInTagsAtIndex:(unsigned)index;
+
 - (void)			willChangeValueForTag:(NSString *)tag;
 - (void)			didChangeValueForTag:(NSString *)tag;
 
@@ -54,6 +57,7 @@
 - (void)			renameTag:(NSString *)currentTag withValue:(NSString *)currentValue toTag:(NSString *)newTag;
 
 - (void)			guessTagsUsingPattern:(NSString *)pattern;
+- (void)			renameFileUsingPattern:(NSString *)pattern;
 
 - (NSString *)		customizeTag:(NSString *)tag;
 
