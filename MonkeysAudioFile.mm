@@ -190,10 +190,14 @@
 	return [[[NSDictionary dictionaryWithObjects:objects forKeys:keys] retain] autorelease];
 }
 
+- (NSNumber *) year									{ return [NSNumber numberWithInt:[[self valueForTag:[self customizeTag:@"YEAR"]] intValue]]; }
 - (NSString *) encoder								{ return [self valueForTag:[self customizeTag:@"TOOL NAME"]]; }
+- (NSString *) comment								{ return [self valueForTag:[self customizeTag:@"COMMENT"]]; }
 - (NSNumber *) trackNumber							{ return [NSNumber numberWithInt:[[self valueForTag:[self customizeTag:@"TRACK"]] intValue]]; }
 
+- (void) setYear:(NSNumber *)value					{ [self setValue:[value stringValue] forTag:[self customizeTag:@"YEAR"]]; }
 - (void) setEncoder:(NSString *)value				{ [self setValue:value forTag:[self customizeTag:@"TOOL NAME"]]; }
+- (void) setComment:(NSString *)value				{ [self setValue:value forTag:[self customizeTag:@"COMMENT"]]; }
 - (void) setTrackNumber:(NSNumber *)value			{ [self setValue:[value stringValue] forTag:[self customizeTag:@"TRACK"]]; }
 
 @end

@@ -546,7 +546,7 @@
 - (NSString *) title								{ return [self valueForTag:[self customizeTag:@"TITLE"]]; }
 - (NSString *) artist								{ return [self valueForTag:[self customizeTag:@"ARTIST"]]; }
 - (NSString *) album								{ return [self valueForTag:[self customizeTag:@"ALBUM"]]; }
-- (NSNumber *) year									{ return [NSNumber numberWithInt:[[self valueForTag:[self customizeTag:@"YEAR"]] intValue]]; }
+- (NSNumber *) year									{ return [NSNumber numberWithInt:[[self valueForTag:[self customizeTag:@"DATE"]] intValue]]; }
 - (NSString *) genre								{ return [self valueForTag:[self customizeTag:@"GENRE"]]; }
 - (NSString *) composer								{ return [self valueForTag:[self customizeTag:@"COMPOSER"]]; }
 - (NSString *) MCN									{ return [self valueForTag:[self customizeTag:@"MCN"]]; }
@@ -563,7 +563,7 @@
 - (void) setArtist:(NSString *)value				{ [self setValue:value forTag:[self customizeTag:@"ARTIST"]]; }
 - (void) setTitle:(NSString *)value					{ [self setValue:value forTag:[self customizeTag:@"TITLE"]]; }
 - (void) setAlbum:(NSString *)value					{ [self setValue:value forTag:[self customizeTag:@"ALBUM"]]; }
-- (void) setYear:(NSNumber *)value					{ [self setValue:[value stringValue] forTag:[self customizeTag:@"YEAR"]]; }
+- (void) setYear:(NSNumber *)value					{ [self setValue:[value stringValue] forTag:[self customizeTag:@"DATE"]]; }
 - (void) setGenre:(NSString *)value					{ [self setValue:value forTag:[self customizeTag:@"GENRE"]]; }
 - (void) setComposer:(NSString *)value				{ [self setValue:value forTag:[self customizeTag:@"COMPOSER"]]; }
 - (void) setMCN:(NSString *)value					{ [self setValue:value forTag:[self customizeTag:@"MCN"]]; }
