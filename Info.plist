@@ -40,13 +40,27 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>ape</string>
-				<string>apl</string>
-				<string>mac</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>TagFile</string>
 			<key>CFBundleTypeName</key>
 			<string>Monkey's Audio</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<false/>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>Binary</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>wv</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>TagFile</string>
+			<key>CFBundleTypeName</key>
+			<string>WavPack Audio</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSTypeIsPackage</key>

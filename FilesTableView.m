@@ -19,11 +19,10 @@
  */
 
 #import "FilesTableView.h"
-#import "TagEditor.h"
 
 @implementation FilesTableView
 
-- (unsigned int) draggingSourceOperationMaskForLocal:(BOOL)isLocal
+- (unsigned) draggingSourceOperationMaskForLocal:(BOOL)isLocal
 {
 	return (isLocal ? NSDragOperationMove : NSDragOperationCopy);
 }

@@ -43,10 +43,11 @@
                 "_discNumberTextField" = NSTextField; 
                 "_discTotalTextField" = NSTextField; 
                 "_encoderTextField" = NSTextField; 
-                "_filesController" = FilesArrayController; 
+                "_filesController" = FileArrayController; 
                 "_filesDrawer" = NSDrawer; 
                 "_genreTextField" = NSTextField; 
                 "_selectedFilesController" = NSArrayController; 
+                "_sortFilesPopUpButton" = NSPopUpButton; 
                 "_tabView" = NSTabView; 
                 "_tabularTagsTable" = NSTableView; 
                 "_tagsController" = TagArrayController; 

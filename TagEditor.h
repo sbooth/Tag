@@ -75,6 +75,7 @@ enum {
 	IBOutlet NSTableView			*_tagsTable;
 	IBOutlet NSTableView			*_tabularTagsTable;
 	IBOutlet NSTabView				*_tabView;
+	IBOutlet NSPopUpButton			*_sortFilesPopUpButton;
 	
 	IBOutlet NSTextField			*_titleTextField;
 	IBOutlet NSTextField			*_artistTextField;

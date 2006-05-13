@@ -172,6 +172,8 @@ static TagEditor *sharedEditor = nil;
 {
 	[_tagsTable setAutosaveTableColumns:YES];
 	[_tabularTagsTable setAutosaveTableColumns:YES];
+	
+	[_sortFilesPopUpButton selectItemWithTag:kSortByFilenameMenuItemTag];
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(undoManagerNotification:) name:NSUndoManagerDidUndoChangeNotification object:[self undoManager]];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(undoManagerNotification:) name:NSUndoManagerDidRedoChangeNotification object:[self undoManager]];
