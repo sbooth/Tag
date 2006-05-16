@@ -82,15 +82,18 @@ enum {
 	NSMutableArray	*patterns	= nil;
 	
 	patterns = [[[[NSUserDefaults standardUserDefaults] arrayForKey:@"renameFilesPatterns"] mutableCopy] autorelease];
-	if(NO == [patterns containsObject:pattern]) {
-		[patterns insertObject:pattern atIndex:0];
-		
-		while(10 < [patterns count]) {
-			[patterns removeLastObject];
-		}
-		
-		[[NSUserDefaults standardUserDefaults] setObject:patterns forKey:@"renameFilesPatterns"];
+
+	if([patterns containsObject:pattern]) {
+		[patterns removeObject:pattern];
+	}	
+	
+	[patterns insertObject:pattern atIndex:0];
+	
+	while(10 < [patterns count]) {
+		[patterns removeLastObject];
 	}
+	
+	[[NSUserDefaults standardUserDefaults] setObject:patterns forKey:@"renameFilesPatterns"];
 	
 	[_delegate renameFilesUsingPattern:pattern];
     [[NSApplication sharedApplication] endSheet:_sheet];
