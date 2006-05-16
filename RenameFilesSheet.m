@@ -56,6 +56,16 @@ enum {
 - (void)										setDelegate:(id <RenameFilesSheetDelegateMethods>)delegate		{ _delegate = delegate; }
 - (id <RenameFilesSheetDelegateMethods>)		delegate														{ return _delegate; }
 
+- (void) awakeFromNib
+{
+	NSArray	*patterns	= nil;
+	
+	patterns = [[NSUserDefaults standardUserDefaults] stringArrayForKey:@"renameFilesPatterns"];
+	if(0 < [patterns count]) {
+		[_pattern setStringValue:[patterns objectAtIndex:0]];
+	}
+}
+
 - (void) showSheet
 {
     [[NSApplication sharedApplication] beginSheet:_sheet modalForWindow:[_delegate windowForSheet] modalDelegate:self didEndSelector:@selector(didEndSheet:returnCode:contextInfo:) contextInfo:nil];
