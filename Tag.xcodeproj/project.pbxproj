@@ -15,6 +15,8 @@
 		8C1E7DC409D1061600B36CDB /* UKFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E7DBB09D1061600B36CDB /* UKFileWatcher.m */; };
 		8C1E7DC909D1061600B36CDB /* UKMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E7DC009D1061600B36CDB /* UKMainThreadProxy.m */; };
 		8C1E7DCA09D1061600B36CDB /* UKKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E7DC109D1061600B36CDB /* UKKQueue.m */; };
+		8C1E9B480A241F960028957C /* FileSelectionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E9B460A241F960028957C /* FileSelectionSheet.m */; };
+		8C1E9B670A2420C80028957C /* FileSelectionSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8C1E9B650A2420C80028957C /* FileSelectionSheet.nib */; };
 		8C5A84B109B1C6D900B86E4E /* AddTagSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5A84AF09B1C6D900B86E4E /* AddTagSheet.m */; };
 		8C728BC609B6F744000F7848 /* CompilationButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3BDED09B68EAC006B54AD /* CompilationButtonCell.m */; };
 		8C728C3309B6F8C9000F7848 /* ServicesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C728C3109B6F8C9000F7848 /* ServicesProvider.m */; };
@@ -127,6 +129,10 @@
 		8C1E7DBF09D1061600B36CDB /* UKFNSubscribeFileWatcher.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKFNSubscribeFileWatcher.h; sourceTree = "<group>"; };
 		8C1E7DC009D1061600B36CDB /* UKMainThreadProxy.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKMainThreadProxy.m; sourceTree = "<group>"; };
 		8C1E7DC109D1061600B36CDB /* UKKQueue.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = UKKQueue.m; sourceTree = "<group>"; };
+		8C1E9B450A241F960028957C /* FileSelectionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSelectionSheet.h; sourceTree = "<group>"; };
+		8C1E9B460A241F960028957C /* FileSelectionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSelectionSheet.m; sourceTree = "<group>"; };
+		8C1E9B590A2420240028957C /* FileSelectionSheetDelegateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSelectionSheetDelegateMethods.h; sourceTree = "<group>"; };
+		8C1E9B660A2420C80028957C /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/FileSelectionSheet.nib; sourceTree = "<group>"; };
 		8C5A84AE09B1C6D900B86E4E /* AddTagSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagSheet.h; sourceTree = "<group>"; };
 		8C5A84AF09B1C6D900B86E4E /* AddTagSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagSheet.m; sourceTree = "<group>"; };
 		8C728C3009B6F8C9000F7848 /* ServicesProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesProvider.h; sourceTree = "<group>"; };
@@ -300,6 +306,7 @@
 				8C0AA13209B5AEEF00D994FC /* TagEditor.nib */,
 				8CA1CD2A09B8050D00A5305E /* AddTagSheet.nib */,
 				8CCA0D7109BDB3D3002E74BD /* GuessTagsSheet.nib */,
+				8C1E9B650A2420C80028957C /* FileSelectionSheet.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -401,6 +408,8 @@
 				8C728C3109B6F8C9000F7848 /* ServicesProvider.m */,
 				8CBA33610A13C2B500E9EA47 /* RenameFilesSheet.h */,
 				8CBA33620A13C2B500E9EA47 /* RenameFilesSheet.m */,
+				8C1E9B450A241F960028957C /* FileSelectionSheet.h */,
+				8C1E9B460A241F960028957C /* FileSelectionSheet.m */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -423,6 +432,7 @@
 				8CA0A8C309B5205500E44E10 /* AddTagSheetDelegateMethods.h */,
 				8CA6244B09B0E851001D14DC /* TagArrayControllerDelegateMethods.h */,
 				8CBA337E0A13C33D00E9EA47 /* RenameFilesSheetDelegateMethods.h */,
+				8C1E9B590A2420240028957C /* FileSelectionSheetDelegateMethods.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -500,6 +510,7 @@
 				8CCA0D7309BDB3D3002E74BD /* GuessTagsSheet.nib in Resources */,
 				8CE74D9C09CDB27700D73B4B /* TagFile.icns in Resources */,
 				8CBA33540A13C22D00E9EA47 /* RenameFilesSheet.nib in Resources */,
+				8C1E9B670A2420C80028957C /* FileSelectionSheet.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,6 +551,7 @@
 				8C7C7E4F09E783D000A6B846 /* WavPackFile.m in Sources */,
 				8C7C828609E78C9800A6B846 /* WavPackHelperFunctions.m in Sources */,
 				8CBA33640A13C2B500E9EA47 /* RenameFilesSheet.m in Sources */,
+				8C1E9B480A241F960028957C /* FileSelectionSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,6 +588,14 @@
 				8C0AA13309B5AEEF00D994FC /* English */,
 			);
 			name = TagEditor.nib;
+			sourceTree = "<group>";
+		};
+		8C1E9B650A2420C80028957C /* FileSelectionSheet.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8C1E9B660A2420C80028957C /* English */,
+			);
+			name = FileSelectionSheet.nib;
 			sourceTree = "<group>";
 		};
 		8C728C8209B6FD9D000F7848 /* UpdateChecker.nib */ = {

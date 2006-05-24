@@ -10,6 +10,7 @@
             ACTIONS = {
                 addFiles = id; 
                 addTagsFromFile = id; 
+                copySelectedTags = id; 
                 deleteTag = id; 
                 guessTags = id; 
                 newTag = id; 

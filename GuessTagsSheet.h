@@ -23,8 +23,6 @@
 
 @interface GuessTagsSheet : NSObject
 {
-	NSArray													*_predefinedPatterns;
-	
     IBOutlet NSWindow										*_sheet;
     IBOutlet NSComboBox										*_pattern;
 	IBOutlet NSButton										*_guessButton;

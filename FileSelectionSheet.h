@@ -19,25 +19,24 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#import "RenameFilesSheetDelegateMethods.h"
+#import "FileSelectionSheetDelegateMethods.h"
 
-@interface RenameFilesSheet : NSObject
+@interface FileSelectionSheet : NSObject
 {
     IBOutlet NSWindow										*_sheet;
-    IBOutlet NSComboBox										*_pattern;
-	IBOutlet NSButton										*_renameButton;
+    IBOutlet NSArrayController								*_filesController;
 	
-	IBOutlet id <RenameFilesSheetDelegateMethods>			_delegate;
+	NSArray													*_files;
+
+	IBOutlet id <FileSelectionSheetDelegateMethods>			_delegate;
 }
 
-- (void)										setDelegate:(id <RenameFilesSheetDelegateMethods>)delegate;
-- (id <RenameFilesSheetDelegateMethods>)		delegate;
+- (void)										setDelegate:(id <FileSelectionSheetDelegateMethods>)delegate;
+- (id <FileSelectionSheetDelegateMethods>)		delegate;
 
 - (void)			showSheet;
 
 - (IBAction)		cancel:(id)sender;
-- (IBAction)		rename:(id)sender;
-
-- (IBAction)		patternTokenButtonClicked:(id)sender;
+- (IBAction)		ok:(id)sender;
 
 @end

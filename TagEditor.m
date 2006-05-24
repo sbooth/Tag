@@ -24,6 +24,7 @@
 #import "AddTagSheet.h"
 #import "GuessTagsSheet.h"
 #import "RenameFilesSheet.h"
+#import "FileSelectionSheet.h"
 
 #import "UKKQueue.h"
 
@@ -44,10 +45,16 @@ static TagEditor *sharedEditor = nil;
 	NSColor		*defaultColor;
 	NSArray		*defaultValues;
 	NSArray		*defaultKeys;
+	NSArray		*predefinedPatterns;
 
-	defaultColor	= [NSColor colorWithCalibratedRed:1.0 green:(250.0/255.0) blue:(178.0/255.0) alpha:1.0];
-	defaultValues	= [NSArray arrayWithObjects:[NSArchiver archivedDataWithRootObject:defaultColor], NSLocalizedStringFromTable(@"<Multiple Values>", @"General", @""), nil];
-	defaultKeys		= [NSArray arrayWithObjects:@"multipleValuesMarkerColor", @"multipleValuesDescription", nil];
+	defaultColor		= [NSColor colorWithCalibratedRed:1.0 green:(250.0/255.0) blue:(178.0/255.0) alpha:1.0];
+	predefinedPatterns	= [NSArray arrayWithObjects:
+		@"{artist} - {title}",
+		@"{artist}/{album}/{trackNumber} {title}",
+		@"Compilations/{album}/{discNumber}-{trackNumber} {title}",
+		nil];
+	defaultValues		= [NSArray arrayWithObjects:[NSArchiver archivedDataWithRootObject:defaultColor], NSLocalizedStringFromTable(@"<Multiple Values>", @"General", @""), predefinedPatterns, predefinedPatterns, nil];
+	defaultKeys			= [NSArray arrayWithObjects:@"multipleValuesMarkerColor", @"multipleValuesDescription", @"guessTagsPatterns", @"renameFilesPatterns", nil];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjects:defaultValues forKeys:defaultKeys]];
 }
@@ -686,6 +693,47 @@ static TagEditor *sharedEditor = nil;
 	}
 }
 
+- (IBAction) copySelectedTags:(id)sender
+{
+	FileSelectionSheet		*sheet				= nil;
+	NSMutableArray			*files				= nil;
+	NSArray					*selectedFiles		= nil;
+	KeyValueTaggedFile		*file				= nil;
+	unsigned				i;
+	
+	@try {
+		
+		files			= [NSMutableArray array];
+		selectedFiles	= [_filesController selectedObjects];
+		for(i = 0; i < [self countOfFiles]; ++i) {
+			file = [self objectInFilesAtIndex:i];
+			if(NO == [selectedFiles containsObject:file]) {
+				[files addObject:file];
+			}
+		}
+		
+		sheet = [[FileSelectionSheet alloc] init];
+		[sheet setDelegate:self];
+		[sheet setValue:files forKey:@"files"];
+		[sheet showSheet];
+		
+		// TODO: How do I avoid a memory leak here?  For some reason sheet is being autoreleased while it is being displayed
+		//[sheet autorelease];
+	}
+	
+	@catch(NSException *exception) {
+		NSAlert		*alert;
+		
+		alert = [[[NSAlert alloc] init] autorelease];
+		[alert addButtonWithTitle:NSLocalizedStringFromTable(@"OK", @"General", @"")];
+		[alert setMessageText:NSLocalizedStringFromTable(@"Your Tag installation appears to be incomplete.", @"Errors", @"")];
+		[alert setInformativeText:[exception reason]];
+		[alert setAlertStyle:NSInformationalAlertStyle];
+		
+		[alert runModal];
+	}
+}
+
 - (void) setValue:(NSString *)value forTag:(NSString *)tag
 {
 	NSEnumerator			*enumerator;
@@ -795,6 +843,29 @@ static TagEditor *sharedEditor = nil;
 		[self willChangeValueForKey:key];
 		[self didChangeValueForKey:key];
 	}
+}
+
+- (void) copySelectedTagsToFiles:(NSArray *)files
+{	
+	NSArray					*selectedTags		= [_tagsController selectedObjects];
+	NSUndoManager			*undoManager		= [self undoManager];
+	KeyValueTaggedFile		*file				= nil;
+	NSDictionary			*tag				= nil;
+	unsigned				i, j;
+	
+	[self willChangeValueForKey:@"tags"];
+	[undoManager beginUndoGrouping];
+	for(i = 0; i < [files count]; ++i) {
+		file = [files objectAtIndex:i];
+		if([_files containsObject:file]) {
+			for(j = 0; j < [selectedTags count]; ++j) {
+				tag = [selectedTags objectAtIndex:j];
+				[file addValue:[tag objectForKey:@"value"] forTag:[tag objectForKey:@"key"]];
+			}			
+		}
+	}
+	[undoManager endUndoGrouping];
+	[self didChangeValueForKey:@"tags"];
 }
 
 - (void) tableViewSelectionDidChange:(NSNotification *)aNotification
@@ -984,6 +1055,10 @@ static TagEditor *sharedEditor = nil;
 			break;
 
 		case kDeleteTagMenuItemTag:
+			return ([[[_tabView selectedTabViewItem] identifier] isEqualToString:@"advanced"] && 0 < [[_tagsController selectedObjects] count]);
+			break;
+			
+		case kCopySelectedTagsMenuItemTag:
 			return ([[[_tabView selectedTabViewItem] identifier] isEqualToString:@"advanced"] && 0 < [[_tagsController selectedObjects] count]);
 			break;
 			

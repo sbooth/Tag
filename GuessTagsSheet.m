@@ -44,13 +44,6 @@ enum {
 - (id) init;
 {
 	if((self = [super init])) {
-		
-		_predefinedPatterns = [[NSArray arrayWithObjects:
-			@"{artist} - {title}",
-			@"{artist}/{album}/{trackNumber} {title}",
-			@"Compilations/{album}/{discNumber}-{trackNumber} {title}",
-			nil] retain];
-
 		if(NO == [NSBundle loadNibNamed:@"GuessTagsSheet" owner:self])  {
 			@throw [NSException exceptionWithName:@"MissingResourceException" reason:NSLocalizedStringFromTable(@"Unable to find the resource \"GuessTagsSheet.nib\".", @"Errors", @"") userInfo:nil];
 		}
@@ -60,14 +53,18 @@ enum {
 	return nil;
 }
 
-- (void) dealloc
-{
-	[_predefinedPatterns release];
-	[super dealloc];
-}
-
 - (void)										setDelegate:(id <GuessTagsSheetDelegateMethods>)delegate		{ _delegate = delegate; }
 - (id <GuessTagsSheetDelegateMethods>)			delegate														{ return _delegate; }
+
+- (void) awakeFromNib
+{
+	NSArray	*patterns	= nil;
+	
+	patterns = [[NSUserDefaults standardUserDefaults] stringArrayForKey:@"guessTagsPatterns"];
+	if(0 < [patterns count]) {
+		[_pattern setStringValue:[patterns objectAtIndex:0]];
+	}
+}
 
 - (void) showSheet
 {
@@ -81,7 +78,24 @@ enum {
 
 - (IBAction) guess:(id)sender
 {
-	[_delegate guessTagsUsingPattern:[_pattern stringValue]];
+	NSString		*pattern	= [_pattern stringValue];
+	NSMutableArray	*patterns	= nil;
+	
+	patterns = [[[[NSUserDefaults standardUserDefaults] stringArrayForKey:@"guessTagsPatterns"] mutableCopy] autorelease];
+
+	if([patterns containsObject:pattern]) {
+		[patterns removeObject:pattern];
+	}	
+	
+	[patterns insertObject:pattern atIndex:0];
+	
+	while(10 < [patterns count]) {
+		[patterns removeLastObject];
+	}
+	
+	[[NSUserDefaults standardUserDefaults] setObject:patterns forKey:@"guessTagsPatterns"];
+	
+	[_delegate guessTagsUsingPattern:pattern];
     [[NSApplication sharedApplication] endSheet:_sheet];
 }
 
