@@ -1038,7 +1038,7 @@ static TagEditor *sharedEditor = nil;
 			break;
 
 		case kSelectAllFilesMenuItemTag:
-			return (0 != [self countOfFiles]);
+			return (1 < [self countOfFiles]);
 			break;
 			
 		case kBasicTabMenuItemTag:
