@@ -853,7 +853,6 @@ static TagEditor *sharedEditor = nil;
 	NSDictionary			*tag				= nil;
 	unsigned				i, j;
 	
-	[self willChangeValueForKey:@"tags"];
 	[undoManager beginUndoGrouping];
 	for(i = 0; i < [files count]; ++i) {
 		file = [files objectAtIndex:i];
@@ -865,7 +864,6 @@ static TagEditor *sharedEditor = nil;
 		}
 	}
 	[undoManager endUndoGrouping];
-	[self didChangeValueForKey:@"tags"];
 }
 
 - (void) tableViewSelectionDidChange:(NSNotification *)aNotification
@@ -1059,7 +1057,7 @@ static TagEditor *sharedEditor = nil;
 			break;
 			
 		case kCopySelectedTagsMenuItemTag:
-			return ([[[_tabView selectedTabViewItem] identifier] isEqualToString:@"advanced"] && 0 < [[_tagsController selectedObjects] count]);
+			return ([[[_tabView selectedTabViewItem] identifier] isEqualToString:@"advanced"] && 0 < [[_tagsController selectedObjects] count] && 1 < [self countOfFiles]);
 			break;
 			
 		case kSortByFilenameMenuItemTag:
