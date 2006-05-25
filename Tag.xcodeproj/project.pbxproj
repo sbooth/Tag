@@ -59,6 +59,7 @@
 		8CB4FFD509B7357500EF45EB /* MacPAD.url in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4FFD409B7357500EF45EB /* MacPAD.url */; };
 		8CBA33540A13C22D00E9EA47 /* RenameFilesSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBA33520A13C22D00E9EA47 /* RenameFilesSheet.nib */; };
 		8CBA33640A13C2B500E9EA47 /* RenameFilesSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA33620A13C2B500E9EA47 /* RenameFilesSheet.m */; };
+		8CBEEB060A24CA3E00B58E00 /* TagTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEEB040A24CA3E00B58E00 /* TagTableView.m */; };
 		8CCA0D0E09BDA747002E74BD /* Actions.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CCA0D0C09BDA747002E74BD /* Actions.strings */; };
 		8CCA0D7309BDB3D3002E74BD /* GuessTagsSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CCA0D7109BDB3D3002E74BD /* GuessTagsSheet.nib */; };
 		8CCA0D8A09BDB449002E74BD /* GuessTagsSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA0D8909BDB449002E74BD /* GuessTagsSheet.m */; };
@@ -72,21 +73,6 @@
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXBuildStyle section */
-		4A9504D0FFE6A4CB11CA0CBA /* Debug */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		4A9504D1FFE6A4CB11CA0CBA /* Release */ = {
-			isa = PBXBuildStyle;
-			buildSettings = {
-			};
-			name = Release;
-		};
-/* End PBXBuildStyle section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		8CA6213209B0C3EB001D14DC /* Copy Frameworks */ = {
@@ -194,6 +180,8 @@
 		8CBA33610A13C2B500E9EA47 /* RenameFilesSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameFilesSheet.h; sourceTree = "<group>"; };
 		8CBA33620A13C2B500E9EA47 /* RenameFilesSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameFilesSheet.m; sourceTree = "<group>"; };
 		8CBA337E0A13C33D00E9EA47 /* RenameFilesSheetDelegateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameFilesSheetDelegateMethods.h; sourceTree = "<group>"; };
+		8CBEEB030A24CA3E00B58E00 /* TagTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagTableView.h; sourceTree = "<group>"; };
+		8CBEEB040A24CA3E00B58E00 /* TagTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagTableView.m; sourceTree = "<group>"; };
 		8CCA0D0D09BDA747002E74BD /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Actions.strings; sourceTree = "<group>"; };
 		8CCA0D7209BDB3D3002E74BD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/GuessTagsSheet.nib; sourceTree = "<group>"; };
 		8CCA0D8709BDB433002E74BD /* GuessTagsSheetDelegateMethods.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GuessTagsSheetDelegateMethods.h; sourceTree = "<group>"; };
@@ -410,6 +398,8 @@
 				8CBA33620A13C2B500E9EA47 /* RenameFilesSheet.m */,
 				8C1E9B450A241F960028957C /* FileSelectionSheet.h */,
 				8C1E9B460A241F960028957C /* FileSelectionSheet.m */,
+				8CBEEB030A24CA3E00B58E00 /* TagTableView.h */,
+				8CBEEB040A24CA3E00B58E00 /* TagTableView.m */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -451,8 +441,6 @@
 			);
 			buildRules = (
 			);
-			buildSettings = {
-			};
 			dependencies = (
 			);
 			name = Tag;
@@ -467,12 +455,6 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "Tag" */;
-			buildSettings = {
-			};
-			buildStyles = (
-				4A9504D0FFE6A4CB11CA0CBA /* Debug */,
-				4A9504D1FFE6A4CB11CA0CBA /* Release */,
-			);
 			hasScannedForEncodings = 1;
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Tag */;
 			projectDirPath = "";
@@ -552,6 +534,7 @@
 				8C7C828609E78C9800A6B846 /* WavPackHelperFunctions.m in Sources */,
 				8CBA33640A13C2B500E9EA47 /* RenameFilesSheet.m in Sources */,
 				8C1E9B480A241F960028957C /* FileSelectionSheet.m in Sources */,
+				8CBEEB060A24CA3E00B58E00 /* TagTableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

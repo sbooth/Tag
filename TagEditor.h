@@ -142,6 +142,10 @@ enum {
 
 - (void)					copySelectedTagsToFiles:(NSArray *)files;
 
+- (void)					cutSelectedTagsToPasteboard;
+- (void)					copySelectedTagsToPasteboard;
+- (void)					pasteTagsFromPasteboard;
+
 - (BOOL)					applicationShouldTerminate;
 
 - (BOOL)					dirty;

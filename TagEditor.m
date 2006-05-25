@@ -866,6 +866,36 @@ static TagEditor *sharedEditor = nil;
 	[undoManager endUndoGrouping];
 }
 
+- (void) cutSelectedTagsToPasteboard
+{
+	[self copySelectedTagsToPasteboard];
+	[self deleteTag:self];
+}
+
+- (void) copySelectedTagsToPasteboard
+{
+	NSPasteboard		*pboard			= [NSPasteboard generalPasteboard];
+	
+	[pboard declareTypes:[NSArray arrayWithObject:@"org.sbooth.Tag.TagItem"] owner:self];
+	[pboard setPropertyList:[_tagsController selectedObjects] forType:@"org.sbooth.Tag.TagItem"];
+}
+
+- (void) pasteTagsFromPasteboard
+{
+	NSUndoManager		*undoManager	= [self undoManager];
+	NSPasteboard		*pboard			= [NSPasteboard generalPasteboard];
+	NSArray				*tags			= [pboard propertyListForType:@"org.sbooth.Tag.TagItem"];
+	NSDictionary		*tag			= nil;
+	unsigned			i				= 0;
+				
+	[undoManager beginUndoGrouping];
+	for(i = 0; i < [tags count]; ++i) {
+		tag = [tags objectAtIndex:i];
+		[self addValue:[tag objectForKey:@"value"] forTag:[tag objectForKey:@"key"]];
+	}	
+	[undoManager endUndoGrouping];
+}
+
 - (void) tableViewSelectionDidChange:(NSNotification *)aNotification
 {
 	NSEnumerator	*enumerator;
