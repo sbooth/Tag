@@ -58,12 +58,16 @@ enum {
 
 - (void) awakeFromNib
 {
-	NSArray	*patterns	= nil;
+	NSArray		*patterns	= nil;
+	NSString	*pattern	= nil;
 	
 	patterns = [[NSUserDefaults standardUserDefaults] stringArrayForKey:@"guessTagsPatterns"];
 	if(0 < [patterns count]) {
 		[_pattern setStringValue:[patterns objectAtIndex:0]];
 	}
+	
+	pattern	= [_pattern stringValue];
+	[_guessButton setEnabled:(nil != pattern && 0 != [pattern length])];
 }
 
 - (void) showSheet
