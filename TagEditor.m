@@ -649,17 +649,20 @@ static TagEditor *sharedEditor = nil;
 
 - (IBAction) deleteTag:(id)sender
 {
-	NSEnumerator			*enumerator, *tagEnumerator;
+	NSEnumerator			*enumerator;
+	NSArray					*selectedTags;
+	unsigned				i;
 	KeyValueTaggedFile		*current;
 	NSDictionary			*tag;
 	NSUndoManager			*undoManager					= [self undoManager];
 	
 	[self willChangeValueForKey:@"tags"];
 	[undoManager beginUndoGrouping];
-	enumerator = [[_filesController selectedObjects] objectEnumerator];
+	selectedTags	= [_tagsController selectedObjects];
+	enumerator		= [[_filesController selectedObjects] objectEnumerator];
 	while((current = [enumerator nextObject])) {
-		tagEnumerator = [[_tagsController selectedObjects] objectEnumerator];
-		while((tag = [tagEnumerator nextObject])) {
+		for(i = 0; i < [selectedTags count]; ++i) {
+			tag = [selectedTags objectAtIndex:i];
 			[current updateTag:[tag valueForKey:@"key"] withValue:[tag valueForKey:@"value"] toValue:nil];
 		}
 	}	
