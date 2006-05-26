@@ -19,12 +19,28 @@
  */
 
 #import "FilesTableView.h"
+#import "TagEditor.h"
 
 @implementation FilesTableView
 
 - (unsigned) draggingSourceOperationMaskForLocal:(BOOL)isLocal
 {
 	return (isLocal ? NSDragOperationMove : NSDragOperationCopy);
+}
+
+- (IBAction) paste:(id)sender
+{
+	[[TagEditor sharedEditor] pasteTagsFromPasteboard];	
+}
+
+- (BOOL) validateUserInterfaceItem:(id <NSValidatedUserInterfaceItem>)anItem
+{
+	if(@selector(paste:) == [anItem action]) {
+		return (0 < [self numberOfSelectedRows] && [[[NSPasteboard generalPasteboard] types] containsObject:@"org.sbooth.Tag.TagItem"]);
+	}
+	else {
+		return [super validateUserInterfaceItem:anItem];
+	}
 }
 
 @end
