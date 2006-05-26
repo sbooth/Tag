@@ -126,11 +126,12 @@ enum {
 - (void)					openFilesDrawerIfNeeded;
 
 - (IBAction)				newTag:(id)sender;
-- (IBAction)				deleteTag:(id)sender;
 - (IBAction)				addTagsFromFile:(id)sender;
 - (IBAction)				renameFiles:(id)sender;
 - (IBAction)				guessTags:(id)sender;
 - (IBAction)				copySelectedTags:(id)sender;
+- (IBAction)				deleteTag:(id)sender;
+- (IBAction)				delete:(id)sender;
 
 - (void)					setValue:(NSString *)value forTag:(NSString *)tag;
 - (void)					addValue:(NSString *)value forTag:(NSString *)tag;

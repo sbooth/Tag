@@ -647,6 +647,8 @@ static TagEditor *sharedEditor = nil;
 		[alert runModal];
 	}}
 
+- (IBAction) delete:(id)sender			{ [self deleteTag:sender]; }
+
 - (IBAction) deleteTag:(id)sender
 {
 	NSEnumerator			*enumerator;
@@ -1049,6 +1051,10 @@ static TagEditor *sharedEditor = nil;
 
 - (BOOL) validateMenuItem:(NSMenuItem *)menuItem
 {
+	if(@selector(delete:) == [menuItem action]) {
+		return ([[[_tabView selectedTabViewItem] identifier] isEqualToString:@"advanced"] && 0 < [[_tagsController selectedObjects] count]);
+	}
+	
 	switch([menuItem tag]) {
 		case kSaveMenuItemTag:
 		case kRevertMenuItemTag:
@@ -1083,10 +1089,6 @@ static TagEditor *sharedEditor = nil;
 		case kGuessTagsMenuItemTag:
 		case kRenameFilesMenuItemTag:
 			return (0 < [self countOfSelectedFiles]);
-			break;
-
-		case kDeleteTagMenuItemTag:
-			return ([[[_tabView selectedTabViewItem] identifier] isEqualToString:@"advanced"] && 0 < [[_tagsController selectedObjects] count]);
 			break;
 			
 		case kCopySelectedTagsMenuItemTag:
