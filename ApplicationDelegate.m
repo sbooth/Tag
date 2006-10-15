@@ -63,15 +63,16 @@
 	TagEditor			*editor				= [TagEditor sharedEditor];
 	NSEnumerator		*enumerator;
 	NSString			*filename;
+	BOOL				success				= YES;
 	
 	enumerator = [filenames objectEnumerator];
 	while((filename = [enumerator nextObject])) {
-		[editor addFile:filename];
+		success &= [editor addFile:[filename stringByExpandingTildeInPath]];
 	}
 
 	[editor openFilesDrawerIfNeeded];
 	
-	[[NSApplication sharedApplication] replyToOpenOrPrint:NSApplicationDelegateReplySuccess];
+	[[NSApplication sharedApplication] replyToOpenOrPrint:(success ? NSApplicationDelegateReplySuccess : NSApplicationDelegateReplyFailure)];
 }
 
 - (BOOL) application:(NSApplication *)sender delegateHandlesKey:(NSString *)key
