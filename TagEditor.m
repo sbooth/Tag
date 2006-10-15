@@ -42,19 +42,17 @@ static TagEditor *sharedEditor = nil;
 
 + (void) initialize
 {
-	NSColor		*defaultColor;
 	NSArray		*defaultValues;
 	NSArray		*defaultKeys;
 	NSArray		*predefinedPatterns;
 
-	defaultColor		= [NSColor colorWithCalibratedRed:1.0 green:(250.0/255.0) blue:(178.0/255.0) alpha:1.0];
 	predefinedPatterns	= [NSArray arrayWithObjects:
 		@"{artist} - {title}",
 		@"{artist}/{album}/{trackNumber} {title}",
 		@"Compilations/{album}/{discNumber}-{trackNumber} {title}",
 		nil];
-	defaultValues		= [NSArray arrayWithObjects:[NSArchiver archivedDataWithRootObject:defaultColor], NSLocalizedStringFromTable(@"<Multiple Values>", @"General", @""), predefinedPatterns, predefinedPatterns, nil];
-	defaultKeys			= [NSArray arrayWithObjects:@"multipleValuesMarkerColor", @"multipleValuesDescription", @"guessTagsPatterns", @"renameFilesPatterns", nil];
+	defaultValues		= [NSArray arrayWithObjects:predefinedPatterns, predefinedPatterns, nil];
+	defaultKeys			= [NSArray arrayWithObjects:@"guessTagsPatterns", @"renameFilesPatterns", nil];
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjects:defaultValues forKeys:defaultKeys]];
 }
@@ -950,19 +948,12 @@ static TagEditor *sharedEditor = nil;
 						return [NSNumber numberWithInt:NSMixedState];
 					}
 
-					markerColor = [NSUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] dataForKey:@"multipleValuesMarkerColor"]];
-					[[self valueForKey:[NSString stringWithFormat:@"%@TextField", key]] setBackgroundColor:markerColor];
-
-					return [[NSUserDefaults standardUserDefaults] stringForKey:@"multipleValuesDescription"];
+					return NSMultipleValuesMarker;
 				}
 				
 				lastValue = currentValue;
 				firstTime = NO;
 			}
-		}
-
-		if(NO == [key isEqualToString:@"compilation"]) {
-			[[self valueForKey:[NSString stringWithFormat:@"%@TextField", key]] setBackgroundColor:[NSColor whiteColor]];
 		}
 		
 		return lastValue;
