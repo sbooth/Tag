@@ -49,8 +49,9 @@
 	FLAC__Metadata_Iterator			*iterator			= NULL;
 	FLAC__StreamMetadata			*block				= NULL;
 	unsigned						i;
-	NSString						*commentString, *key, *value;
-	NSRange							range;
+	char							*fieldName			= NULL;
+	char							*fieldValue			= NULL;
+	NSString						*key, *value;
 	NSMutableArray					*tagsArray;
 	
 	@try {
@@ -98,22 +99,22 @@
 
 					for(i = 0; i < block->data.vorbis_comment.num_comments; ++i) {
 						
-						/// Skip over empty comments
-						if(NULL == block->data.vorbis_comment.comments[i].entry || 0 == block->data.vorbis_comment.comments[i].length) {
+						// Let FLAC parse the comment for us
+						if(NO == FLAC__metadata_object_vorbiscomment_entry_to_name_value_pair(block->data.vorbis_comment.comments[i], &fieldName, &fieldValue)) {
+							// Ignore malformed comments
 							continue;
 						}
-
-						// Split the comment at '='
-						commentString	= [NSString stringWithUTF8String:(const char *)block->data.vorbis_comment.comments[i].entry];
-						range			= [commentString rangeOfString:@"=" options:NSLiteralSearch];
 						
-						// Sanity check (comments should be well-formed)
-						if(NSNotFound != range.location && 0 != range.length) {
-							key				= [[commentString substringToIndex:range.location] uppercaseString];
-							value			= [commentString substringFromIndex:range.location + 1];
-
-							[tagsArray addObject:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:key, value, nil] forKeys:[NSArray arrayWithObjects:@"key", @"value", nil]]];
-						}							
+						key		= [[NSString alloc] initWithBytesNoCopy:fieldName length:strlen(fieldName) encoding:NSASCIIStringEncoding freeWhenDone:YES];
+						value	= [[NSString alloc] initWithBytesNoCopy:fieldValue length:strlen(fieldValue) encoding:NSUTF8StringEncoding freeWhenDone:YES];
+						
+						[tagsArray addObject:[NSMutableDictionary dictionaryWithObjects:[NSArray arrayWithObjects:key, value, nil] forKeys:[NSArray arrayWithObjects:@"key", @"value", nil]]];
+						
+						[key release];
+						[value release];
+						
+						fieldName	= NULL;
+						fieldValue	= NULL;						
 					}					
 					break;
 					
