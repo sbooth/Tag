@@ -21,7 +21,7 @@
 #import "WavPackFile.h"
 #import "WavPackHelperFunctions.h"
 
-#include <WavPack/wputils.h>
+#include <wavpack/wavpack.h>
 
 @interface WavPackFile (Private)
 - (void) parseFile;

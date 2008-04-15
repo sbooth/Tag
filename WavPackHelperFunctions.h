@@ -19,7 +19,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
-#include <WavPack/wputils.h>
+#include <wavpack/wavpack.h>
 
 void
 truncateAPEComments(WavpackContext *wpc);
