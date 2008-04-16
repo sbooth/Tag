@@ -29,7 +29,6 @@
 
 - (IBAction)						showPreferences:(id)sender;
 - (IBAction)						showAcknowledgments:(id)sender;
-- (IBAction)						performVersionCheck:(id)sender;
 
 // Scripting
 - (unsigned)						countOfFiles;

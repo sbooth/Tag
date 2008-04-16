@@ -114,5 +114,7 @@
 	</array>
 	<key>OSAScriptingDefinition</key>
 	<string>Tag.sdef</string>
+	<key>SUFeedURL</key>
+	<string>http://sbooth.org/Tag/appcast.xml</string>
 </dict>
 </plist>

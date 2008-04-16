@@ -23,7 +23,6 @@
 #import "AcknowledgmentsController.h"
 #import "UppercaseStringValueTransformer.h"
 #import "TagEditor.h"
-#import "UpdateChecker.h"
 #import "ServicesProvider.h"
 
 @implementation ApplicationDelegate
@@ -45,10 +44,6 @@
 
 - (void) applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	if([[NSUserDefaults standardUserDefaults] boolForKey:@"startupVersionCheck"]) {
-		[[UpdateChecker sharedController] checkForUpdate:NO];
-	}
-	
 	// Register services
 	[[NSApplication sharedApplication] setServicesProvider:[[ServicesProvider alloc] init]];
 }
@@ -88,11 +83,6 @@
 - (IBAction) showAcknowledgments:(id)sender
 {
 	[[AcknowledgmentsController sharedController] showWindow:self];
-}
-
-- (IBAction) performVersionCheck:(id)sender
-{
-	[[UpdateChecker sharedController] checkForUpdate:YES];	
 }
 
 - (unsigned)						countOfFiles							{ return [[TagEditor sharedEditor] countOfFiles]; }
