@@ -20,9 +20,9 @@
 
 #import "OggVorbisFile.h"
 
-#include <TagLib/vorbisfile.h>				// TagLib::Ogg::Vorbis::File
-#include <TagLib/xiphcomment.h>				// TagLib::Ogg::XiphComment
-#include <TagLib/tlist.h>					// TagLib::List
+#include <taglib/vorbisfile.h>				// TagLib::Ogg::Vorbis::File
+#include <taglib/xiphcomment.h>				// TagLib::Ogg::XiphComment
+#include <taglib/tlist.h>					// TagLib::List
 
 @interface OggVorbisFile (Private)
 - (void) parseFile;

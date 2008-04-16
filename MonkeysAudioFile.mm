@@ -21,10 +21,10 @@
 #import "MonkeysAudioFile.h"
 #import "FLACHelperFunctions.h"
 
-#include <MAC/All.h>
-#include <MAC/MACLib.h>
-#include <MAC/APETag.h>
-#include <MAC/CharacterHelper.h>
+#include <mac/All.h>
+#include <mac/MACLib.h>
+#include <mac/APETag.h>
+#include <mac/CharacterHelper.h>
 
 @interface MonkeysAudioFile (Private)
 - (void) parseFile;
