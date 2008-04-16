@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32BC8E350DB4FF55003CD644 /* FLAC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BC8E300DB4FF55003CD644 /* FLAC.framework */; };
+		32BC8E360DB4FF55003CD644 /* mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BC8E310DB4FF55003CD644 /* mac.framework */; };
+		32BC8E370DB4FF55003CD644 /* ogg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BC8E320DB4FF55003CD644 /* ogg.framework */; };
+		32BC8E380DB4FF55003CD644 /* taglib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BC8E330DB4FF55003CD644 /* taglib.framework */; };
+		32BC8E390DB4FF55003CD644 /* wavpack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BC8E340DB4FF55003CD644 /* wavpack.framework */; };
 		8C04FC2909B5D09D00EFF4D0 /* EditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C04FC2709B5D09D00EFF4D0 /* EditorWindow.m */; };
 		8C0A9F5D09B5898C00D994FC /* Tag.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C0A9F5C09B5898C00D994FC /* Tag.icns */; };
 		8C0AA13409B5AEEF00D994FC /* TagEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0AA13209B5AEEF00D994FC /* TagEditor.nib */; };
@@ -28,11 +33,7 @@
 		8C72A012098DED9100AADBFD /* Remove_Pressed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C72A00E098DED9100AADBFD /* Remove_Pressed.tiff */; };
 		8C72A013098DED9100AADBFD /* Remove.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 8C72A00F098DED9100AADBFD /* Remove.tiff */; };
 		8C7C7E4F09E783D000A6B846 /* WavPackFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C7E4D09E783D000A6B846 /* WavPackFile.m */; };
-		8C7C7E7009E7859D00A6B846 /* WavPack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7C7E6809E7859D00A6B846 /* WavPack.framework */; };
-		8C7C7E7A09E785A800A6B846 /* WavPack.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7C7E6809E7859D00A6B846 /* WavPack.framework */; };
 		8C7C828609E78C9800A6B846 /* WavPackHelperFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C7C828409E78C9800A6B846 /* WavPackHelperFunctions.m */; };
-		8C8006AA09CBB13800AEBDD9 /* MAC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8006A709CBB13800AEBDD9 /* MAC.framework */; };
-		8C8006AB09CBB14700AEBDD9 /* MAC.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8006A709CBB13800AEBDD9 /* MAC.framework */; };
 		8C8006C909CBB16300AEBDD9 /* MonkeysAudioFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8C8006C709CBB16300AEBDD9 /* MonkeysAudioFile.mm */; };
 		8C80BAD009BAF01F00429B03 /* FilesTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0AB1C09B53F3500E44E10 /* FilesTableView.m */; };
 		8CA0A38609B4535400E44E10 /* TagEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0A38409B4535400E44E10 /* TagEditor.m */; };
@@ -42,12 +43,8 @@
 		8CA1CD2C09B8050D00A5305E /* AddTagSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA1CD2A09B8050D00A5305E /* AddTagSheet.nib */; };
 		8CA3BD9C09B68A42006B54AD /* CompilationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3BD9A09B68A42006B54AD /* CompilationButton.m */; };
 		8CA6209409B0B5C5001D14DC /* TagArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6209309B0B5C5001D14DC /* TagArrayController.m */; };
-		8CA6212609B0C382001D14DC /* FLAC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA6212509B0C382001D14DC /* FLAC.framework */; };
-		8CA6217509B0C42F001D14DC /* FLAC.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA6212509B0C382001D14DC /* FLAC.framework */; };
 		8CA6219409B0C670001D14DC /* Genres.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6219209B0C670001D14DC /* Genres.m */; };
 		8CA6237D09B0E5A5001D14DC /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6237B09B0E5A5001D14DC /* ApplicationDelegate.m */; };
-		8CA624E709B0EBDA001D14DC /* TagLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA624E609B0EBDA001D14DC /* TagLib.framework */; };
-		8CA624EA09B0EBDD001D14DC /* TagLib.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA624E609B0EBDA001D14DC /* TagLib.framework */; };
 		8CA627C009B0FC66001D14DC /* UppercaseStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA627BE09B0FC66001D14DC /* UppercaseStringValueTransformer.m */; };
 		8CA62A3409B13830001D14DC /* AcknowledgmentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA62A3209B13830001D14DC /* AcknowledgmentsController.m */; };
 		8CA62A5909B1398C001D14DC /* Acknowledgments.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA62A5709B1398C001D14DC /* Acknowledgments.nib */; };
@@ -81,10 +78,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8C7C7E7A09E785A800A6B846 /* WavPack.framework in Copy Frameworks */,
-				8C8006AB09CBB14700AEBDD9 /* MAC.framework in Copy Frameworks */,
-				8CA624EA09B0EBDD001D14DC /* TagLib.framework in Copy Frameworks */,
-				8CA6217509B0C42F001D14DC /* FLAC.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,6 +93,11 @@
 		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		32BC8E300DB4FF55003CD644 /* FLAC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLAC.framework; path = Frameworks/FLAC.framework; sourceTree = "<group>"; };
+		32BC8E310DB4FF55003CD644 /* mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mac.framework; path = Frameworks/mac.framework; sourceTree = "<group>"; };
+		32BC8E320DB4FF55003CD644 /* ogg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ogg.framework; path = Frameworks/ogg.framework; sourceTree = "<group>"; };
+		32BC8E330DB4FF55003CD644 /* taglib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = taglib.framework; path = Frameworks/taglib.framework; sourceTree = "<group>"; };
+		32BC8E340DB4FF55003CD644 /* wavpack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = wavpack.framework; path = Frameworks/wavpack.framework; sourceTree = "<group>"; };
 		8C04FC2609B5D09D00EFF4D0 /* EditorWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorWindow.h; sourceTree = "<group>"; };
 		8C04FC2709B5D09D00EFF4D0 /* EditorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorWindow.m; sourceTree = "<group>"; };
 		8C0A9F5C09B5898C00D994FC /* Tag.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Tag.icns; sourceTree = "<group>"; };
@@ -134,10 +132,8 @@
 		8C72A00F098DED9100AADBFD /* Remove.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Remove.tiff; sourceTree = "<group>"; };
 		8C7C7E4C09E783D000A6B846 /* WavPackFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavPackFile.h; sourceTree = "<group>"; };
 		8C7C7E4D09E783D000A6B846 /* WavPackFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavPackFile.m; sourceTree = "<group>"; };
-		8C7C7E6809E7859D00A6B846 /* WavPack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WavPack.framework; sourceTree = "<group>"; };
 		8C7C828309E78C9800A6B846 /* WavPackHelperFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WavPackHelperFunctions.h; sourceTree = "<group>"; };
 		8C7C828409E78C9800A6B846 /* WavPackHelperFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WavPackHelperFunctions.m; sourceTree = "<group>"; };
-		8C8006A709CBB13800AEBDD9 /* MAC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MAC.framework; sourceTree = "<group>"; };
 		8C8006C609CBB16300AEBDD9 /* MonkeysAudioFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MonkeysAudioFile.h; sourceTree = "<group>"; };
 		8C8006C709CBB16300AEBDD9 /* MonkeysAudioFile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MonkeysAudioFile.mm; sourceTree = "<group>"; };
 		8CA0A38309B4535400E44E10 /* TagEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagEditor.h; sourceTree = "<group>"; };
@@ -158,13 +154,11 @@
 		8CA3BDED09B68EAC006B54AD /* CompilationButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompilationButtonCell.m; sourceTree = "<group>"; };
 		8CA6209209B0B5C5001D14DC /* TagArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagArrayController.h; sourceTree = "<group>"; };
 		8CA6209309B0B5C5001D14DC /* TagArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagArrayController.m; sourceTree = "<group>"; };
-		8CA6212509B0C382001D14DC /* FLAC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FLAC.framework; sourceTree = "<group>"; };
 		8CA6219109B0C670001D14DC /* Genres.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = Genres.h; sourceTree = "<group>"; };
 		8CA6219209B0C670001D14DC /* Genres.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = Genres.m; sourceTree = "<group>"; };
 		8CA6237A09B0E5A5001D14DC /* ApplicationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationDelegate.h; sourceTree = "<group>"; };
 		8CA6237B09B0E5A5001D14DC /* ApplicationDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationDelegate.m; sourceTree = "<group>"; };
 		8CA6244B09B0E851001D14DC /* TagArrayControllerDelegateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagArrayControllerDelegateMethods.h; sourceTree = "<group>"; };
-		8CA624E609B0EBDA001D14DC /* TagLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TagLib.framework; sourceTree = "<group>"; };
 		8CA627BD09B0FC66001D14DC /* UppercaseStringValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UppercaseStringValueTransformer.h; sourceTree = "<group>"; };
 		8CA627BE09B0FC66001D14DC /* UppercaseStringValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UppercaseStringValueTransformer.m; sourceTree = "<group>"; };
 		8CA62A3109B13830001D14DC /* AcknowledgmentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcknowledgmentsController.h; sourceTree = "<group>"; };
@@ -203,10 +197,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */,
-				8CA6212609B0C382001D14DC /* FLAC.framework in Frameworks */,
-				8CA624E709B0EBDA001D14DC /* TagLib.framework in Frameworks */,
-				8C8006AA09CBB13800AEBDD9 /* MAC.framework in Frameworks */,
-				8C7C7E7009E7859D00A6B846 /* WavPack.framework in Frameworks */,
+				32BC8E350DB4FF55003CD644 /* FLAC.framework in Frameworks */,
+				32BC8E360DB4FF55003CD644 /* mac.framework in Frameworks */,
+				32BC8E370DB4FF55003CD644 /* ogg.framework in Frameworks */,
+				32BC8E380DB4FF55003CD644 /* taglib.framework in Frameworks */,
+				32BC8E390DB4FF55003CD644 /* wavpack.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +211,11 @@
 		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32BC8E300DB4FF55003CD644 /* FLAC.framework */,
+				32BC8E310DB4FF55003CD644 /* mac.framework */,
+				32BC8E320DB4FF55003CD644 /* ogg.framework */,
+				32BC8E330DB4FF55003CD644 /* taglib.framework */,
+				32BC8E340DB4FF55003CD644 /* wavpack.framework */,
 				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -302,10 +302,6 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8C7C7E6809E7859D00A6B846 /* WavPack.framework */,
-				8C8006A709CBB13800AEBDD9 /* MAC.framework */,
-				8CA624E609B0EBDA001D14DC /* TagLib.framework */,
-				8CA6212509B0C382001D14DC /* FLAC.framework */,
 				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
@@ -455,9 +451,11 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = C05733CB08A9546B00998B17 /* Build configuration list for PBXProject "Tag" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* Tag */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				8D15AC270486D014006FF6A4 /* Tag */,
 			);
@@ -671,7 +669,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -707,7 +707,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/Frameworks\"";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
