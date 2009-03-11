@@ -14,6 +14,14 @@
 		3224614B0DB5B6B6000A6404 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 322461440DB5B695000A6404 /* Sparkle.framework */; };
 		3224614C0DB5B6B6000A6404 /* taglib.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 32BC8E330DB4FF55003CD644 /* taglib.framework */; };
 		3224614D0DB5B6B6000A6404 /* wavpack.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 32BC8E340DB4FF55003CD644 /* wavpack.framework */; };
+		323126450F684141003DC9B9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323126430F684141003DC9B9 /* MainMenu.xib */; };
+		323126490F684154003DC9B9 /* Acknowledgments.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323126470F684154003DC9B9 /* Acknowledgments.xib */; };
+		3231264D0F684160003DC9B9 /* AddTagSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3231264B0F684160003DC9B9 /* AddTagSheet.xib */; };
+		323126510F68416C003DC9B9 /* FileSelectionSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3231264F0F68416C003DC9B9 /* FileSelectionSheet.xib */; };
+		323126550F684178003DC9B9 /* GuessTagsSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323126530F684178003DC9B9 /* GuessTagsSheet.xib */; };
+		323126590F684182003DC9B9 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 323126570F684182003DC9B9 /* Preferences.xib */; };
+		3231265D0F68418C003DC9B9 /* RenameFilesSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3231265B0F68418C003DC9B9 /* RenameFilesSheet.xib */; };
+		323126610F684199003DC9B9 /* TagEditor.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3231265F0F684199003DC9B9 /* TagEditor.xib */; };
 		32BC8E350DB4FF55003CD644 /* FLAC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BC8E300DB4FF55003CD644 /* FLAC.framework */; };
 		32BC8E360DB4FF55003CD644 /* mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BC8E310DB4FF55003CD644 /* mac.framework */; };
 		32BC8E370DB4FF55003CD644 /* ogg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BC8E320DB4FF55003CD644 /* ogg.framework */; };
@@ -21,14 +29,12 @@
 		32BC8E390DB4FF55003CD644 /* wavpack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BC8E340DB4FF55003CD644 /* wavpack.framework */; };
 		8C04FC2909B5D09D00EFF4D0 /* EditorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C04FC2709B5D09D00EFF4D0 /* EditorWindow.m */; };
 		8C0A9F5D09B5898C00D994FC /* Tag.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8C0A9F5C09B5898C00D994FC /* Tag.icns */; };
-		8C0AA13409B5AEEF00D994FC /* TagEditor.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8C0AA13209B5AEEF00D994FC /* TagEditor.nib */; };
 		8C14696509CC367D00F91A97 /* KeyValueTaggedFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C14696409CC367D00F91A97 /* KeyValueTaggedFile.m */; };
 		8C1E7DC309D1061600B36CDB /* UKFNSubscribeFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E7DBA09D1061600B36CDB /* UKFNSubscribeFileWatcher.m */; };
 		8C1E7DC409D1061600B36CDB /* UKFileWatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E7DBB09D1061600B36CDB /* UKFileWatcher.m */; };
 		8C1E7DC909D1061600B36CDB /* UKMainThreadProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E7DC009D1061600B36CDB /* UKMainThreadProxy.m */; };
 		8C1E7DCA09D1061600B36CDB /* UKKQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E7DC109D1061600B36CDB /* UKKQueue.m */; };
 		8C1E9B480A241F960028957C /* FileSelectionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C1E9B460A241F960028957C /* FileSelectionSheet.m */; };
-		8C1E9B670A2420C80028957C /* FileSelectionSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8C1E9B650A2420C80028957C /* FileSelectionSheet.nib */; };
 		8C5A84B109B1C6D900B86E4E /* AddTagSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C5A84AF09B1C6D900B86E4E /* AddTagSheet.m */; };
 		8C728BC609B6F744000F7848 /* CompilationButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3BDED09B68EAC006B54AD /* CompilationButtonCell.m */; };
 		8C728C3309B6F8C9000F7848 /* ServicesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C728C3109B6F8C9000F7848 /* ServicesProvider.m */; };
@@ -44,31 +50,25 @@
 		8CA0A4E809B467B000E44E10 /* FLACFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0A4E609B467B000E44E10 /* FLACFile.m */; };
 		8CA0A4F009B467C100E44E10 /* OggVorbisFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0A4EE09B467C100E44E10 /* OggVorbisFile.mm */; };
 		8CA0A9A609B52C0000E44E10 /* FLACHelperFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA0A9A409B52C0000E44E10 /* FLACHelperFunctions.m */; };
-		8CA1CD2C09B8050D00A5305E /* AddTagSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA1CD2A09B8050D00A5305E /* AddTagSheet.nib */; };
 		8CA3BD9C09B68A42006B54AD /* CompilationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA3BD9A09B68A42006B54AD /* CompilationButton.m */; };
 		8CA6209409B0B5C5001D14DC /* TagArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6209309B0B5C5001D14DC /* TagArrayController.m */; };
 		8CA6219409B0C670001D14DC /* Genres.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6219209B0C670001D14DC /* Genres.m */; };
 		8CA6237D09B0E5A5001D14DC /* ApplicationDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA6237B09B0E5A5001D14DC /* ApplicationDelegate.m */; };
 		8CA627C009B0FC66001D14DC /* UppercaseStringValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA627BE09B0FC66001D14DC /* UppercaseStringValueTransformer.m */; };
 		8CA62A3409B13830001D14DC /* AcknowledgmentsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CA62A3209B13830001D14DC /* AcknowledgmentsController.m */; };
-		8CA62A5909B1398C001D14DC /* Acknowledgments.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CA62A5709B1398C001D14DC /* Acknowledgments.nib */; };
 		8CA62A5C09B13A07001D14DC /* Acknowledgments.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8CA62A5B09B13A07001D14DC /* Acknowledgments.rtf */; };
 		8CA7319909D2E5BA005D630C /* Tag.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 8CA7319809D2E5BA005D630C /* Tag.sdef */; };
 		8CB4FE8C09B71AD100EF45EB /* Errors.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4FE8609B71AD100EF45EB /* Errors.strings */; };
 		8CB4FE8D09B71AD100EF45EB /* General.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4FE8809B71AD100EF45EB /* General.strings */; };
 		8CB4FE8E09B71AD100EF45EB /* Genres.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CB4FE8A09B71AD100EF45EB /* Genres.strings */; };
-		8CBA33540A13C22D00E9EA47 /* RenameFilesSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CBA33520A13C22D00E9EA47 /* RenameFilesSheet.nib */; };
 		8CBA33640A13C2B500E9EA47 /* RenameFilesSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBA33620A13C2B500E9EA47 /* RenameFilesSheet.m */; };
 		8CBEEB060A24CA3E00B58E00 /* TagTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CBEEB040A24CA3E00B58E00 /* TagTableView.m */; };
 		8CCA0D0E09BDA747002E74BD /* Actions.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8CCA0D0C09BDA747002E74BD /* Actions.strings */; };
-		8CCA0D7309BDB3D3002E74BD /* GuessTagsSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CCA0D7109BDB3D3002E74BD /* GuessTagsSheet.nib */; };
 		8CCA0D8A09BDB449002E74BD /* GuessTagsSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CCA0D8909BDB449002E74BD /* GuessTagsSheet.m */; };
 		8CDE8F5509BA2EF4002140CF /* FileArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE8F5309BA2EF4002140CF /* FileArrayController.m */; };
 		8CE74D9C09CDB27700D73B4B /* TagFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8CE74D9B09CDB27700D73B4B /* TagFile.icns */; };
-		8CFA789F09B1AE840081F2E9 /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = 8CFA789D09B1AE840081F2E9 /* Preferences.nib */; };
 		8CFA78A409B1AE9A0081F2E9 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CFA78A209B1AE990081F2E9 /* PreferencesController.m */; };
 		8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
-		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D15AC340486D014006FF6A4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
@@ -98,11 +98,18 @@
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FBA07B3F13500E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2A37F4B7FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		322461440DB5B695000A6404 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		323126440F684141003DC9B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		323126480F684154003DC9B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Acknowledgments.xib; sourceTree = "<group>"; };
+		3231264C0F684160003DC9B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/AddTagSheet.xib; sourceTree = "<group>"; };
+		323126500F68416C003DC9B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/FileSelectionSheet.xib; sourceTree = "<group>"; };
+		323126540F684178003DC9B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/GuessTagsSheet.xib; sourceTree = "<group>"; };
+		323126580F684182003DC9B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Preferences.xib; sourceTree = "<group>"; };
+		3231265C0F68418C003DC9B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/RenameFilesSheet.xib; sourceTree = "<group>"; };
+		323126600F684199003DC9B9 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/TagEditor.xib; sourceTree = "<group>"; };
 		32BC8E300DB4FF55003CD644 /* FLAC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLAC.framework; path = Frameworks/FLAC.framework; sourceTree = "<group>"; };
 		32BC8E310DB4FF55003CD644 /* mac.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = mac.framework; path = Frameworks/mac.framework; sourceTree = "<group>"; };
 		32BC8E320DB4FF55003CD644 /* ogg.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ogg.framework; path = Frameworks/ogg.framework; sourceTree = "<group>"; };
@@ -111,7 +118,6 @@
 		8C04FC2609B5D09D00EFF4D0 /* EditorWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorWindow.h; sourceTree = "<group>"; };
 		8C04FC2709B5D09D00EFF4D0 /* EditorWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorWindow.m; sourceTree = "<group>"; };
 		8C0A9F5C09B5898C00D994FC /* Tag.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Tag.icns; sourceTree = "<group>"; };
-		8C0AA13309B5AEEF00D994FC /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/TagEditor.nib; sourceTree = "<group>"; };
 		8C1467DC09CC2B8600F91A97 /* KeyValueTaggedFile.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = KeyValueTaggedFile.h; sourceTree = "<group>"; };
 		8C14696409CC367D00F91A97 /* KeyValueTaggedFile.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = KeyValueTaggedFile.m; sourceTree = "<group>"; };
 		8C1E7DB909D1061600B36CDB /* UKMainThreadProxy.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = UKMainThreadProxy.h; sourceTree = "<group>"; };
@@ -126,7 +132,6 @@
 		8C1E9B450A241F960028957C /* FileSelectionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSelectionSheet.h; sourceTree = "<group>"; };
 		8C1E9B460A241F960028957C /* FileSelectionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSelectionSheet.m; sourceTree = "<group>"; };
 		8C1E9B590A2420240028957C /* FileSelectionSheetDelegateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSelectionSheetDelegateMethods.h; sourceTree = "<group>"; };
-		8C1E9B660A2420C80028957C /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/FileSelectionSheet.nib; sourceTree = "<group>"; };
 		8C5A84AE09B1C6D900B86E4E /* AddTagSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagSheet.h; sourceTree = "<group>"; };
 		8C5A84AF09B1C6D900B86E4E /* AddTagSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagSheet.m; sourceTree = "<group>"; };
 		8C728C3009B6F8C9000F7848 /* ServicesProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesProvider.h; sourceTree = "<group>"; };
@@ -152,7 +157,6 @@
 		8CA0A9A409B52C0000E44E10 /* FLACHelperFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLACHelperFunctions.m; sourceTree = "<group>"; };
 		8CA0AB1B09B53F3500E44E10 /* FilesTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilesTableView.h; sourceTree = "<group>"; };
 		8CA0AB1C09B53F3500E44E10 /* FilesTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilesTableView.m; sourceTree = "<group>"; };
-		8CA1CD2B09B8050D00A5305E /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/AddTagSheet.nib; sourceTree = "<group>"; };
 		8CA3BD9909B68A42006B54AD /* CompilationButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompilationButton.h; sourceTree = "<group>"; };
 		8CA3BD9A09B68A42006B54AD /* CompilationButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompilationButton.m; sourceTree = "<group>"; };
 		8CA3BDEC09B68EAC006B54AD /* CompilationButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompilationButtonCell.h; sourceTree = "<group>"; };
@@ -168,27 +172,23 @@
 		8CA627BE09B0FC66001D14DC /* UppercaseStringValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UppercaseStringValueTransformer.m; sourceTree = "<group>"; };
 		8CA62A3109B13830001D14DC /* AcknowledgmentsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcknowledgmentsController.h; sourceTree = "<group>"; };
 		8CA62A3209B13830001D14DC /* AcknowledgmentsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcknowledgmentsController.m; sourceTree = "<group>"; };
-		8CA62A5809B1398C001D14DC /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Acknowledgments.nib; sourceTree = "<group>"; };
 		8CA62A5B09B13A07001D14DC /* Acknowledgments.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Acknowledgments.rtf; sourceTree = "<group>"; };
 		8CA7319809D2E5BA005D630C /* Tag.sdef */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.sdef; path = Tag.sdef; sourceTree = "<group>"; };
 		8CB4FE8709B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Errors.strings; sourceTree = "<group>"; };
 		8CB4FE8909B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/General.strings; sourceTree = "<group>"; };
 		8CB4FE8B09B71AD100EF45EB /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Genres.strings; sourceTree = "<group>"; };
-		8CBA33530A13C22D00E9EA47 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/RenameFilesSheet.nib; sourceTree = "<group>"; };
 		8CBA33610A13C2B500E9EA47 /* RenameFilesSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameFilesSheet.h; sourceTree = "<group>"; };
 		8CBA33620A13C2B500E9EA47 /* RenameFilesSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenameFilesSheet.m; sourceTree = "<group>"; };
 		8CBA337E0A13C33D00E9EA47 /* RenameFilesSheetDelegateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenameFilesSheetDelegateMethods.h; sourceTree = "<group>"; };
 		8CBEEB030A24CA3E00B58E00 /* TagTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagTableView.h; sourceTree = "<group>"; };
 		8CBEEB040A24CA3E00B58E00 /* TagTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagTableView.m; sourceTree = "<group>"; };
 		8CCA0D0D09BDA747002E74BD /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Actions.strings; sourceTree = "<group>"; };
-		8CCA0D7209BDB3D3002E74BD /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/GuessTagsSheet.nib; sourceTree = "<group>"; };
 		8CCA0D8709BDB433002E74BD /* GuessTagsSheetDelegateMethods.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = GuessTagsSheetDelegateMethods.h; sourceTree = "<group>"; };
 		8CCA0D8909BDB449002E74BD /* GuessTagsSheet.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = GuessTagsSheet.m; sourceTree = "<group>"; };
 		8CDE8F5209BA2EF4002140CF /* FileArrayController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = FileArrayController.h; sourceTree = "<group>"; };
 		8CDE8F5309BA2EF4002140CF /* FileArrayController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = FileArrayController.m; sourceTree = "<group>"; };
 		8CE74D9B09CDB27700D73B4B /* TagFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = TagFile.icns; sourceTree = "<group>"; };
 		8CEECE9E09BCEBF400A9911A /* GuessTagsSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuessTagsSheet.h; sourceTree = "<group>"; };
-		8CFA789E09B1AE840081F2E9 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Preferences.nib; sourceTree = "<group>"; };
 		8CFA78A109B1AE990081F2E9 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
 		8CFA78A209B1AE990081F2E9 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
 		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -278,25 +278,25 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8CBA33520A13C22D00E9EA47 /* RenameFilesSheet.nib */,
+				323126430F684141003DC9B9 /* MainMenu.xib */,
+				323126470F684154003DC9B9 /* Acknowledgments.xib */,
+				3231264B0F684160003DC9B9 /* AddTagSheet.xib */,
+				3231264F0F68416C003DC9B9 /* FileSelectionSheet.xib */,
+				323126530F684178003DC9B9 /* GuessTagsSheet.xib */,
+				323126570F684182003DC9B9 /* Preferences.xib */,
+				3231265B0F68418C003DC9B9 /* RenameFilesSheet.xib */,
+				3231265F0F684199003DC9B9 /* TagEditor.xib */,
 				8CA7319809D2E5BA005D630C /* Tag.sdef */,
 				8CE74D9B09CDB27700D73B4B /* TagFile.icns */,
 				8C0A9F5C09B5898C00D994FC /* Tag.icns */,
-				8CFA789D09B1AE840081F2E9 /* Preferences.nib */,
 				8CA62A5B09B13A07001D14DC /* Acknowledgments.rtf */,
 				8C72A00C098DED9100AADBFD /* Add_Pressed.tiff */,
 				8C72A00D098DED9100AADBFD /* Add.tiff */,
 				8C72A00E098DED9100AADBFD /* Remove_Pressed.tiff */,
 				8C72A00F098DED9100AADBFD /* Remove.tiff */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
-				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
-				8CA62A5709B1398C001D14DC /* Acknowledgments.nib */,
-				8C0AA13209B5AEEF00D994FC /* TagEditor.nib */,
-				8CA1CD2A09B8050D00A5305E /* AddTagSheet.nib */,
-				8CCA0D7109BDB3D3002E74BD /* GuessTagsSheet.nib */,
-				8C1E9B650A2420C80028957C /* FileSelectionSheet.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -461,26 +461,26 @@
 			files = (
 				8CA7319909D2E5BA005D630C /* Tag.sdef in Resources */,
 				8D15AC2C0486D014006FF6A4 /* Credits.rtf in Resources */,
-				8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				8C72A010098DED9100AADBFD /* Add_Pressed.tiff in Resources */,
 				8C72A011098DED9100AADBFD /* Add.tiff in Resources */,
 				8C72A012098DED9100AADBFD /* Remove_Pressed.tiff in Resources */,
 				8C72A013098DED9100AADBFD /* Remove.tiff in Resources */,
-				8CA62A5909B1398C001D14DC /* Acknowledgments.nib in Resources */,
 				8CA62A5C09B13A07001D14DC /* Acknowledgments.rtf in Resources */,
-				8CFA789F09B1AE840081F2E9 /* Preferences.nib in Resources */,
 				8C0A9F5D09B5898C00D994FC /* Tag.icns in Resources */,
-				8C0AA13409B5AEEF00D994FC /* TagEditor.nib in Resources */,
 				8CB4FE8C09B71AD100EF45EB /* Errors.strings in Resources */,
 				8CB4FE8D09B71AD100EF45EB /* General.strings in Resources */,
 				8CB4FE8E09B71AD100EF45EB /* Genres.strings in Resources */,
-				8CA1CD2C09B8050D00A5305E /* AddTagSheet.nib in Resources */,
 				8CCA0D0E09BDA747002E74BD /* Actions.strings in Resources */,
-				8CCA0D7309BDB3D3002E74BD /* GuessTagsSheet.nib in Resources */,
 				8CE74D9C09CDB27700D73B4B /* TagFile.icns in Resources */,
-				8CBA33540A13C22D00E9EA47 /* RenameFilesSheet.nib in Resources */,
-				8C1E9B670A2420C80028957C /* FileSelectionSheet.nib in Resources */,
+				323126450F684141003DC9B9 /* MainMenu.xib in Resources */,
+				323126490F684154003DC9B9 /* Acknowledgments.xib in Resources */,
+				3231264D0F684160003DC9B9 /* AddTagSheet.xib in Resources */,
+				323126510F68416C003DC9B9 /* FileSelectionSheet.xib in Resources */,
+				323126550F684178003DC9B9 /* GuessTagsSheet.xib in Resources */,
+				323126590F684182003DC9B9 /* Preferences.xib in Resources */,
+				3231265D0F68418C003DC9B9 /* RenameFilesSheet.xib in Resources */,
+				323126610F684199003DC9B9 /* TagEditor.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,14 +535,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A37F4B7FDCFA73011CA2CEA /* English */,
-			);
-			name = MainMenu.nib;
-			sourceTree = "<group>";
-		};
 		2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -551,36 +543,68 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
-		8C0AA13209B5AEEF00D994FC /* TagEditor.nib */ = {
+		323126430F684141003DC9B9 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8C0AA13309B5AEEF00D994FC /* English */,
+				323126440F684141003DC9B9 /* English */,
 			);
-			name = TagEditor.nib;
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
-		8C1E9B650A2420C80028957C /* FileSelectionSheet.nib */ = {
+		323126470F684154003DC9B9 /* Acknowledgments.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8C1E9B660A2420C80028957C /* English */,
+				323126480F684154003DC9B9 /* English */,
 			);
-			name = FileSelectionSheet.nib;
+			name = Acknowledgments.xib;
 			sourceTree = "<group>";
 		};
-		8CA1CD2A09B8050D00A5305E /* AddTagSheet.nib */ = {
+		3231264B0F684160003DC9B9 /* AddTagSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8CA1CD2B09B8050D00A5305E /* English */,
+				3231264C0F684160003DC9B9 /* English */,
 			);
-			name = AddTagSheet.nib;
+			name = AddTagSheet.xib;
 			sourceTree = "<group>";
 		};
-		8CA62A5709B1398C001D14DC /* Acknowledgments.nib */ = {
+		3231264F0F68416C003DC9B9 /* FileSelectionSheet.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8CA62A5809B1398C001D14DC /* English */,
+				323126500F68416C003DC9B9 /* English */,
 			);
-			name = Acknowledgments.nib;
+			name = FileSelectionSheet.xib;
+			sourceTree = "<group>";
+		};
+		323126530F684178003DC9B9 /* GuessTagsSheet.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				323126540F684178003DC9B9 /* English */,
+			);
+			name = GuessTagsSheet.xib;
+			sourceTree = "<group>";
+		};
+		323126570F684182003DC9B9 /* Preferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				323126580F684182003DC9B9 /* English */,
+			);
+			name = Preferences.xib;
+			sourceTree = "<group>";
+		};
+		3231265B0F68418C003DC9B9 /* RenameFilesSheet.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3231265C0F68418C003DC9B9 /* English */,
+			);
+			name = RenameFilesSheet.xib;
+			sourceTree = "<group>";
+		};
+		3231265F0F684199003DC9B9 /* TagEditor.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				323126600F684199003DC9B9 /* English */,
+			);
+			name = TagEditor.xib;
 			sourceTree = "<group>";
 		};
 		8CB4FE8609B71AD100EF45EB /* Errors.strings */ = {
@@ -607,36 +631,12 @@
 			name = Genres.strings;
 			sourceTree = "<group>";
 		};
-		8CBA33520A13C22D00E9EA47 /* RenameFilesSheet.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8CBA33530A13C22D00E9EA47 /* English */,
-			);
-			name = RenameFilesSheet.nib;
-			sourceTree = "<group>";
-		};
 		8CCA0D0C09BDA747002E74BD /* Actions.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8CCA0D0D09BDA747002E74BD /* English */,
 			);
 			name = Actions.strings;
-			sourceTree = "<group>";
-		};
-		8CCA0D7109BDB3D3002E74BD /* GuessTagsSheet.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8CCA0D7209BDB3D3002E74BD /* English */,
-			);
-			name = GuessTagsSheet.nib;
-			sourceTree = "<group>";
-		};
-		8CFA789D09B1AE840081F2E9 /* Preferences.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8CFA789E09B1AE840081F2E9 /* English */,
-			);
-			name = Preferences.nib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
