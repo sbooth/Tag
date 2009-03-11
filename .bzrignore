@@ -1,0 +1,5 @@
+*.mode1v3
+*.pbxuser
+.DS_STORE
+build
+Frameworks
